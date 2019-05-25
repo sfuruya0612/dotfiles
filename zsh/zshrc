@@ -1,0 +1,71 @@
+#               _
+#       _______| |__  _ __ ___
+#      |_  / __| '_ \| '__/ __|
+#     _ / /\__ \ | | | | | (__
+#    (_)___|___/_| |_|_|  \___|
+#
+
+# history command TIMEFORMAT
+setopt extended_history
+# 実行日時と実行時間の表示
+alias history='history -iD'
+# llコマンドの補完
+alias ll='ls -alF'
+# 履歴ファイルの保存先
+export HISTFILE=${HOME}/.zhistory
+# メモリに保存される履歴の件数
+export HISTSIZE=250
+# 履歴ファイルに保存される履歴の件数
+export SAVEHIST=10000
+
+# Command alias -----------------------
+# vim 8.1
+alias vim="`brew --prefix`/bin/vim"
+
+# show_aws.py
+alias show="python ~/tools/aws/cli_scripts/show_aws.py"
+
+# ctags
+alias tag="`brew --prefix`/bin/ctags"
+
+# Google Search by Safari
+google() {
+    local str opt
+    if [ $# != 0 ]; then
+        for i in $*; do
+            # $strが空じゃない場合、検索ワードを+記号でつなぐ(and検索)
+            str="$str${str:++}$i"
+        done
+        opt='search?num=100'
+        opt="${opt}&q=${str}"
+    fi
+    open -a Safari.app https://www.google.co.jp/$opt
+}
+
+# Open CotEditor.app
+memo() {
+    local dir tmp
+    dir=$HOME/tmp
+    # ファイル名の重複を防ぐためUnix Timesrampをprefixとする
+    tmp=tmp_$(date +%s).txt
+    # $HOME配下にtemporary directoryがなければ作成
+    if [ ! -d $dir ]; then
+        mkdir -p $dir
+    fi
+    echo $@ >> $dir/$tmp
+    # TextEditでも対応可
+    open -a CotEditor.app $dir/$tmp
+    # 一時ファイルとしてCotEditorにInputしているので削除
+    rm $dir/$tmp
+}
+
+# Path --------------------------------
+# asdf path
+export ASDF_ROOT="$HOME/.asdf"
+export PATH="$ASDF_ROOT/bin:$PATH"
+source $ASDF_ROOT/asdf.sh
+source $ASDF_ROOT/completions/asdf.bash
+
+# Go workdir
+export GOPATH="$HOME/go"
+
