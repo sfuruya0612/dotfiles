@@ -4,6 +4,7 @@ REPO="${HOME}/dotfiles"
 
 echo "[INFO]: Start dotfiles install."
 
+echo "[INFO]: Homebrew existence check."
 type brew
 if [ $? != 0 ]; then
     echo "[INFO]: Install Homebrew."
@@ -11,6 +12,8 @@ if [ $? != 0 ]; then
     brew update
     brew upgrade
     brew doctor
+else
+    echo "[INFO]: Homebrew exist."
 fi
 
 echo "[INFO]: Require packages install."
