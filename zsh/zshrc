@@ -7,10 +7,6 @@
 
 # history command TIMEFORMAT
 setopt extended_history
-# 実行日時と実行時間の表示
-alias history='history -iD'
-# llコマンドの補完
-alias ll='ls -alF'
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
 # メモリに保存される履歴の件数
@@ -19,6 +15,13 @@ export HISTSIZE=250
 export SAVEHIST=10000
 
 # Command alias -----------------------
+# list files
+alias ls="gls --color=auto -F"
+alias ll="ls -aFGl"
+
+# history
+alias history='history -iD'
+
 # vim 8.1
 alias vim="`brew --prefix`/bin/vim"
 
