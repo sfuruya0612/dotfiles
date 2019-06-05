@@ -25,7 +25,7 @@ alias history='history -iD'
 # vim 8.1
 alias vim="`brew --prefix`/bin/vim"
 
-# show_aws.py
+# get aws resource
 alias show="python ~/tools/aws/cli_scripts/show_aws.py"
 
 # ctags
@@ -71,4 +71,4 @@ source $ASDF_ROOT/completions/asdf.bash
 
 # Go workdir
 export GOPATH="$HOME/go"
-
+export PATH=$PATH:$GOPATH/bin
