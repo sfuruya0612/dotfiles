@@ -27,12 +27,15 @@ brew install \
     zsh-completions \
     zsh-syntax-highlighting \
     colordiff \
-    reattach-to-user-namespace \
     tmux \
+    urlview \
+    reattach-to-user-namespace \
     jq \
     vim \
     asdf \
-    tree \
+    ctags \
+    mdcat \
+    tree
 
 echo "[INFO]: Replacing Symbolic Links.\n"
 
@@ -59,6 +62,9 @@ if [ -e ${TMUX_PATH} ]; then
     echo "[INFO]: Remove tmux.conf to tmux.conf_org."
     mv ${TMUX_PATH} ${TMUX_PATH}_org
 fi
+echo "[INFO]: Install tmux plugin manager.\n"
+git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
+
 echo "[INFO]: Symbolic link in tmux.conf.\n"
 ln -s ${REPO}/tmux/tmux.conf ${TMUX_PATH}
 

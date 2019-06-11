@@ -8,25 +8,32 @@
 #          |_|
 #
 
+# 色を使用
+autoload -Uz colors
+colors
+
 # zsh 補完用
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 # prompt
-autoload -U promptinit
+autoload -Uz promptinit
 promptinit
+
+PROMPT='%F{magenta}%n%f@%F{cyan}%m%f:%F{green}%~%f
+${vcs_info_msg_0_}$ '
+
+# Auto change dir
+setopt auto_cd
+
+# コマンドミスを修正
+setopt correct
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' formats '[%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 setopt prompt_subst
-
-autoload -Uz colors
-colors
-
-PROMPT='%F{magenta}%n%f@%F{cyan}%m%f:%F{green}%~%f
-${vcs_info_msg_0_}$ '
 
 # Launch tmux
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
