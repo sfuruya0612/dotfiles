@@ -16,8 +16,6 @@ if [ $? != 0 ]; then
     brew update
     brew upgrade
     brew doctor
-else
-    echo "[INFO]: Homebrew exist.\n"
 fi
 
 echo "[INFO]: Require packages install.\n"
@@ -44,7 +42,7 @@ if [ -e ${VIMRC_PATH} ]; then
     if [ -L ${VIMRC_PATH} ]; then
         echo "[INFO]: Unlink vimrc."
         unlink ${VIMRC_PATH}
-        continue
+        break
     fi
     echo "[INFO]: Remove vimrc to vimrc_org."
     mv ${VIMRC_PATH} ${VIMRC_PATH}_org
@@ -57,7 +55,7 @@ if [ -e ${TMUX_PATH} ]; then
     if [ -L ${TMUX_PATH} ]; then
         echo "[INFO]: Unlink tmux.conf."
         unlink ${TMUX_PATH}
-        continue
+        break
     fi
     echo "[INFO]: Remove tmux.conf to tmux.conf_org."
     mv ${TMUX_PATH} ${TMUX_PATH}_org
@@ -73,7 +71,7 @@ if [ -e ${ZPROFILE_PATH} ]; then
     if [ -L ${ZPROFILE_PATH} ]; then
         echo "[INFO]: Unlink zprofile."
         unlink ${ZPROFILE_PATH}
-        continue
+        break
     fi
     echo "[INFO]: Remove zprofile to zprofile_org."
     mv ${ZPROFILE_PATH} ${ZPROFILE_PATH}_org
@@ -86,7 +84,7 @@ if [ -e ${ZSHRC_PATH} ]; then
     if [ -L ${ZSHRC_PATH} ]; then
         echo "[INFO]: Unlink zshrc."
         unlink ${ZSHRC_PATH}
-        continue
+        break
     fi
     echo "[INFO]: Remove zshrc to zshrc_org."
     mv ${ZSHRC_PATH} ${ZSHRC_PATH}_org
