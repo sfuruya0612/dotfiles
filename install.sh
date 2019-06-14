@@ -31,6 +31,8 @@ brew install \
     jq \
     vim \
     asdf \
+    coreutils \
+    gpg \
     ctags \
     mdcat \
     tree

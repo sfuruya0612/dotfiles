@@ -24,7 +24,7 @@ alias ll="ls -aFGl"
 # history
 alias history='history -iD'
 # vim path intall from brew
-alias vim="`brew --prefix`/bin/vim"
+alias vim="`brew --prefix`/bin/vim -p"
 # get aws resource
 alias show="python ~/tools/aws/cli_scripts/show_aws.py"
 # ctags
