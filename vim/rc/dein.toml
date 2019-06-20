@@ -5,12 +5,7 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 
-[[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
-on_event = 'InsertCharPre'
-on_ft = 'snippet'
-
+# snippet
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
@@ -24,7 +19,6 @@ depends = 'context_filetype.vim'
 on_event = 'InsertEnter'
 
 # save vim session
-# https://github.com/tpope/vim-obsession
 [[plugins]]
 repo = 'tpope/vim-obsession'
 
@@ -86,6 +80,7 @@ hook_add = '''
 '''
 
 # NERDTree
+# Usage: C-n
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 hook_add = '''
@@ -125,8 +120,10 @@ repo = 'tpope/vim-endwise'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 
+# Comment in/out
+# Usage: Visual mode + gc
 [[plugins]]
-repo = 'tomtom/tcomment_vim'
+repo = 'tpope/vim-commentary'
 
 [[plugins]]
 repo = 'Lokaltog/vim-easymotion'

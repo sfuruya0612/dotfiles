@@ -38,6 +38,8 @@ brew install \
     tree \
     fzf
 
+/usr/local/bin/pip3 install -U neovim
+
 echo "[INFO]: Replacing Symbolic Links.\n"
 
 # vimrc
