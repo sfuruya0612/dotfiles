@@ -1,11 +1,9 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# vim 非同期処理用
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-
-[[plugins]]
-repo = 'tpope/vim-obsession'
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
@@ -25,15 +23,84 @@ if = "has('lua')"
 depends = 'context_filetype.vim'
 on_event = 'InsertEnter'
 
+# save vim session
+# https://github.com/tpope/vim-obsession
+[[plugins]]
+repo = 'tpope/vim-obsession'
+
+# syntastic check
+#[[plugins]]
+#repo = 'scrooloose/syntastic'
+#hook_add = '''
+#    set statusline+=%#warningmsg#
+#    set statusline+=%{SyntasticStatuslineFlag()}
+#    set statusline+=%*
+#
+#    let g:syntastic_always_populate_loc_list = 0
+#    let g:syntastic_auto_loc_list = 0
+#    let g:syntastic_check_on_open = 1
+#    let g:syntastic_check_on_wq = 0
+#'''
+
+# Syntastic check
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+    let g:ale_sign_column_always = 1
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+'''
+
+# Statusline design
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = {
+    \    'colorscheme': 'powerline',
+    \    'active': {
+    \        'left': [
+    \            [ 'mode', 'paste' ],
+    \            [ 'readonly', 'filename', 'modified', 'ale' ]
+    \        ],
+    \        'right': [
+    \            [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'fileformat', 'fileencoding', 'filetype' ]
+    \        ]
+    \    },
+    \    'component_function': {
+    \        'ale': 'ALEGetStatusLine'
+    \    },
+    \    'separator': {
+    \        'left': "\ue0b0",
+    \        'right': "\ue0b2"
+    \    },
+    \    'subseparator': {
+    \        'left': "\ue0b1",
+    \        'right': "\ue0b3"
+    \    }
+    \ }
+    let g:lightline.tabline = {
+    \    'left': [ [ 'tabs' ] ],
+    \    'right': [ [ 'close' ] ]
+    \ }
+'''
 
+# NERDTree
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+    let g:NERDTreeDirArrows = 1
+    let g:NERDTreeDirArrowExpandable  = '→'
+    let g:NERDTreeDirArrowCollapsible = '↓'
+    let g:NERDTreeShowHidden = 1
+    nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+'''
 
-[[plugins]]
-repo = 'jistr/vim-nerdtree-tabs'
+# NERDTree tab
+#[[plugins]]
+#repo = 'jistr/vim-nerdtree-tabs'
 
+# NERDTree display git status
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
@@ -42,12 +109,6 @@ repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'simeji/winresizer'
-
-#[[plugins]]
-#repo = 'vim-airline/vim-airline'
-
-#[[plugins]]
-#repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
@@ -60,9 +121,6 @@ repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
-
-[[plugins]]
-repo = 'w0rp/ale'
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
