@@ -35,7 +35,8 @@ brew install \
     gpg \
     ctags \
     mdcat \
-    tree
+    tree \
+    fzf
 
 echo "[INFO]: Replacing Symbolic Links.\n"
 
