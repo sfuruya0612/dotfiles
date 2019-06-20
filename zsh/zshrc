@@ -22,7 +22,7 @@ setopt EXTENDED_HISTORY
 alias ls="gls --color=auto -F"
 alias ll="ls -aFGl"
 # history
-alias history='history -iD'
+alias history="history -iD"
 # vim path intall from brew
 alias vim="`brew --prefix`/bin/vim -p"
 # get aws resource
@@ -30,20 +30,27 @@ alias show="python ~/tools/aws/cli_scripts/show_aws.py"
 # ctags
 alias tag="`brew --prefix`/bin/ctags"
 
+# fzf + history
+function fh() {
+    hist=`history -n -r 1 | fzf --tac | cut -d " " -f6-`
+    echo "$ ${hist}"
+    eval ${hist}
+}
+
 # fzf + git branch(local) + git checkout <local branch>
 fgb() {
-  local branches branch
-  branches=$(git branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+    local branches branch
+    branches=$(git branch -vv) &&
+    branch=$(echo "$branches" | fzf +m) &&
+    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
 # fzf + git log --graph
-fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
+fgl() {
+    git log --graph --color=always \
+        --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+    fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+        --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
