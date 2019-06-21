@@ -1,10 +1,3 @@
-[[plugins]]
-repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-on_source = ['unite.vim']
-
 # require deoplete
 [[plugins]]
 repo = 'roxma/nvim-yarp'
