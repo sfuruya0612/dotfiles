@@ -15,7 +15,7 @@ repo = 'roxma/nvim-yarp'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 
-# 補完
+# snippet 補完
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 hook_source = '''

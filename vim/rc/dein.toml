@@ -1,3 +1,4 @@
+# dein require
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -9,32 +10,25 @@ repo = 'Shougo/vimproc.vim'
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
+# context カーソル位置のコンテキストのftを判定
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
+# context カーソル位置のコンテキストに合わせてftを切り替える
 [[plugins]]
-repo = 'Shougo/neocomplete'
-if = "has('lua')"
-depends = 'context_filetype.vim'
-on_event = 'InsertEnter'
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+# context color schema
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+hook_add = '''
+  set background=dark
+'''
 
 # save vim session
 [[plugins]]
 repo = 'tpope/vim-obsession'
-
-# syntastic check
-#[[plugins]]
-#repo = 'scrooloose/syntastic'
-#hook_add = '''
-#    set statusline+=%#warningmsg#
-#    set statusline+=%{SyntasticStatuslineFlag()}
-#    set statusline+=%*
-#
-#    let g:syntastic_always_populate_loc_list = 0
-#    let g:syntastic_auto_loc_list = 0
-#    let g:syntastic_check_on_open = 1
-#    let g:syntastic_check_on_wq = 0
-#'''
 
 # Syntastic check
 [[plugins]]
@@ -91,49 +85,29 @@ hook_add = '''
     nnoremap <silent> <C-n> :NERDTreeToggle<CR>
 '''
 
-# NERDTree tab
-#[[plugins]]
-#repo = 'jistr/vim-nerdtree-tabs'
-
 # NERDTree display git status
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
+# 左端にgit diff iconを表示
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+# vim window resize
+# usage: <C-e> start, h, j, k, l resize
 [[plugins]]
 repo = 'simeji/winresizer'
 
-[[plugins]]
-repo = 'w0ng/vim-hybrid'
-
-[[plugins]]
-repo = 'mattn/sonictemplate-vim'
-
+# file selecter
+# usage: <C-p>
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
+# if, funcのendを補完
 [[plugins]]
 repo = 'tpope/vim-endwise'
-
-[[plugins]]
-repo = 'junegunn/vim-easy-align'
 
 # Comment in/out
 # Usage: Visual mode + gc
 [[plugins]]
 repo = 'tpope/vim-commentary'
-
-[[plugins]]
-repo = 'Lokaltog/vim-easymotion'
-
-[[plugins]]
-repo = 'vim-scripts/dbext.vim'
-
-#[[plugins]]
-#repo   = 'Shougo/unite.vim'
-
-#[[plugins]]
-#repo      = 'Shougo/neomru.vim'
-#on_source = ['unite.vim']
