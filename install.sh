@@ -37,7 +37,8 @@ brew install \
     mdcat \
     tree \
     fzf \
-    telnet
+    telnet \
+    python3
 
 /usr/local/bin/pip3 install -U neovim
 

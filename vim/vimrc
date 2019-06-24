@@ -89,8 +89,6 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <C-a> ^
 nnoremap <C-e> $
-"nnoremap <S-CR> o<ESC>`z
-"nnoremap <C-S-CR> mzO<ESC>`z
 
 " Start Dein Settings -----------------
 if &compatible

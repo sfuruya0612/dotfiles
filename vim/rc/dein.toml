@@ -94,9 +94,12 @@ repo = 'Xuyuanp/nerdtree-git-plugin'
 repo = 'airblade/vim-gitgutter'
 
 # vim window resize
-# usage: <C-e> start, h, j, k, l resize
+# usage: <C-t> start, h, j, k, l resize
 [[plugins]]
 repo = 'simeji/winresizer'
+hook_add = '''
+    let g:winresizer_start_key = '<C-T>'
+'''
 
 # file selecter
 # usage: <C-p>
