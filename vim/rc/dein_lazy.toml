@@ -104,15 +104,6 @@ on_ft = ['html']
 repo = 'hail2u/vim-css3-syntax'
 on_ft = ['css']
 
-# ruby on rails
-[[plugins]]
-repo = 'tpope/vim-rails'
-on_ft = ['rb']
-
-[[plugins]]
-repo = 'basyura/unite-rails'
-on_ft = ['rb']
-
 #json
 [[plugins]]
 repo = 'elzr/vim-json'
@@ -121,6 +112,7 @@ hook_add = '''
     let g:vim_json_syntax_conceal = 0
 '''
 
+[[plugins]]
 repo = 'rhysd/vim-fixjson'
 on_ft = ['json']
 
@@ -130,14 +122,9 @@ repo = 'cespare/vim-toml'
 on_ft = ['toml']
 
 # markdown
-#[[plugins]]
-#repo = 'plasticboy/vim-markdown'
-#on_ft = ['markdown', 'md']
-
-#[[plugins]]
-#repo = 'kannokanno/previm'
-#on_ft = ['markdown', 'md']
-
 [[plugins]]
-repo = 'tyru/open-browser.vim'
+repo = 'plasticboy/vim-markdown'
 on_ft = ['markdown', 'md']
+hook_add = '''
+    let g:vim_markdown_folding_disabled = 1
+'''

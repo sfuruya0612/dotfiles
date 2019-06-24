@@ -36,7 +36,8 @@ brew install \
     ctags \
     mdcat \
     tree \
-    fzf
+    fzf \
+    telnet
 
 /usr/local/bin/pip3 install -U neovim
 
