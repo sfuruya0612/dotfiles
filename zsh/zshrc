@@ -5,6 +5,11 @@
 #    (_)___|___/_| |_|_|  \___|
 #
 
+# Source Prezto -----------------------
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
 # history settings --------------------
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
