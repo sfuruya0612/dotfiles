@@ -34,7 +34,6 @@ brew install \
     coreutils \
     gpg \
     ctags \
-    mdcat \
     tree \
     fzf \
     telnet \

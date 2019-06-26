@@ -8,9 +8,19 @@
 #          |_|
 #
 
+# Source Prezto -----------------------
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# powerlevel10k prompt ----------------
+# https://github.com/bhilburn/powerlevel9k
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host user dir vcs newline)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history)
+
 # Editors
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
 # Ensure path arrays do not contain duplicates.
@@ -35,24 +45,11 @@ colors
 autoload -Uz compinit
 compinit
 
-# prompt
-autoload -Uz promptinit
-promptinit
-
-PROMPT='%F{magenta}%n%f@%F{cyan}%m%f:%F{green}%~%f
-${vcs_info_msg_0_}$ '
-
 # Auto change dir
 setopt auto_cd
 
 # コマンドミスを修正
 setopt correct
-
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '[%b]'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-setopt prompt_subst
 
 # Launch tmux
 function is_exists() { type "$1" >/dev/null 2>&1; return $?; }
