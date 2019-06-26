@@ -129,3 +129,11 @@ hook_add = '''
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_codeblock_syntax = 0
 '''
+
+[[plugins]]
+repo = 'kannokanno/previm'
+on_ft = ['markdown', 'md']
+hook_add = '''
+   autocmd BufRead,BufNewFile *.md set filetype=markdown
+   let g:previm_open_cmd = 'open -a Google\ Chrome'
+'''
