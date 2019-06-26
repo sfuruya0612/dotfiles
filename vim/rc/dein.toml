@@ -22,9 +22,9 @@ depends = ['context_filetype.vim']
 # context color schema
 [[plugins]]
 repo = 'w0ng/vim-hybrid'
-hook_add = '''
-  set background=dark
-'''
+#hook_add = '''
+#    set background=dark
+#'''
 
 # save vim session
 [[plugins]]

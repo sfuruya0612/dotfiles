@@ -123,8 +123,9 @@ on_ft = ['toml']
 
 # markdown
 [[plugins]]
-repo = 'plasticboy/vim-markdown'
+repo = 'rcmdnk/vim-markdown'
 on_ft = ['markdown', 'md']
 hook_add = '''
     let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_codeblock_syntax = 0
 '''
