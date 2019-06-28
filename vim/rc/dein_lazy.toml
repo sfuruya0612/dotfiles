@@ -74,7 +74,7 @@ hook_source = '''
 # yaml
 [[plugins]]
 repo = 'chase/vim-ansible-yaml'
-on_ft = ['yml']
+on_ft = ['yml', 'yaml']
 
 # js
 [[plugins]]

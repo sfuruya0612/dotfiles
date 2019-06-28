@@ -26,3 +26,7 @@ source ~/.zprofile
 source ~/.zshrc
 ```
 
+## Install dotfiles
+``` sh
+ansible-playbook main.yml -i inventories/inventory
+```
