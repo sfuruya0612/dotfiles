@@ -1,0 +1,38 @@
+brew_taps:
+    - homebrew/core
+    - caskroom/cask
+
+brew_cask_apps:
+    - alfred
+    - clipy
+    - docker
+    - google-chrome
+    - google-japanese-ime
+    - licecap
+    - snip
+    - wireshark
+    - slack
+
+brew_package:
+    - zsh
+    - zsh-autosuggestions
+    - zsh-completions
+    - zsh-syntax-highlighting
+    - colordiff
+    - tmux
+    - urlview
+    - reattach-to-user-namespace
+    - jq
+    - vim
+    - git
+    - git-lfs
+    - asdf
+    - coreutils
+    - gpg
+    - tree
+    - fzf
+    - telnet
+    - python3
+    - wget
+    - openssl
+
