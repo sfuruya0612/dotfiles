@@ -32,7 +32,7 @@ alias tag="`brew --prefix`/bin/ctags"
 
 # fzf + history
 function fh() {
-    hist=`history -n -r 1 | fzf --tac | cut -d " " -f6-`
+    hist=`history -n -r 1 | sort | uniq -f4 | fzf --tac | cut -d " " -f6-`
     echo "$ ${hist}"
     eval ${hist}
 }
