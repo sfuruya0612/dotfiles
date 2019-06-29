@@ -1,0 +1,7 @@
+---
+- name: Symbolic link ~/dotfiles/tmux/tmux.conf -> ~/.tmux.conf
+  file:
+      src: '{{ ansible_env.HOME }}/dotfiles/tmux/tmux.conf'
+      dest: '{{ ansible_env.HOME }}/.tmux.conf'
+      state: link
+      force: yes

@@ -1,0 +1,7 @@
+---
+- name: Symbolic link ~/dotfiles/vim/vimrc -> ~/.vimrc
+  file:
+      src: '{{ ansible_env.HOME }}/dotfiles/vim/vimrc'
+      dest: '{{ ansible_env.HOME }}/.vimrc'
+      state: link
+      force: yes

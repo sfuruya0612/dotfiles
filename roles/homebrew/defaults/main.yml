@@ -1,15 +1,13 @@
 brew_taps:
     - homebrew/core
     - caskroom/cask
+    - knqyf263/trivy
 
 brew_cask_apps:
-    - alfred
     - clipy
     - docker
     - google-chrome
     - google-japanese-ime
-    - licecap
-    - snip
     - wireshark
     - slack
 
@@ -35,4 +33,5 @@ brew_package:
     - python3
     - wget
     - openssl
-
+    - knqyf263/trivy/trivy
+    - mackerelio/mackerel-agent/mackerel-agent

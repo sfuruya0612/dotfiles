@@ -1,74 +1,20 @@
 ---
 - name: Setup PC
   hosts:
-    - 127.0.0.1
+      - 127.0.0.1
   connection: local
   gather_facts: yes
-  # become: yes
-  vars:
-    brew_taps:
-      - homebrew/core
-      - caskroom/cask
-    brew_cask_apps:
-      - alfred
-      - clipy
-      - docker
-      - google-chrome
-      - google-japanese-ime
-      - iterm2
-      - licecap
-      - snip
-      - wireshark
-      - slack
-    brew_packages:
-      - autoconf
-      - awscli
-      - bash-completion
-      - docker-compose
-      - docker-machine
-      - doxygen
-      - git
-      - git-lfs
-      - jq
-      - nmap
-      - oath-toolkit
-      - openssl
-      - ssh-copy-id
-      - tig
-      - tree
-      - wget
+  roles:
+      - homebrew
+      - vim
+      - tmux
       - zsh
-      - zsh-syntax-highlighting
 
-  # pre_tasks:
-    ## https://brew.sh/
-    # - name: Install Homebrew
-    #   command: '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
-
-  tasks:
-    # https://docs.ansible.com/ansible/2.7/modules/homebrew_tap_module.html
-    - name: Homebrew tap
-      homebrew_tap:
-        name: "{{ item }}"
-        state: "present"
-      with_items: "{{ brew_taps }}"
-
-    # https://docs.ansible.com/ansible/2.7/modules/homebrew_cask_module.html
-    - name: Install Homebrew Cask Packages
-      homebrew_cask:
-        name: "{{ item }}"
-        state: "present"
-        install_options: "appdir=/Applications"
-        accept_external_apps: yes
-      with_items: "{{ brew_cask_apps }}"
-
-    # https://docs.ansible.com/ansible/2.7/modules/homebrew_module.html
-    - name: Update Homebrew
-      homebrew:
-        update_homebrew: yes
-
-    - name: Install Homebrew Packages
-      homebrew:
-        name: "{{ brew_packages }}"
-        state: "present"
-
+- name: Chenge login shell
+  hosts:
+      - 127.0.0.1
+  connection: local
+  gather_facts: yes
+  become: yes
+  roles:
+      - shell

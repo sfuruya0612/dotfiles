@@ -1,0 +1,21 @@
+---
+- name: Symbolic link ~/dotfiles/zsh/zshrc -> ~/.zshrc
+  file:
+      src: '{{ ansible_env.HOME }}/dotfiles/zsh/zshrc'
+      dest: '{{ ansible_env.HOME }}/.zshrc'
+      state: link
+      force: yes
+
+- name: Symbolic link ~/dotfiles/zsh/zprofile -> ~/.zprofile
+  file:
+      src: '{{ ansible_env.HOME }}/dotfiles/zsh/zprofile'
+      dest: '{{ ansible_env.HOME }}/.zprofile'
+      state: link
+      force: yes
+
+- name: Symbolic link ~/dotfiles/zsh/zpreztorc -> ~/.zpreztorc
+  file:
+      src: '{{ ansible_env.HOME }}/dotfiles/zsh/zpreztorc'
+      dest: '{{ ansible_env.HOME }}/.zpreztorc'
+      state: link
+      force: yes
