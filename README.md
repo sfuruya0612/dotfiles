@@ -1,7 +1,10 @@
 # Dotfiles  
 
+## Description  
+Building vim, tmux, zsh environment of macOS with Ansible.  
+**<span style="color: red; ">Follow Terminal.app only</span>**  
 
-## Supported Versions
+#### Supported Versions
 | Tool | Version |
 |:-----|:--------|
 | Vim  | 8.1     |
@@ -9,24 +12,21 @@
 | Zsh  | 5.7.1   |
 
 
-## Description  
-Setting of zsh, vim, tmux for macOS(Used Terminal.app)  
-
-
-## Setting dotfiles  
+## Install
 ```sh
 git clone https://github.com/sfuruya0612/dotfiles.git
 cd ~/dotfiles
 sh install.sh
 
-# if necessary
-source ~/.vimrc
-source ~/.tmux.conf
-source ~/.zprofile
-source ~/.zshrc
+# Restart Terminal.app
 ```
 
-## Install dotfiles
-``` sh
-ansible-playbook main.yml -i inventories/inventory
-```
+## Setting
+1. Load dotfiles/schema/Solarized Dark.terminal file into Terminal.app and create a new Profile.
+    - Terminal.app -> Preferences -> Profile -> Add profile
+
+1. Set text tab based on image.
+    - You can use the font as you like.  
+<img src="https://github.com/sfuruya0612/dotfiles/blob/master/images/terminal_text.png" width="320px">
+
+1. Check “Use Option key as meta key” on the keyboard tab.

@@ -1,20 +1,20 @@
 ---
 - name: Setup PC
   hosts:
-      - 127.0.0.1
+    - 127.0.0.1
   connection: local
   gather_facts: yes
   roles:
-      - homebrew
-      - vim
-      - tmux
-      - zsh
+    - homebrew
+    - vim
+    - tmux
+    - zsh
+    - fonts
 
-- name: Chenge login shell
+- name: Chenge login shell to zsh
   hosts:
-      - 127.0.0.1
+    - 127.0.0.1
   connection: local
   gather_facts: yes
-  become: yes
   roles:
-      - shell
+    - shell

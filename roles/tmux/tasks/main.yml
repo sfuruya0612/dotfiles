@@ -1,7 +1,17 @@
 ---
+- name: Make ~/.tmux/plugins directory
+  file:
+    path: "{{ ansible_env.HOME }}/.tmux/plugins/"
+    state: directory
+
+- name: Clone tmux plugin repo
+  git:
+    repo: "https://github.com/tmux-plugins/tpm"
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tmp"
+
 - name: Symbolic link ~/dotfiles/tmux/tmux.conf -> ~/.tmux.conf
   file:
-      src: '{{ ansible_env.HOME }}/dotfiles/tmux/tmux.conf'
-      dest: '{{ ansible_env.HOME }}/.tmux.conf'
-      state: link
-      force: yes
+    src: "{{ ansible_env.HOME }}/dotfiles/tmux/tmux.conf"
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    state: link
+    force: yes

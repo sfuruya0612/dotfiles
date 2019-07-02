@@ -1,0 +1,11 @@
+---
+- name: Clone powerline fonts repo
+  git:
+    repo: "https://github.com/powerline/fonts.git"
+    dest: "{{ ansible_env.HOME }}"
+    depth: 1
+
+- name: Install powerline font
+  shell: "install.sh"
+  args:
+    chdir: "{{ ansible_env.HOME }}/fonts/"

@@ -1,7 +1,13 @@
 ---
+- name: Install neovim from pip3
+  pip:
+    name: neovim
+    executable: pip3
+    state: latest
+
 - name: Symbolic link ~/dotfiles/vim/vimrc -> ~/.vimrc
   file:
-      src: '{{ ansible_env.HOME }}/dotfiles/vim/vimrc'
-      dest: '{{ ansible_env.HOME }}/.vimrc'
-      state: link
-      force: yes
+    src: '{{ ansible_env.HOME }}/dotfiles/vim/vimrc'
+    dest: '{{ ansible_env.HOME }}/.vimrc'
+    state: link
+    force: yes

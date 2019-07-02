@@ -1,0 +1,5 @@
+---
+- name: Change default shell
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/local/bin/zsh
