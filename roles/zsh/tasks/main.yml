@@ -4,6 +4,7 @@
     repo: "https://github.com/sorin-ionescu/prezto.git"
     dest: "{{ ansible_env.HOME }}/.zprezto"
     recursive: yes
+    force: yes
 
 - name: Symbolic link ~/dotfiles/zsh/zshrc -> ~/.zshrc
   file:

@@ -7,31 +7,34 @@ brew_cask_apps:
   - clipy
   - docker
   - google-chrome
-  - google-japanese-ime
   - wireshark
   - slack
+  - CotEditor
 
 brew_package:
+  - diffutils
+  - colordiff
+  - coreutils
+  - gawk
   - zsh
   - zsh-autosuggestions
   - zsh-completions
   - zsh-syntax-highlighting
-  - colordiff
+  - fzf
   - tmux
   - urlview
   - reattach-to-user-namespace
-  - jq
   - vim
   - git
   - git-lfs
   - asdf
-  - coreutils
+  - python3
+  - jq
   - gpg
   - tree
-  - fzf
   - telnet
-  - python3
   - wget
+  - mdcat
   - openssl
   - knqyf263/trivy/trivy
   - mackerelio/mackerel-agent/mackerel-agent
