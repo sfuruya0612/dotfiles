@@ -2,6 +2,7 @@ brew_taps:
   - homebrew/core
   - caskroom/cask
   - knqyf263/trivy
+  - aws/tap
 
 brew_cask_apps:
   - clipy
@@ -10,8 +11,9 @@ brew_cask_apps:
   - wireshark
   - slack
   - CotEditor
+  - google-cloud-sdk
 
-brew_package:
+brew_packages:
   - diffutils
   - colordiff
   - coreutils
@@ -38,3 +40,6 @@ brew_package:
   - openssl
   - knqyf263/trivy/trivy
   - mackerelio/mackerel-agent/mackerel-agent
+  - terraform
+  - aws-sam-cli
+  - kubernetes-cli

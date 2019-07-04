@@ -20,5 +20,5 @@
 
 - name: Install Homebrew Packages
   homebrew:
-    name: "{{ brew_package }}"
+    name: "{{ brew_packages }}"
     state: "latest"
