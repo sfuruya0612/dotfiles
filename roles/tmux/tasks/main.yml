@@ -7,7 +7,7 @@
 - name: Clone tmux plugin repo
   git:
     repo: "https://github.com/tmux-plugins/tpm"
-    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tmp"
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
 
 - name: Symbolic link ~/dotfiles/tmux/tmux.conf -> ~/.tmux.conf
   file:

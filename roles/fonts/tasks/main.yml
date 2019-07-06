@@ -7,5 +7,3 @@
 
 - name: Install powerline font
   shell: "{{ ansible_env.HOME }}/fonts/install.sh"
-  args:
-    creates: "{{ ansible_env.HOME }}/fonts"
