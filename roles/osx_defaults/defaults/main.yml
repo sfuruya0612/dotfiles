@@ -1,0 +1,86 @@
+dock_settings:
+  - key: autohide
+    type: bool
+    value: true
+  - key: magnification
+    type: bool
+    value: false
+  - key: tilesize
+    type: float
+    value: 30
+  - key: orientation
+    type: string
+    value: left
+  - key: wvous-bl-corner
+    type: int
+    value: 11
+  - key: wvous-bl-modifier
+    type: int
+    value: 0
+  - key: wvous-br-corner
+    type: int
+    value: 10
+  - key: wvous-br-modifier
+    type: int
+    value: 0
+
+safari_settings:
+  - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled
+    type: bool
+    value: true
+  - key: IncludeDevelopMenu
+    type: bool
+    value: true
+  - key: WebKitDeveloperExtrasEnabledPreferenceKey
+    type: bool
+    value: true
+  - key: IncludeInternalDebugMenu
+    type: bool
+    value: true
+  - key: ShowFullURLInSmartSearchField
+    type: bool
+    value: true
+  - key: ShowStatusBar
+    type: bool
+    value: true
+
+finder_settings:
+  - key: ShowStatusBar
+    type: bool
+    value: true
+  - key: ShowPathbar
+    type: bool
+    value: true
+  - key: ShowTabView
+    type: bool
+    value: true
+  - key: AppleShowAllFiles
+    type: bool
+    value: true
+
+clock_settings:
+  - key: DateFormat
+    type: string
+    value: "M\\U6708d\\U65e5(EEE)  H:mm:ss"
+  - key: FlashDateSeparators
+    type: int
+    value: 0
+  - key: IsAnalog
+    type: int
+    value: 0
+
+battery_settings:
+  - key: DidShowFDEWarning
+    type: int
+    value: 1
+  - key: ShowPercent
+    type: string
+    value: YES
+
+keyrepeat_settings:
+  - key: KeyRepeat
+    type: int
+    value: 1
+  - key: InitialKeyRepeat
+    type: int
+    value: 10

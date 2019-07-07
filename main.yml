@@ -10,11 +10,5 @@
     - tmux
     - zsh
     - fonts
-
-- name: Chenge login shell to zsh
-  hosts:
-    - 127.0.0.1
-  connection: local
-  gather_facts: yes
-  roles:
+    - osx_defaults
     - shell

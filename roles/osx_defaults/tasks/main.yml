@@ -1,0 +1,9 @@
+---
+- name: Settings OS X
+  include_tasks: "{{ item }}"
+  with_items:
+    - dock.yml
+    - safari.yml
+    - finder.yml
+    - menuextra.yml
+    - keyboard.yml

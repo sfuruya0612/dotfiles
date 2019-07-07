@@ -1,0 +1,10 @@
+---
+- name: Setting dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items: "{{ dock_settings }}"
+  notify: restart dock

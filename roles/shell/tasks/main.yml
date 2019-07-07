@@ -1,11 +1,11 @@
 ---
-- name: search path zsh
+- name: Search path zsh
   command: >
     which zsh
   register: which_zsh
   ignore_errors: True
 
-- name: grep shells
+- name: Check shells file
   shell: >
     cat /etc/shells | grep "{{which_zsh.stdout}}"
   register: grep_shells
@@ -13,11 +13,14 @@
 
 - block:
 
-  - name: append shells
-    shell: >
-      echo {{which_zsh.stdout}} >> /etc/shells
+  - name: Append shells
+    lineinfile:
+        dest: /etc/shells
+        line: "{{ which_zsh.stdout }}"
+        regexp: "{{ which_zsh.stdout }}"
+        insertafter: EOF
 
-  - name: change login shell
+  - name: Change login shell
     shell: >
       chpass -s {{which_zsh.stdout}}
     register: result

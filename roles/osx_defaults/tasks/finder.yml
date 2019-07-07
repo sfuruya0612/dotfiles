@@ -1,0 +1,10 @@
+---
+- name: Setting Finder
+  osx_defaults:
+    domain: com.apple.finder
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items: "{{ finder_settings }}"
+  notify: restart finder

@@ -14,6 +14,9 @@ brew_cask_apps:
   - CotEditor
   - google-cloud-sdk
   - Karabiner-Elements
+  - visual-studio-code
+  - vagrant
+  - virtualbox
 
 brew_packages:
   - diffutils
