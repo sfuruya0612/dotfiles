@@ -5,5 +5,10 @@
     dest: "{{ ansible_env.HOME }}/fonts"
     depth: 1
 
-- name: Install powerline font
+- name: Install powerline fonts
   shell: "{{ ansible_env.HOME }}/fonts/install.sh"
+
+- name: Remove powerline fonts repo
+  file:
+    path: "{{ ansible_env.HOME }}/fonts/"
+    state: absent

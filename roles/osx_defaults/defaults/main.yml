@@ -1,3 +1,31 @@
+global_settings:
+  - key: AppleInterfaceStyle
+    type: string
+    value: Dark
+  - key: AppleLanguages
+    type: array
+    value:
+      - "ja-JP"
+      - "en-JP"
+  - key: AppleLocale
+    type: string
+    value: "ja_JP"
+  - key: AppleMeasurementUnits
+    type: string
+    value: Centimeters
+  - key: AppleTemperatureUnit
+    type: string
+    value: Celsius
+  - key: AppleMetricUnits
+    type: int
+    value: 1
+  - key: KeyRepeat
+    type: int
+    value: 1
+  - key: InitialKeyRepeat
+    type: int
+    value: 10
+
 dock_settings:
   - key: autohide
     type: bool
@@ -76,11 +104,3 @@ battery_settings:
   - key: ShowPercent
     type: string
     value: YES
-
-keyrepeat_settings:
-  - key: KeyRepeat
-    type: int
-    value: 1
-  - key: InitialKeyRepeat
-    type: int
-    value: 10

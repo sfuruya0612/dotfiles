@@ -1,9 +1,9 @@
 ---
-- name: Setting key repeat
+- name: Setting NSGlobalDomain
   osx_defaults:
     domain: NSGlobalDomain
     key: "{{ item.key }}"
     type: "{{ item.type }}"
     value: "{{ item.value }}"
     state: present
-  with_items: "{{ keyrepeat_settings }}"
+  with_items: "{{ global_settings }}"
