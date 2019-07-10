@@ -48,3 +48,5 @@ brew_packages:
   - terraform
   - aws-sam-cli
   - kubernetes-cli
+  - stern
+  - vegeta
