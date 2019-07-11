@@ -16,7 +16,6 @@ brew_cask_apps:
   - google-cloud-sdk
   - Karabiner-Elements
   - visual-studio-code
-  - github
   - vagrant
   - virtualbox
   - alacritty

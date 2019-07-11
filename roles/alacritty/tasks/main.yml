@@ -1,0 +1,7 @@
+---
+- name: Symbolic link ~/dotfiles/alacritty/alacritty.yml -> ~/.config/alacritty/alacritty.yml
+  file:
+    src: "{{ ansible_env.HOME }}/dotfiles/alacritty/alacritty.yml"
+    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"
+    state: link
+    force: yes
