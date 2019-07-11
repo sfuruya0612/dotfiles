@@ -8,6 +8,7 @@ brew_cask_apps:
   - clipy
   - Docker
   - google-chrome
+  - firefox
   - Wireshark
   - Slack
   - ChatWork
@@ -15,8 +16,10 @@ brew_cask_apps:
   - google-cloud-sdk
   - Karabiner-Elements
   - visual-studio-code
+  - github
   - vagrant
   - virtualbox
+  - alacritty
 
 brew_packages:
   - diffutils
@@ -40,6 +43,8 @@ brew_packages:
   - gpg
   - tree
   - telnet
+  - htop
+  - nmap
   - wget
   - mdcat
   - openssl
