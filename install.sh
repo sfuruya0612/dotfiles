@@ -25,7 +25,7 @@ echo ""
 
 echo "Execute playbook.\n"
 /usr/local/bin/ansible-playbook main.yml \
-    -i inventories/inventory \
+    -i inventory/local \
     --ask-become-pass
 
 echo "\nInstall finished.\n"
