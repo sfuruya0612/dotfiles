@@ -31,7 +31,7 @@ alias show="python ~/tools/aws/cli_scripts/show_aws.py"
 alias tag="`brew --prefix`/bin/ctags"
 
 # fzf + history
-function fh() {
+fh() {
     hist=`history -n -r 1 | sort | uniq -f4 | fzf --tac | cut -d " " -f6-`
     echo "$ ${hist}"
     eval ${hist}
@@ -55,6 +55,30 @@ fgl() {
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
 FZF-EOF"
+}
+
+# fzf + git add
+fga() {
+    local selected
+    selected=$(git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+    if [[ -n "$selected" ]]; then
+        selected=$(tr '\n' ' ' <<< "$selected")
+        git add $selected
+        echo "Completed: git add $selected"
+    fi
+}
+
+# fzf + ssh login
+fs() {
+    local sshLoginHost
+    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf`
+
+    if [ "$sshLoginHost" = "" ]; then
+        # ex) Ctrl-C.
+        return 1
+    fi
+
+    ssh ${sshLoginHost}
 }
 
 # Google Search by Safari

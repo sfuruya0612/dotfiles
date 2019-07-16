@@ -21,10 +21,10 @@ global_settings:
     value: 1
   - key: KeyRepeat
     type: int
-    value: 1
+    value: 2
   - key: InitialKeyRepeat
     type: int
-    value: 8
+    value: 15
 
 dock_settings:
   - key: autohide

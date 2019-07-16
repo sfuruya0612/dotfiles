@@ -2,7 +2,7 @@
 
 ## Description  
 Building vim, tmux, zsh environment of macOS with Ansible.  
-**<span style="color: red; ">Follow Terminal.app only</span>**  
+**<span style="color: red; ">Follow Terminal.app and Alacritty</span>**  
 
 #### Supported Versions
 | Tool | Version |
@@ -18,10 +18,10 @@ git clone https://github.com/sfuruya0612/dotfiles.git
 cd ~/dotfiles
 sh install.sh
 
-# Restart Terminal.app
+# Restart Terminal.app or Alacritty
 ```
 
-## Setting
+## Setting(Only use the Terminal.app)
 1. Load dotfiles/schema/Solarized Dark.terminal file into Terminal.app and create a new Profile.
     - Terminal.app -> Preferences -> Profile -> Add profile
 
