@@ -4,6 +4,10 @@
     update_homebrew: yes
     upgrade_all: yes
 
+- name: Upgrade Homebrew cask
+  homebrew_cask:
+    upgrade_all: true
+
 - name: Homebrew tap
   homebrew_tap:
     name: "{{ item }}"

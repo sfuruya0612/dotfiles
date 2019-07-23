@@ -55,3 +55,4 @@ brew_packages:
   - kubernetes-cli
   - stern
   - vegeta
+  - cfn-lint
