@@ -3,7 +3,7 @@
 
   - name: Copy mackerel agent config
     template:
-      src: mackerel-agent.j2
+      src: mackerel-agent.conf.j2
       dest: /usr/local/etc/mackerel-agent.conf
     register: result
 

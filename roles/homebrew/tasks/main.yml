@@ -10,17 +10,21 @@
 
 - name: Homebrew tap
   homebrew_tap:
-    name: "{{ item }}"
+    name: "{{ brew_tap_item }}"
     state: "present"
   with_items: "{{ brew_taps }}"
+  loop_control:
+    loop_var: brew_tap_item
 
 - name: Install Homebrew Cask Packages
   homebrew_cask:
-    name: "{{ item }}"
+    name: "{{ brew_cask_app_item }}"
     state: "present"
     install_options: "appdir=/Applications"
     accept_external_apps: yes
   with_items: "{{ brew_cask_apps }}"
+  loop_control:
+    loop_var: brew_cask_app_item
 
 - name: Install Homebrew Packages
   homebrew:

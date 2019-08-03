@@ -2,9 +2,11 @@
 - name: Setting Finder
   osx_defaults:
     domain: com.apple.finder
-    key: "{{ item.key }}"
-    type: "{{ item.type }}"
-    value: "{{ item.value }}"
+    key: "{{ finder_setting_item.key }}"
+    type: "{{ finder_setting_item.type }}"
+    value: "{{ finder_setting_item.value }}"
     state: present
   with_items: "{{ finder_settings }}"
+  loop_control:
+    loop_var: finder_setting_item
   notify: restart finder

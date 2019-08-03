@@ -49,10 +49,11 @@ brew_packages:
   - mdcat
   - openssl
   - knqyf263/trivy/trivy
+  - goodwithtech/dockle/dockle
+  - kubernetes-cli
+  - stern
   - mackerelio/mackerel-agent/mackerel-agent
   - terraform
   - aws-sam-cli
-  - kubernetes-cli
-  - stern
-  - vegeta
   - cfn-lint
+  - vegeta

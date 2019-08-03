@@ -2,8 +2,10 @@
 - name: Setting NSGlobalDomain
   osx_defaults:
     domain: NSGlobalDomain
-    key: "{{ item.key }}"
-    type: "{{ item.type }}"
-    value: "{{ item.value }}"
+    key: "{{ global_setting_item.key }}"
+    type: "{{ global_setting_item.type }}"
+    value: "{{ global_setting_item.value }}"
     state: present
   with_items: "{{ global_settings }}"
+  loop_control:
+    loop_var: global_setting_item
