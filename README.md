@@ -13,6 +13,10 @@ Building vim, tmux, zsh environment of macOS with Ansible.
 
 
 ## Install
+
+#### Prepere
+When using mackerel, add `API_KEY` to `group_vars/all.yml`
+
 ```sh
 git clone https://github.com/sfuruya0612/dotfiles.git
 cd ~/dotfiles
