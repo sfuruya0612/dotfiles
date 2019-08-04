@@ -68,7 +68,7 @@ fga() {
         selected=$(tr '\n' ' ' <<< "${selected}")
         git add `echo ${selected} | sed 's/\s*$//'`
 
-        echo "Completed: git add ${selected}"
+        git status
     fi
 }
 
