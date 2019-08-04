@@ -7,7 +7,7 @@
 
 - name: Check shells file
   shell: >
-    /bin/cat /etc/shells | /usr/bin/grep "{{which_zsh.stdout}}"
+    /bin/cat /etc/shells | /usr/bin/grep "{{ which_zsh.stdout }}"
   register: grep_shells
   ignore_errors: True
 
@@ -22,7 +22,7 @@
 
   - name: Change login shell
     shell: >
-      /usr/bin/chpass -s {{which_zsh.stdout}}
+      /usr/bin/chpass -s "{{ which_zsh.stdout }}"
     register: result
     until: result.rc == 0
 
