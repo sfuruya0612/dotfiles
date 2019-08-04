@@ -25,13 +25,13 @@ alias ll="ls -aFGl"
 alias history="history -iD"
 # vim path intall from brew
 alias vim="`brew --prefix`/bin/vim -p"
-# get aws resource
-alias show="python ~/tools/aws/cli_scripts/show_aws.py"
 # ctags
 alias tag="`brew --prefix`/bin/ctags"
 
 # fzf + history
 fh() {
+    local hist
+
     hist=`history -n -r 1 | sort | uniq -f4 | fzf --tac | cut -d " " -f6-`
     echo "$ ${hist}"
     eval ${hist}
@@ -40,9 +40,10 @@ fh() {
 # fzf + git branch(local) + git checkout <local branch>
 fgb() {
     local branches branch
+
     branches=$(git branch -vv) &&
-    branch=$(echo "$branches" | fzf +m) &&
-    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+    branch=$(echo "${branches}" | fzf +m) &&
+    git checkout $(echo "${branch}" | awk '{print $1}' | sed "s/.* //")
 }
 
 # fzf + git log --graph
@@ -54,26 +55,30 @@ fgl() {
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
-FZF-EOF"
+                FZF-EOF"
 }
 
 # fzf + git add
 fga() {
-    local selected
-    selected=$(git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
-    if [[ -n "$selected" ]]; then
-        selected=$(tr '\n' ' ' <<< "$selected")
-        git add $selected
-        echo "Completed: git add $selected"
+    local selected list
+
+    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+
+    if [[ -n "${selected}" ]]; then
+        selected=$(tr '\n' ' ' <<< "${selected}")
+        git add `echo ${selected} | sed 's/\s*$//'`
+
+        echo "Completed: git add ${selected}"
     fi
 }
 
 # fzf + ssh login
 fs() {
     local sshLoginHost
+
     sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf`
 
-    if [ "$sshLoginHost" = "" ]; then
+    if [ "${sshLoginHost}" = "" ]; then
         # ex) Ctrl-C.
         return 1
     fi
@@ -84,41 +89,47 @@ fs() {
 # Google Search by Safari
 google() {
     local str opt
+
     if [ $# != 0 ]; then
         for i in $*; do
             # $strが空じゃない場合、検索ワードを+記号でつなぐ(and検索)
-            str="$str${str:++}$i"
+            str="${str}${str:++}$i"
         done
         opt='search?num=100'
         opt="${opt}&q=${str}"
     fi
-    open -a Safari.app https://www.google.co.jp/$opt
+
+    open -a Safari.app https://www.google.co.jp/${opt}
 }
 
 # Open CotEditor.app
 memo() {
     local dir tmp
-    dir=$HOME/tmp
+
+    dir=${HOME}/tmp
     # ファイル名の重複を防ぐためUnix Timesrampをprefixとする
     tmp=tmp_$(date +%s).txt
+
     # $HOME配下にtemporary directoryがなければ作成
-    if [ ! -d $dir ]; then
-        mkdir -p $dir
+    if [ ! -d ${dir} ]; then
+        mkdir -p ${dir}
     fi
-    echo $@ >> $dir/$tmp
+
+    echo $@ >> ${dir}/${tmp}
+
     # TextEditでも対応可
-    open -a CotEditor.app $dir/$tmp
+    open -a CotEditor.app ${dir}/${tmp}
     # 一時ファイルとしてCotEditorにInputしているので削除
-    rm $dir/$tmp
+    rm ${dir}/${tmp}
 }
 
 # Path --------------------------------
 # asdf path
-export ASDF_ROOT="$HOME/.asdf"
-export PATH="$ASDF_ROOT/bin:$PATH"
-source $ASDF_ROOT/asdf.sh
-source $ASDF_ROOT/completions/asdf.bash
+export ASDF_ROOT=${HOME}/.asdf
+export PATH=${ASDF_ROOT}/bin:${PATH}
+source ${ASDF_ROOT}/asdf.sh
+source ${ASDF_ROOT}/completions/asdf.bash
 
 # Go workdir
-export GOPATH="$HOME/go"
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=${HOME}/go
+export PATH=${PATH}:${GOPATH}/bin

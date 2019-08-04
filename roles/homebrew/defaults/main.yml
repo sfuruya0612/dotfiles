@@ -57,3 +57,4 @@ brew_packages:
   - aws-sam-cli
   - cfn-lint
   - vegeta
+  - expect
