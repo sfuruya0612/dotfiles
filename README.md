@@ -1,4 +1,5 @@
 # Dotfiles  
+[![Build Status](https://travis-ci.org/sfuruya0612/dotfiles.svg?branch=master)](https://travis-ci.org/sfuruya0612/dotfiles)
 
 ## Description  
 Building vim, tmux, zsh environment of macOS with Ansible.  
