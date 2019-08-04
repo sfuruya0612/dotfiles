@@ -1,4 +1,9 @@
 ---
+- name: Create alacritty config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/alacritty"
+    state: directory
+
 - name: Symbolic link ~/dotfiles/alacritty/alacritty.yml -> ~/.config/alacritty/alacritty.yml
   file:
     src: "{{ ansible_env.HOME }}/dotfiles/alacritty/alacritty.yml"
