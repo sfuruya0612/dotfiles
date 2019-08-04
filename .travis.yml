@@ -1,8 +1,12 @@
 languege: python
 python:
-  - "3.7.3"
+  - 3.7.3
 install:
   - pip install --user --upgrade pip
   - pip install --user ansible ansible-lint
 script:
   - ansible-lint -c .ansible-lint main.yml
+notifications:
+  email: false
+  slack:
+    secure: njZWtf2N6GaclYJQoAocp/ss9sNZGDOUfMEatdx0SZAseJSCvGO+pjRXXGGcDa3KfdcAT0CZnyKauOwfcRNcxEDMK/FTMOTkbjqw/PyCRLMyJ+e3k7XGdRk5M4/VbkJXpLwqU23NcRX2oOgAMfUjAFGv1+bQhun7gT+VFgGYyN2OoA571Vb0B+ECIRIEkf6H9SMUvw7jU5NWLjUmx8juLR2J2HsGXFZkOjyY+7Vz6bGznfC6M7ZFyqtbUoI0eDMPBeYxdL16/ZIdcxidUsjeepmNooJ+WO1Cm7snw5us0oXLyDaXyMehW/8UbspsEx11yCXnX7wnCMwv4GaYKJSpB+fyv/qmfqqOyD54h0vaPhNC7SzOZCEr4rqucSPDDKys+ce1m08UTYTWvD4R2oQDBeCUBdYtVWEXMomqojkOm0DVck+J/puElGx7oSWSdT4y3XyjModGYu5gECua6EYJIEM1LtsBerNkovCODZ3RW0NNRh//iatAGbAy61Sb9jTIfoUpnQxbyg7zD+6/wyllCdusa0UFSTI7jx04sYsKLhSLH1Kd/23359NqIQrxcsmGr1Z5TR4Zq6Whsn+WrG6qq3kMa5ZCvCAnnjxX/whSpfpGyY+ucpzW0xuyAkW3wWeg30YdWoCaZg4Onj6iVA0XMfBM25xAqIuEZKQFtk1V0RI=

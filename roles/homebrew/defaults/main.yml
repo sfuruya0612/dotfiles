@@ -58,3 +58,4 @@ brew_packages:
   - cfn-lint
   - vegeta
   - expect
+  - travis
