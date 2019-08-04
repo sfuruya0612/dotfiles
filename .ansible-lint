@@ -1,0 +1,10 @@
+parseable: true
+quiet: false
+use_default_rules: true
+skip_list:
+  - '301'
+  - '305'
+  - '401'
+  - '403'
+  - '601'
+verbosity: 1

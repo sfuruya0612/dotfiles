@@ -5,4 +5,4 @@ install:
   - pip install --user --upgrade pip
   - pip install --user ansible ansible-lint
 script:
-  - ansible-lint main.yml
+  - ansible-lint -c .ansible-lint main.yml

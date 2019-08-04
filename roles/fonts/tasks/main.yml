@@ -6,7 +6,8 @@
     depth: 1
 
 - name: Install powerline fonts
-  shell: "{{ ansible_env.HOME }}/fonts/install.sh"
+  shell: >
+    {{ ansible_env.HOME }}/fonts/install.sh
 
 - name: Remove powerline fonts repo
   file:

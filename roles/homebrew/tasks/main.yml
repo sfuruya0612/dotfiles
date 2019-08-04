@@ -6,7 +6,7 @@
 
 - name: Upgrade Homebrew cask
   homebrew_cask:
-    upgrade_all: true
+    upgrade_all: yes
 
 - name: Homebrew tap
   homebrew_tap:
