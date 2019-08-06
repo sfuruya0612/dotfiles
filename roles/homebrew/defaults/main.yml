@@ -20,6 +20,7 @@ brew_cask_apps:
   - vagrant
   - virtualbox
   - alacritty
+  - minikube
 
 brew_packages:
   - diffutils
@@ -59,3 +60,4 @@ brew_packages:
   - vegeta
   - expect
   - travis
+  - ansible-lint

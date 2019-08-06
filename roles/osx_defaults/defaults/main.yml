@@ -83,13 +83,13 @@ finder_settings:
     type: bool
     value: true
   - key: AppleShowAllFiles
-    type: bool
-    value: true
+    type: string
+    value: True
 
 clock_settings:
   - key: DateFormat
     type: string
-    value: "M\\U6708d\\U65e5(EEE)  H:mm:ss"
+    value: "M\\U6708d\\U65e5(EEE) H:mm:ss"
   - key: FlashDateSeparators
     type: int
     value: 0
@@ -104,3 +104,11 @@ battery_settings:
   - key: ShowPercent
     type: string
     value: YES
+
+trackpad_settings:
+  - key: TrackpadCornerSecondaryClick
+    type: int
+    value: 2
+  - key: Clicking
+    type: int
+    value: 1

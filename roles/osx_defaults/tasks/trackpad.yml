@@ -1,0 +1,11 @@
+---
+- name: Setting trackpad
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: "{{ trackpad_setting_item.key }}"
+    type: "{{ trackpad_setting_item.type }}"
+    value: "{{ trackpad_setting_item.value }}"
+    state: present
+  with_items: "{{ trackpad_settings }}"
+  loop_control:
+    loop_var: trackpad_setting_item
