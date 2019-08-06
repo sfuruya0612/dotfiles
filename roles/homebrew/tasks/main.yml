@@ -4,10 +4,6 @@
     update_homebrew: yes
     upgrade_all: yes
 
-- name: Upgrade Homebrew cask
-  homebrew_cask:
-    upgrade_all: yes
-
 - name: Homebrew tap
   homebrew_tap:
     name: "{{ brew_tap_item }}"
@@ -15,6 +11,10 @@
   with_items: "{{ brew_taps }}"
   loop_control:
     loop_var: brew_tap_item
+
+- name: Upgrade Homebrew cask
+  homebrew_cask:
+    upgrade_all: yes
 
 - name: Install Homebrew Cask Packages
   homebrew_cask:
@@ -29,4 +29,4 @@
 - name: Install Homebrew Packages
   homebrew:
     name: "{{ brew_packages }}"
-    state: "latest"
+    state: "present"

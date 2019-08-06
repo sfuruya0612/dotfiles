@@ -1,9 +1,10 @@
 ---
 brew_taps:
-  - homebrew/core
-  - caskroom/cask
-  - knqyf263/trivy
   - aws/tap
+  - caskroom/cask
+  - homebrew/core
+  - jkawamoto/loci
+  - knqyf263/trivy
 
 brew_cask_apps:
   - clipy
@@ -61,3 +62,4 @@ brew_packages:
   - expect
   - travis
   - ansible-lint
+  - loci

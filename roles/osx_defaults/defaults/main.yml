@@ -83,8 +83,8 @@ finder_settings:
     type: bool
     value: true
   - key: AppleShowAllFiles
-    type: string
-    value: True
+    type: bool
+    value: true
 
 clock_settings:
   - key: DateFormat

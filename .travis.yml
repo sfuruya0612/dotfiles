@@ -1,11 +1,14 @@
 languege: python
 python:
   - 3.7.3
+
 install:
   - pip install --user --upgrade pip
   - pip install --user ansible ansible-lint
+
 script:
   - ansible-lint -c .ansible-lint main.yml
+
 notifications:
   email: false
   slack:
