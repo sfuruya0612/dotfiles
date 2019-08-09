@@ -16,9 +16,10 @@ scriptencoding utf-8
 syntax on
 colorscheme desert
 
-" Setting the Status Line -------------
+" Setting the Status & Tab Line -------------
 set laststatus=2
 set noshowmode
+set showtabline=2
 
 " Tab & Indent Setting ----------------
 set expandtab
