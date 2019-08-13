@@ -7,59 +7,60 @@ brew_taps:
   - knqyf263/trivy
 
 brew_cask_apps:
-  - clipy
-  - Docker
-  - google-chrome
-  - firefox
-  - Wireshark
-  - Slack
   - ChatWork
   - CotEditor
-  - google-cloud-sdk
+  - Docker
   - Karabiner-Elements
-  - visual-studio-code
+  - Slack
+  - Wireshark
+  - alacritty
+  - clipy
+  - firefox
+  - google-chrome
+  - google-cloud-sdk
+  - minikube
   - vagrant
   - virtualbox
-  - alacritty
-  - minikube
+  - visual-studio-code
 
 brew_packages:
-  - diffutils
+  - ansible-lint
+  - asdf
+  - aws-sam-cli
+  - cfn-lint
   - colordiff
   - coreutils
+  - diffutils
+  - expect
+  - fzf
   - gawk
+  - git
+  - git-lfs
+  - goodwithtech/dockle/dockle
+  - gpg
+  - htop
+  - jmeter
+  - jq
+  - knqyf263/trivy/trivy
+  - kubernetes-cli
+  - loci
+  - mackerelio/mackerel-agent/mackerel-agent
+  - mdcat
+  - nmap
+  - openssl
+  - python3
+  - reattach-to-user-namespace
+  - stern
+  - telnet
+  - terraform
+  - tmux
+  - travis
+  - tree
+  - urlview
+  - vegeta
+  - vim
+  - wget
   - zsh
   - zsh-autosuggestions
   - zsh-completions
   - zsh-syntax-highlighting
-  - fzf
-  - tmux
-  - urlview
-  - reattach-to-user-namespace
-  - vim
-  - git
-  - git-lfs
-  - asdf
-  - python3
-  - jq
-  - gpg
-  - tree
-  - telnet
-  - htop
-  - nmap
-  - wget
-  - mdcat
-  - openssl
-  - knqyf263/trivy/trivy
-  - goodwithtech/dockle/dockle
-  - kubernetes-cli
-  - stern
-  - mackerelio/mackerel-agent/mackerel-agent
-  - terraform
-  - aws-sam-cli
-  - cfn-lint
-  - vegeta
-  - expect
-  - travis
-  - ansible-lint
-  - loci

@@ -6,10 +6,6 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 
-# snippet
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
 # context カーソル位置のコンテキストのftを判定
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -55,7 +51,7 @@ hook_add = '''
         let path = expand("%F")
         if path == ""
             return '[No Name]'
-        elseif strlen(path) > 16
+        elseif strlen(path) > 32
             return pathshorten(path)
         else
             return path
