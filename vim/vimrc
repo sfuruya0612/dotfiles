@@ -90,6 +90,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <C-a> ^
 nnoremap <C-e> $
+" yank時にclipboardにもコピーする
+set clipboard+=unnamed
 
 " Start Dein Settings -----------------
 if &compatible
