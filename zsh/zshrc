@@ -5,6 +5,9 @@
 #    (_)___|___/_| |_|_|  \___|
 #
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
 # history settings --------------------
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
@@ -100,27 +103,6 @@ google() {
     fi
 
     open -a Safari.app https://www.google.co.jp/${opt}
-}
-
-# Open CotEditor.app
-memo() {
-    local dir tmp
-
-    dir=${HOME}/tmp
-    # ファイル名の重複を防ぐためUnix Timesrampをprefixとする
-    tmp=tmp_$(date +%s).txt
-
-    # $HOME配下にtemporary directoryがなければ作成
-    if [ ! -d ${dir} ]; then
-        mkdir -p ${dir}
-    fi
-
-    echo $@ >> ${dir}/${tmp}
-
-    # TextEditでも対応可
-    open -a CotEditor.app ${dir}/${tmp}
-    # 一時ファイルとしてCotEditorにInputしているので削除
-    rm ${dir}/${tmp}
 }
 
 # Path --------------------------------

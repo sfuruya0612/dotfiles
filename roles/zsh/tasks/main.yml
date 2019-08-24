@@ -6,23 +6,18 @@
     recursive: yes
     force: yes
 
-- name: Symbolic link ~/dotfiles/zsh/zshrc -> ~/.zshrc
+- name: Symbolic link zsh config
   file:
-    src: "{{ ansible_env.HOME }}/dotfiles/zsh/zshrc"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     state: link
     force: yes
-
-- name: Symbolic link ~/dotfiles/zsh/zprofile -> ~/.zprofile
-  file:
-    src: "{{ ansible_env.HOME }}/dotfiles/zsh/zprofile"
-    dest: "{{ ansible_env.HOME }}/.zprofile"
-    state: link
-    force: yes
-
-- name: Symbolic link ~/dotfiles/zsh/zpreztorc -> ~/.zpreztorc
-  file:
-    src: "{{ ansible_env.HOME }}/dotfiles/zsh/zpreztorc"
-    dest: "{{ ansible_env.HOME }}/.zpreztorc"
-    state: link
-    force: yes
+  loop:
+    - src: "{{ ansible_env.HOME }}/dotfiles/zsh/zshrc"
+      dest: "{{ ansible_env.HOME }}/.zshrc"
+    - src: "{{ ansible_env.HOME }}/dotfiles/zsh/zprofile"
+      dest: "{{ ansible_env.HOME }}/.zprofile"
+    - src: "{{ ansible_env.HOME }}/dotfiles/zsh/zpreztorc"
+      dest: "{{ ansible_env.HOME }}/.zpreztorc"
+    - src: "{{ ansible_env.HOME }}/dotfiles/zsh/p10k.zsh"
+      dest: "{{ ansible_env.HOME }}/.p10k.zsh"

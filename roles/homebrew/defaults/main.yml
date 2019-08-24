@@ -36,6 +36,7 @@ brew_packages:
   - gawk
   - git
   - git-lfs
+  - golangci/tap/golangci-lint
   - goodwithtech/dockle/dockle
   - gpg
   - htop
