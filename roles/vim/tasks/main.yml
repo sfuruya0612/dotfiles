@@ -5,9 +5,9 @@
     executable: pip3
     state: latest
 
-- name: Symbolic link ~/dotfiles/vim/vimrc -> ~/.vimrc
+- name: Symbolic link ~/dotfiles/roles/vim/files/vimrc -> ~/.vimrc
   file:
-    src: '{{ ansible_env.HOME }}/dotfiles/vim/vimrc'
+    src: '{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc'
     dest: '{{ ansible_env.HOME }}/.vimrc'
     state: link
     force: yes

@@ -4,9 +4,9 @@
     path: "{{ ansible_env.HOME }}/.config/alacritty"
     state: directory
 
-- name: Symbolic link ~/dotfiles/alacritty/alacritty.yml -> ~/.config/alacritty/alacritty.yml
+- name: Symbolic link ~/dotfiles/roles/alacritty/files/alacritty.yml -> ~/.config/alacritty/alacritty.yml
   file:
-    src: "{{ ansible_env.HOME }}/dotfiles/alacritty/alacritty.yml"
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/alacritty/files/alacritty.yml"
     dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"
     state: link
     force: yes
