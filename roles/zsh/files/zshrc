@@ -30,6 +30,8 @@ alias history="history -iD"
 alias vim="`brew --prefix`/bin/vim -p"
 # ctags
 alias tag="`brew --prefix`/bin/ctags"
+# change direcotry to git root direcotry
+alias gcd='cd $(git rev-parse --show-toplevel)'
 
 # fzf + history
 fh() {
@@ -112,6 +114,11 @@ export PATH=${ASDF_ROOT}/bin:${PATH}
 source ${ASDF_ROOT}/asdf.sh
 source ${ASDF_ROOT}/completions/asdf.bash
 
-# Go workdir
+# Go path
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
+
+# AutoComplete ------------------------
+# snatch
+test -f ~/.zsh_autocomplete || curl -LRsS https://raw.githubusercontent.com/urfave/cli/master/autocomplete/zsh_autocomplete -o ~/.zsh_autocomplete
+PROG=snatch source ~/.zsh_autocomplete
