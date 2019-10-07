@@ -5,6 +5,7 @@ repo = 'Shougo/dein.vim'
 # vim 非同期処理用
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 # context カーソル位置のコンテキストのftを判定
 [[plugins]]
