@@ -32,6 +32,8 @@ alias vim="`brew --prefix`/bin/vim -p"
 alias tag="`brew --prefix`/bin/ctags"
 # change direcotry to git root direcotry
 alias gcd='cd $(git rev-parse --show-toplevel)'
+# git status
+alias gs='git status'
 
 # fzf + history
 fh() {
@@ -73,7 +75,7 @@ fga() {
         selected=$(tr '\n' ' ' <<< "${selected}")
         git add `echo ${selected} | sed 's/\s*$//'`
 
-        git status
+        git status --short
     fi
 }
 
