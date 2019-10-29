@@ -51,6 +51,7 @@ brew_packages:
   - nmap
   - openssl
   - python3
+  - pwgen
   - reattach-to-user-namespace
   - stern
   - telnet
