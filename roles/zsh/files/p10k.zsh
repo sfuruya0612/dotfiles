@@ -52,6 +52,7 @@ fi
       status                    # exit code of the last command
       command_execution_time    # duration of the last command
       background_jobs           # presence of background jobs
+      aws                       # aws profile
       # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
       # anaconda                # conda environment (https://conda.io/)
       # pyenv                   # python environment (https://github.com/pyenv/pyenv)
@@ -672,6 +673,12 @@ fi
   function prompt_example() {
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
+
+  #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
+  # AWS profile color.
+  typeset -g POWERLEVEL9K_AWS_FOREGROUND=208
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_AWS_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # User-defined prompt segments can be customized the same way as built-in segments.
   typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
