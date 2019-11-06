@@ -25,7 +25,7 @@ setopt EXTENDED_HISTORY
 alias ls="gls --color=auto -F"
 alias ll="ls -aFGl"
 # history
-alias history="history -iD -100"
+alias history="history -iD"
 # vim path intall from brew
 alias vim="`brew --prefix`/bin/vim -p"
 # ctags
