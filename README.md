@@ -11,6 +11,7 @@ Building vim, tmux, zsh environment of macOS with Ansible.
 | Vim  | 8.1     |
 | Tmux | 2.9a    |
 | Zsh  | 5.7.1   |
+
 *Supports MacOS version after mojave.*
 
 ## Install

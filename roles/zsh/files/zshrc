@@ -25,7 +25,7 @@ setopt EXTENDED_HISTORY
 alias ls="gls --color=auto -F"
 alias ll="ls -aFGl"
 # history
-alias history="history -iD"
+alias history="history -iD -100"
 # vim path intall from brew
 alias vim="`brew --prefix`/bin/vim -p"
 # ctags
@@ -91,6 +91,20 @@ fs() {
     fi
 
     ssh ${sshLoginHost}
+}
+
+# fzf + export AWS_PROFILE
+fa() {
+    local awsProfile
+
+    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf`
+
+    if [ "${awsProfile}" = "" ]; then
+        # ex) Ctrl-C.
+        return 1
+    fi
+
+    export AWS_PROFILE=${awsProfile}
 }
 
 # Google Search by Safari
