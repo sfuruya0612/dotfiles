@@ -16,6 +16,12 @@ scriptencoding utf-8
 syntax on
 colorscheme desert
 
+" vimdiff Color ------------
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffAdd    cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffDelete cterm=bold ctermfg=Red         ctermbg=0x002b36 gui=none guifg=bg guibg=Red
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffChange cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffText   cterm=bold ctermfg=black       ctermbg=Red      gui=none guifg=bg guibg=Red
+
 " Setting the Status & Tab Line -------------
 set laststatus=2
 set noshowmode
