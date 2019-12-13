@@ -1,30 +1,27 @@
-# require deoplete
+# 補完
 [[plugins]]
-repo = 'roxma/nvim-yarp'
-
-# # require deoplete
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
-# snippet 補完
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_source = '''
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#auto_complete_delay = 0
-    " let g:deoplete#auto_complete_start_length = 1
-    " let g:deoplete#enable_camel_case = 0
-    " let g:deoplete#enable_ignore_case = 0
-    " let g:deoplete#enable_refresh_always = 0
-    " let g:deoplete#enable_smart_case = 1
-    " let g:deoplete#file#enable_buffer_path = 1
-    " let g:deoplete#max_list = 10000
-    inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-    \     neosnippet#expandable_or_jumpable() ?
-    \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-'''
+repo = 'neoclide/coc.nvim'
+rev = 'release'
 on_i = 1
-depends = [ 'nvim-yarp', 'vim-hug-neovim-rpc' ]
+merged = '0'
+hook_source = '''
+  set hidden
+  set nobackup
+  set nowritebackup
+
+  set cmdheight=2
+  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+  let g:coc_global_extensions = [
+      \ 'coc-lists',
+      \ 'coc-status',
+      \ 'coc-go',
+      \ 'coc-json',
+      \ 'coc-yaml',
+      \ 'coc-python',
+      \ 'coc-snippets',
+      \ ]
+'''
 
 # snippet
 [[plugins]]
@@ -67,6 +64,16 @@ hook_add = '''
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
     let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_variable_declarations = 1
+    let g:go_highlight_variable_assignments = 0
+    let g:go_highlight_string_spellcheck = 1
+    let g:go_highlight_types = 1
+    let g:go_highlight_function_parameters = 1
+    let g:go_highlight_extra_types = 1
+
+    let g:go_list_type = "quickfix"
 
     " When Saving
     "" Auto go import
