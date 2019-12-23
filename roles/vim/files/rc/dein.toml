@@ -1,6 +1,14 @@
-# dein require
+# require
 [[plugins]]
 repo = 'Shougo/dein.vim'
+
+# require (not neovim)
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+# require (not neovim)
+[[plugins]]
+repo = 'roxma/nvim-yarp'
 
 # vim 非同期処理用
 [[plugins]]
@@ -26,38 +34,6 @@ repo = 'w0ng/vim-hybrid'
 # save vim session
 [[plugins]]
 repo = 'tpope/vim-obsession'
-
-# linter
-[[plugins]]
-repo = 'dense-analysis/ale'
-hook_add = '''
-  let g:ale_set_highlights = 0
-  let g:ale_lint_on_enter = 1
-  let g:ale_lint_on_save = 1
-  let g:ale_lint_on_text_changed = 0
-  let g:ale_sign_column_always = 1
-  let g:ale_linters = {
-    \ 'ansible': ['ansible-lint'],
-    \ 'dockerfile': ['hadolint'],
-    \ 'go': ['golint'],
-    \ 'json': ['jq'],
-    \ 'markdown': ['textlint'],
-    \ 'python': ['pyflakes'],
-    \ 'vim': ['vint'],
-    \ 'yaml': ['yamllint'],
-    \ }
-  let g:ale_sign_error = 'E'
-  let g:ale_sign_warning = 'W'
-  let g:ale_echo_msg_error_str = 'E'
-  let g:ale_echo_msg_warning_str = 'W'
-  let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
-  let g:ale_statusline_format = ['E %d', 'W %d', '']
-  let g:ale_open_list = 0
-  let g:ale_keep_list_window_open = 0
-  let g:ale_javascript_prettier_use_local_config = 1
-  let g:ale_set_quickfix = 1
-  let g:ale_set_loclist = 0
-'''
 
 # ( ) coloring
 [[plugins]]
@@ -120,13 +96,6 @@ hook_add = '''
     \    'inactive': [ 'tabnum', 'filename', 'modified' ]
     \ }
 
-    let g:lightline.mode_map = {
-    \    'N': 'NORMAL',
-    \    'I': 'INSERT',
-    \    'R': 'REPLACE',
-    \    'V': 'VISUAL'
-    \ }
-
     let g:lightline.tab_component_function = {
     \    'tabnum': 'lightline#tab#tabnum',
     \    'filename': 'LightlineTabFilename',
@@ -137,6 +106,38 @@ hook_add = '''
     \    'left': [ [ 'tabs' ] ],
     \    'right': [ [ 'close' ] ]
     \ }
+'''
+
+# linter
+[[plugins]]
+repo = 'dense-analysis/ale'
+hook_add = '''
+  let g:ale_set_highlights = 0
+  let g:ale_lint_on_enter = 1
+  let g:ale_lint_on_save = 1
+  let g:ale_lint_on_text_changed = 0
+  let g:ale_sign_column_always = 1
+  let g:ale_linters = {
+    \ 'ansible': ['ansible-lint'],
+    \ 'dockerfile': ['hadolint'],
+    \ 'go': ['golint'],
+    \ 'json': ['jq'],
+    \ 'markdown': ['textlint'],
+    \ 'python': ['pyflakes'],
+    \ 'vim': ['vint'],
+    \ 'yaml': ['yamllint'],
+    \ }
+  let g:ale_sign_error = 'E'
+  let g:ale_sign_warning = 'W'
+  let g:ale_echo_msg_error_str = 'E'
+  let g:ale_echo_msg_warning_str = 'W'
+  let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
+  let g:ale_statusline_format = ['E %d', 'W %d', '']
+  let g:ale_open_list = 0
+  let g:ale_keep_list_window_open = 0
+  let g:ale_javascript_prettier_use_local_config = 1
+  let g:ale_set_quickfix = 1
+  let g:ale_set_loclist = 0
 '''
 
 [[plugins]]
@@ -156,22 +157,6 @@ hook_add = '''
     \    'linter_ok': 'left',
     \ }
 '''
-
-# NERDTree
-# Usage: C-n
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-    let g:NERDTreeDirArrows = 1
-    let g:NERDTreeDirArrowExpandable  = '→'
-    let g:NERDTreeDirArrowCollapsible = '↓'
-    let g:NERDTreeShowHidden = 1
-    nnoremap <silent> <C-n> :NERDTreeToggle<CR>
-'''
-
-# NERDTree display git status
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
 
 # 左端にgit diff iconを表示
 [[plugins]]

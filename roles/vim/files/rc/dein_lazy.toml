@@ -1,3 +1,20 @@
+# NERDTree display git status
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+
+# NERDTree
+# Usage: C-n
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+depends = ['nerdtree-git-plugin']
+hook_add = '''
+    let g:NERDTreeDirArrows = 1
+    let g:NERDTreeDirArrowExpandable  = '→'
+    let g:NERDTreeDirArrowCollapsible = '↓'
+    let g:NERDTreeShowHidden = 1
+    nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+'''
+
 # 補完
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -10,11 +27,9 @@ hook_source = '''
   set nowritebackup
 
   set cmdheight=2
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
   let g:coc_global_extensions = [
       \ 'coc-lists',
-      \ 'coc-status',
       \ 'coc-go',
       \ 'coc-json',
       \ 'coc-yaml',
@@ -85,11 +100,6 @@ hook_add = '''
 
     " GoRun, GoTest window split
     let g:go_term_mode = 'split'
-
-    " Jamp
-    " let mapleader = "\<Space>"
-    " au FileType go nmap <leader>s <Plug>(go-def-split)
-    " au FileType go nmap <leader>v <Plug>(go-def-vertical)
 '''
 
 [[plugins]]

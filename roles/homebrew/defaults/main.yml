@@ -5,6 +5,7 @@ brew_taps:
   - homebrew/core
   - jkawamoto/loci
   - knqyf263/trivy
+  - weaveworks/tap
 
 brew_cask_apps:
   - ChatWork
@@ -62,6 +63,7 @@ brew_packages:
   - urlview
   - vegeta
   - vim
+  - weaveworks/tap/eksctl
   - wget
   - zsh
   - zsh-autosuggestions
