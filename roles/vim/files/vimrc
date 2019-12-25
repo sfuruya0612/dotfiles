@@ -4,107 +4,40 @@
 "     \ V /| | | | | | | | | (__
 "    (_)_/ |_|_| |_| |_|_|  \___|
 "
-if 1
+filetype plugin indent off
 
 " Encoding settings -------------------
 set encoding=utf-8
 set fileformats=unix,dos,mac
-set fileencodings=utf-8,sjis
 scriptencoding utf-8
 
-" Setting the Color Scheme ------------
-syntax on
-colorscheme desert
-
-" vimdiff Color ------------
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffAdd    cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffDelete cterm=bold ctermfg=Red         ctermbg=0x002b36 gui=none guifg=bg guibg=Red
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffChange cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffText   cterm=bold ctermfg=black       ctermbg=Red      gui=none guifg=bg guibg=Red
-
-" Setting the Status & Tab Line -------------
-set laststatus=2
-set noshowmode
-set showtabline=2
-
-" Tab & Indent Setting ----------------
-set expandtab
-set tabstop=4
-set softtabstop=2
-set autoindent
-set smartindent
-set shiftwidth=4
-
-" Highlight & Search Settings ------------------
-set showmatch
-set cursorline
-set hlsearch
-    " ESCキー2度押しでハイライトの切り替え
-    nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
-augroup HighlightTrailingSpaces
-    autocmd!
-    autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
-    autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
-augroup END
-" 1文字入力毎に検索する
-set incsearch
-" 大文字小文字の区別なく検索する
-set ignorecase
-
-" ctags Settings ----------------------
-set tags=.tags;$HOME
-
-function! s:execute_ctags() abort
-    " 探すタグファイル名
-    let tag_name = '.tags'
-    " ディレクトリを遡り、タグファイルを探し、パス取得
-    let tags_path = findfile(tag_name, '.;')
-    " タグファイルパスが見つからなかった場合
-    if tags_path ==# ''
-        return
-    endif
-
-    " タグファイルのディレクトリパスを取得
-    " `:p:h`の部分は、:h filename-modifiersで確認
-    let tags_dirpath = fnamemodify(tags_path, ':p:h')
-    " 見つかったタグファイルのディレクトリに移動して、ctagsをバックグラウンド実行（エラー出力破棄）
-    execute 'silent !cd' tags_dirpath '&& ctags -R -f' tag_name '2> /dev/null &'
-endfunction
-
-augroup ctags
-    autocmd!
-    autocmd BufWritePost * call s:execute_ctags()
-augroup END
-
 " General Settings --------------------
-" 反映までの時間を変更(msec)
 set updatetime=250
-" 行番号の表示
 set number
-" ターミナル接続を高速にする
 set ttyfast
-" スワップファイルを作成しない
 set noswapfile
-" バックスペースキーの有効化
-set backspace=indent,eol,start
 " 括弧やfunctionで[%]ジャンプ
 source $VIMRUNTIME/macros/matchit.vim
-" カーソルの左右移動で行末から次の行の行頭への移動が可能になる
+
 set whichwrap=b,s,h,l,<,>,[,],~
-" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
+
 nnoremap j gj
 nnoremap k gk
 nnoremap <C-a> ^
 nnoremap <C-e> $
-" yank時にclipboardにもコピーする
+
 set clipboard+=unnamed
 
-" Start Dein Settings -----------------
-if &compatible
-    set nocompatible
-endif
+imap <S-CR> <End><CR>
+imap <C-S-CR> <Up><End><CR>
+nnoremap <S-CR> mzo<ESC>`z
+nnoremap <C-S-CR> mzO<ESC>`z
 
+" Start Dein Settings -----------------
 let s:dein_dir = $HOME . '/.vim/cache'
+if has('nvim')
+    let s:dein_dir = $HOME . '/.config/nvim/cache'
+endif
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 if &runtimepath !~# '/dein.vim'
@@ -126,12 +59,48 @@ if dein#load_state(s:dein_dir)
     call dein#save_state()
 endif
 
-filetype plugin indent on
-syntax enable
-
 if dein#check_install()
     call dein#install()
 endif
 " End Dein Settings --------------------
 
-endif
+" Setting the Status & Tab Line -------------
+set laststatus=2
+set noshowmode
+set showtabline=2
+
+" Tab & Indent Setting ----------------
+set expandtab
+set tabstop=4
+set softtabstop=2
+set autoindent
+set smartindent
+set shiftwidth=4
+
+" Highlight & Search Settings ------------------
+set showmatch
+set cursorline
+" Highlight on Search Toggle
+set hlsearch
+    nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
+augroup HighlightTrailingSpaces
+    autocmd!
+    autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+    autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+augroup END
+set incsearch
+set ignorecase
+set smartcase
+
+" Setting the Color Scheme ------------
+set termguicolors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme night-owl
+
+" vimdiff Color ------------
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffAdd    cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffDelete cterm=bold ctermfg=Red         ctermbg=0x002b36 gui=none guifg=bg guibg=Red
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffChange cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
+autocmd VimEnter,WinEnter,ColorScheme * highlight DiffText   cterm=bold ctermfg=black       ctermbg=Red      gui=none guifg=bg guibg=Red
+
+filetype plugin indent on

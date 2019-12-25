@@ -8,21 +8,20 @@ brew_taps:
   - weaveworks/tap
 
 brew_cask_apps:
+  - alacritty
   - ChatWork
+  - clipy
   - CotEditor
   - Docker
-  - Karabiner-Elements
-  - Slack
-  - Wireshark
-  - alacritty
-  - clipy
-  - firefox
+  # - firefox
   - google-chrome
   - google-cloud-sdk
-  - minikube
+  - Karabiner-Elements
+  - Slack
   - vagrant
   - virtualbox
   - visual-studio-code
+  - Wireshark
 
 brew_packages:
   - ansible-lint
@@ -36,11 +35,11 @@ brew_packages:
   - fzf
   - gawk
   - git
-  - git-lfs
+  # - git-lfs
   - golangci/tap/golangci-lint
   - goodwithtech/dockle/dockle
   - gpg
-  - htop
+  # - htop
   - itchyny/tap/gojq
   - jmeter
   - jq
@@ -48,8 +47,10 @@ brew_packages:
   - kubernetes-cli
   - loci
   - mackerelio/mackerel-agent/mackerel-agent
-  - mdcat
+  - minikube
+  # - mdcat
   - nmap
+  - neovim
   - openssl
   - python3
   - pwgen

@@ -27,7 +27,7 @@ alias ll="ls -aFGl"
 # history
 alias history="history -iD"
 # vim path intall from brew
-alias vim="`brew --prefix`/bin/vim -p"
+alias vim="`brew --prefix`/bin/nvim -p"
 # ctags
 alias tag="`brew --prefix`/bin/ctags"
 # change direcotry to git root direcotry
