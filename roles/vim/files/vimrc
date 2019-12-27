@@ -28,6 +28,8 @@ nnoremap <C-e> $
 
 set clipboard+=unnamed
 
+noremap <leader>u :w<Home>silent <End> !urlview<CR>
+
 imap <S-CR> <End><CR>
 imap <C-S-CR> <Up><End><CR>
 nnoremap <S-CR> mzo<ESC>`z

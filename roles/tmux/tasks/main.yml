@@ -1,5 +1,5 @@
 ---
-- name: Make ~/.tmux/plugins directory
+- name: Create ~/.tmux/plugins directory
   file:
     path: "{{ ansible_env.HOME }}/.tmux/plugins/"
     state: directory

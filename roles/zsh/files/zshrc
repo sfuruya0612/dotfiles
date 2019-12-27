@@ -26,8 +26,8 @@ alias ls="gls --color=auto -F"
 alias ll="ls -aFGl"
 # history
 alias history="history -iD"
-# vim path intall from brew
-alias vim="`brew --prefix`/bin/nvim -p"
+# vim path intall from homebrew
+alias vim="`brew --prefix`/bin/nvim"
 # ctags
 alias tag="`brew --prefix`/bin/ctags"
 # change direcotry to git root direcotry
@@ -99,14 +99,13 @@ fs() {
 # fzf + export AWS_PROFILE
 fa() {
     local awsProfile
-
     awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf`
 
     if [ "${awsProfile}" = "" ]; then
-        # ex) Ctrl-C.
         return 1
     fi
 
+    echo "Set environment variable AWS_PROFILE=${awsProfile}"
     export AWS_PROFILE=${awsProfile}
 }
 

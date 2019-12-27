@@ -52,6 +52,7 @@ brew_packages:
   - nmap
   - neovim
   - openssl
+  - pstree
   - python3
   - pwgen
   - reattach-to-user-namespace
