@@ -37,15 +37,13 @@ alias gs='git status'
 # git diff
 alias gd='git diff'
 
-
 # fzf + history
 fh() {
-    local hist
-
-    hist=`history -n -r 1 | sort | uniq -f4 | fzf --tac | cut -d " " -f6-`
-    echo "$ ${hist}"
-    eval ${hist}
+  BUFFER=$(history -n -r 1 | cut -d " " -f6- | fzf --no-sort +m --query "$LBUFFER" --prompt=">>> ")
+  CURSOR=$#BUFFER
 }
+zle -N select-history
+bindkey '^r' select-history
 
 # fzf + git branch(local) + git checkout <local branch>
 fgb() {
