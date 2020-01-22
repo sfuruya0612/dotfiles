@@ -133,8 +133,3 @@ source ${ASDF_ROOT}/completions/asdf.bash
 # Go path
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
-
-# AutoComplete ------------------------
-# snatch
-test -f ~/.zsh_autocomplete || curl -LRsS https://raw.githubusercontent.com/urfave/cli/master/autocomplete/zsh_autocomplete -o ~/.zsh_autocomplete
-PROG=snatch source ~/.zsh_autocomplete
