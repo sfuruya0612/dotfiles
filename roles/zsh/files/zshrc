@@ -42,15 +42,15 @@ fh() {
   BUFFER=$(history -n -r 1 | cut -d " " -f6- | fzf --no-sort +m --query "$LBUFFER" --prompt=">>> ")
   CURSOR=$#BUFFER
 }
-zle -N select-history
-bindkey '^r' select-history
+zle -N fh
+bindkey '^r' fh
 
 # fzf + git branch(local) + git checkout <local branch>
 fgb() {
     local branches branch
 
     branches=$(git branch -vv) &&
-    branch=$(echo "${branches}" | fzf +m) &&
+    branch=$(echo "${branches}" | fzf +m --prompt=">>> ") &&
     git checkout $(echo "${branch}" | awk '{print $1}' | sed "s/.* //")
 }
 
@@ -58,7 +58,7 @@ fgb() {
 fgl() {
     git log --graph --color=always \
         --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+    fzf --ansi --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort --prompt=">>> " \
         --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
@@ -70,7 +70,7 @@ fgl() {
 fga() {
     local selected list
 
-    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
+    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" --prompt=">>> " | awk '{print $2}')
 
     if [[ -n "${selected}" ]]; then
         selected=$(tr '\n' ' ' <<< "${selected}")
@@ -84,7 +84,7 @@ fga() {
 fs() {
     local sshLoginHost
 
-    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf`
+    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf +m --prompt=">>> "`
 
     if [ "${sshLoginHost}" = "" ]; then
         # ex) Ctrl-C.
@@ -97,7 +97,7 @@ fs() {
 # fzf + export AWS_PROFILE
 fa() {
     local awsProfile
-    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf`
+    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf +m --prompt=">>> "`
 
     if [ "${awsProfile}" = "" ]; then
         return 1
