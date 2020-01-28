@@ -56,6 +56,7 @@ brew_packages:
   - python3
   - pwgen
   - reattach-to-user-namespace
+  - ripgrep
   - stern
   - telnet
   - terraform

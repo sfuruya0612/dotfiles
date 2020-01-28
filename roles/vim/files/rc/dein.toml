@@ -2,11 +2,9 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# require
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
-# hook_add = '''
-#     let g:deoplete#enable_at_startup = 1
-# '''
 
 # require (not neovim)
 [[plugins]]
@@ -174,9 +172,49 @@ hook_add = '''
     \ }
 '''
 
+# fzf
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merged = 0
+
+# fzf.vim
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = ['fzf']
+hook_add = '''
+    command! -bang -nargs=* Rg
+        \ call fzf#vim#grep
+        \ 'rg --line-number --no-heading '.shellescape(<q-args>), 0,
+        \ fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
+
+    let g:fzf_action = {
+    \   'ctrl-s': 'split',
+    \ }
+'''
+
+# if, funcのendを補完
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
 # 左端にgit diff iconを表示
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+
+# Gblame, GstatusなどのGit操作
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+    nnoremap [fugitive]  <Nop>
+    nmap <space>g [fugitive]
+    nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+    nnoremap <silent> [fugitive]a :Gwrite<CR>
+    nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+    nnoremap <silent> [fugitive]b :Gblame<CR>
+    nnoremap <silent> [fugitive]p :Gpull<CR>
+    nnoremap <silent> [fugitive]d :Gdiff<CR>
+    nnoremap <silent> [fugitive]m :Gmerge<CR>
+'''
 
 # vim window resize
 # usage: <C-x> start, h, j, k, l resize
@@ -196,10 +234,6 @@ hook_add = '''
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black
     autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=17
 '''
-
-# if, funcのendを補完
-[[plugins]]
-repo = 'tpope/vim-endwise'
 
 # Comment in/out
 # Usage: Visual mode + gc

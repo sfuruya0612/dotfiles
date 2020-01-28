@@ -28,6 +28,8 @@ alias ll="ls -aFGl"
 alias history="history -iD"
 # vim path intall from homebrew
 alias vim="`brew --prefix`/bin/nvim"
+# view command
+alias view="vim -R"
 # ctags
 alias tag="`brew --prefix`/bin/ctags"
 # change direcotry to git root direcotry
@@ -75,6 +77,20 @@ fga() {
     if [[ -n "${selected}" ]]; then
         selected=$(tr '\n' ' ' <<< "${selected}")
         git add `echo ${selected} | sed 's/\s*$//'`
+
+        git status --short
+    fi
+}
+
+# fzf + git checkout
+fgc() {
+    local selected list
+
+    selected=$(unbuffer git status -s "^\ M" | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" --prompt=">>> " | awk '{print $2}')
+
+    if [[ -n "${selected}" ]]; then
+        selected=$(tr '\n' ' ' <<< "${selected}")
+        git checkout `echo ${selected} | sed 's/\s*$//'`
 
         git status --short
     fi
@@ -133,3 +149,5 @@ source ${ASDF_ROOT}/completions/asdf.bash
 # Go path
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
