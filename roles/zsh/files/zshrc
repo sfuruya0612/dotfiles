@@ -8,18 +8,6 @@
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-# history settings --------------------
-# 履歴ファイルの保存先
-export HISTFILE=${HOME}/.zhistory
-# メモリに保存される履歴の件数
-export HISTSIZE=1000
-# 履歴ファイルに保存される履歴の件数
-export SAVEHIST=100000
-# 重複を記録しない
-setopt hist_ignore_dups
-# time format(開始、終了を記録)
-setopt EXTENDED_HISTORY
-
 # Command alias -----------------------
 # list files
 alias ls="gls --color=auto -F"
@@ -40,20 +28,42 @@ alias gs='git status'
 alias gd='git diff'
 
 # fzf + history
-fh() {
+fzf_history() {
   BUFFER=$(history -n -r 1 | cut -d " " -f6- | fzf --no-sort +m --query "$LBUFFER" --prompt=">>> ")
   CURSOR=$#BUFFER
 }
-zle -N fh
-bindkey '^r' fh
+zle -N fzf_history
+bindkey '^r' fzf_history
 
-# fzf + git branch(local) + git checkout <local branch>
+# fzf + export AWS_PROFILE
+fa() {
+    local awsProfile
+
+    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf --no-sort +m --prompt=">>> "`
+
+    if [ "${awsProfile}" = "" ]; then
+        return 1
+    fi
+
+    echo "Set environment variable AWS_PROFILE=${awsProfile}"
+    export AWS_PROFILE=${awsProfile}
+}
+
+# fzf + ssh login
+fs() {
+    local sshLoginHost
+
+    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf +m --prompt=">>> "`
+    if [ "${sshLoginHost}" = "" ]; then
+        return 1
+    fi
+
+    ssh ${sshLoginHost}
+}
+
+# fzf + git checkout <local branch>
 fgb() {
-    local branches branch
-
-    branches=$(git branch -vv) &&
-    branch=$(echo "${branches}" | fzf +m --prompt=">>> ") &&
-    git checkout $(echo "${branch}" | awk '{print $1}' | sed "s/.* //")
+    git checkout $(git branch -a | tr -d " " | fzf --height 100% --prompt ">>> " --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g")
 }
 
 # fzf + git log --graph
@@ -62,8 +72,7 @@ fgl() {
         --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
     fzf --ansi --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort --prompt=">>> " \
         --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                (grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
                 FZF-EOF"
 }
@@ -96,33 +105,6 @@ fgc() {
     fi
 }
 
-# fzf + ssh login
-fs() {
-    local sshLoginHost
-
-    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf +m --prompt=">>> "`
-
-    if [ "${sshLoginHost}" = "" ]; then
-        # ex) Ctrl-C.
-        return 1
-    fi
-
-    ssh ${sshLoginHost}
-}
-
-# fzf + export AWS_PROFILE
-fa() {
-    local awsProfile
-    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf +m --prompt=">>> "`
-
-    if [ "${awsProfile}" = "" ]; then
-        return 1
-    fi
-
-    echo "Set environment variable AWS_PROFILE=${awsProfile}"
-    export AWS_PROFILE=${awsProfile}
-}
-
 # Google Search by Safari
 google() {
     local str opt
@@ -138,6 +120,29 @@ google() {
 
     open -a Safari.app https://www.google.co.jp/${opt}
 }
+
+# Ctrl+z foreground/background switch process
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
+# fzf-cdr
+fzf-cdr() {
+    target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
+    target_dir=`echo ${target_dir/\~/$HOME}`
+    if [ -n "$target_dir" ]; then
+        cd $target_dir
+    fi
+}
+alias cdd='fzf-cdr'
 
 # Path --------------------------------
 # asdf path
