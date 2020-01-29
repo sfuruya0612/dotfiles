@@ -8,28 +8,32 @@
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-# Command alias -----------------------
+# To fzf command default options.
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS='--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 40% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
+
+# Command alias
 # list files
 alias ls="gls --color=auto -F"
 alias ll="ls -aFGl"
 # history
 alias history="history -iD"
-# vim path intall from homebrew
+# neovim
 alias vim="`brew --prefix`/bin/nvim"
 # view command
 alias view="vim -R"
-# ctags
-alias tag="`brew --prefix`/bin/ctags"
 # change direcotry to git root direcotry
 alias gcd='cd $(git rev-parse --show-toplevel)'
 # git status
-alias gs='git status'
+alias gs='git status -s'
 # git diff
 alias gd='git diff'
 
+# Functions and keybind
 # fzf + history
 fzf_history() {
-  BUFFER=$(history -n -r 1 | cut -d " " -f6- | fzf --no-sort +m --query "$LBUFFER" --prompt=">>> ")
+  BUFFER=`history -n -r 1 | cut -d " " -f6- | fzf --query "$LBUFFER"`
   CURSOR=$#BUFFER
 }
 zle -N fzf_history
@@ -39,7 +43,7 @@ bindkey '^r' fzf_history
 fa() {
     local awsProfile
 
-    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf --no-sort +m --prompt=">>> "`
+    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf`
 
     if [ "${awsProfile}" = "" ]; then
         return 1
@@ -53,7 +57,7 @@ fa() {
 fs() {
     local sshLoginHost
 
-    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf +m --prompt=">>> "`
+    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf`
     if [ "${sshLoginHost}" = "" ]; then
         return 1
     fi
@@ -63,14 +67,14 @@ fs() {
 
 # fzf + git checkout <local branch>
 fgb() {
-    git checkout $(git branch -a | tr -d " " | fzf --height 100% --prompt ">>> " --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g")
+    git checkout $(git branch -a | tr -d " " | fzf --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g")
 }
 
 # fzf + git log --graph
 fgl() {
     git log --graph --color=always \
         --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    fzf --ansi --no-sort --tiebreak=index --bind=ctrl-s:toggle-sort --prompt=">>> " \
+    fzf --tiebreak=index --bind=ctrl-s:toggle-sort --prompt=">>> " \
         --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
@@ -81,7 +85,7 @@ fgl() {
 fga() {
     local selected list
 
-    selected=$(unbuffer git status -s | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" --prompt=">>> " | awk '{print $2}')
+    selected=$(unbuffer git status -s | fzf --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
 
     if [[ -n "${selected}" ]]; then
         selected=$(tr '\n' ' ' <<< "${selected}")
@@ -95,7 +99,7 @@ fga() {
 fgc() {
     local selected list
 
-    selected=$(unbuffer git status -s "^\ M" | fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" --prompt=">>> " | awk '{print $2}')
+    selected=$(unbuffer git status -s "^\ M" | fzf --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | awk '{print $2}')
 
     if [[ -n "${selected}" ]]; then
         selected=$(tr '\n' ' ' <<< "${selected}")
@@ -111,7 +115,6 @@ google() {
 
     if [ $# != 0 ]; then
         for i in $*; do
-            # $strが空じゃない場合、検索ワードを+記号でつなぐ(and検索)
             str="${str}${str:++}$i"
         done
         opt='search?num=100'
@@ -134,7 +137,7 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-# fzf-cdr
+# cdd change directory selected before paths
 fzf-cdr() {
     target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
     target_dir=`echo ${target_dir/\~/$HOME}`
@@ -144,7 +147,7 @@ fzf-cdr() {
 }
 alias cdd='fzf-cdr'
 
-# Path --------------------------------
+# Export path
 # asdf path
 export ASDF_ROOT=${HOME}/.asdf
 export PATH=${ASDF_ROOT}/bin:${PATH}
@@ -154,5 +157,3 @@ source ${ASDF_ROOT}/completions/asdf.bash
 # Go path
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

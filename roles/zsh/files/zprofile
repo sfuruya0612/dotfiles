@@ -36,8 +36,6 @@ export LC_TYPE=ja_JP.UTF-8
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
-export FZF_DEFAULT_OPTS="--no-sort --exact --cycle --multi --ansi --reverse --border --sync --bind=ctrl-t:toggle --bind=ctrl-k:kill-line --bind=?:toggle-preview --bind=down:preview-down --bind=up:preview-up"
-
 # 色を使用
 export TERM=xterm-256color
 autoload -Uz colors
@@ -53,16 +51,11 @@ setopt auto_cd
 # コマンドミスを修正
 setopt correct
 
-# history settings --------------------
-# 履歴ファイルの保存先
+# history settings
 export HISTFILE=${HOME}/.zhistory
-# メモリに保存される履歴の件数
-export HISTSIZE=1000
-# 履歴ファイルに保存される履歴の件数
+export HISTSIZE=10000
 export SAVEHIST=100000
-# 重複を記録しない
 setopt hist_ignore_dups
-# time format(開始、終了を記録)
 setopt EXTENDED_HISTORY
 
 # cdr, add-zsh-hook を有効にする
