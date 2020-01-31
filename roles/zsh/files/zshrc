@@ -4,15 +4,6 @@
 #     _ / /\__ \ | | | | | (__
 #    (_)___|___/_| |_|_|  \___|
 #
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-
-# To fzf command default options.
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-export FZF_DEFAULT_OPTS='--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 40% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
-
 # Command alias
 # list files
 alias ls="gls --color=auto -F"

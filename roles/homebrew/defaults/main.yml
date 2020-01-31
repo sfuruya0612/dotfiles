@@ -39,9 +39,9 @@ brew_packages:
   - golangci/tap/golangci-lint
   - goodwithtech/dockle/dockle
   - gpg
-  # - htop
-  - itchyny/tap/gojq
-  - jmeter
+  - htop
+  # - itchyny/tap/gojq
+  # - jmeter
   - jq
   - knqyf263/trivy/trivy
   - kubernetes-cli

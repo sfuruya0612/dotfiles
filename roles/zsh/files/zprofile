@@ -8,10 +8,18 @@
 #          |_|
 #
 
-# Source Prezto
+# To execute prezto init scripts
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# To fzf command default options
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS='--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 40% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
 
 # Editors
 export EDITOR='/usr/local/bin/nvim'
