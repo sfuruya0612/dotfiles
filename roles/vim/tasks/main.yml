@@ -1,4 +1,9 @@
 ---
+- name: Create .config/nvim directory
+  file:
+    path: '{{ ansible_env.HOME }}/.config/nvim'
+    state: directory
+
 - name: Install neovim from pip3
   pip:
     name: neovim

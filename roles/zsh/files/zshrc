@@ -41,6 +41,7 @@ fa() {
     fi
 
     echo "Set environment variable AWS_PROFILE=${awsProfile}"
+    tmux rename-window ${awsProfile}
     export AWS_PROFILE=${awsProfile}
 }
 
