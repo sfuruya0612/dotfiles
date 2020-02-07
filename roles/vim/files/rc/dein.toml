@@ -190,6 +190,7 @@ hook_add = '''
 
     let g:fzf_action = {
     \   'ctrl-s': 'split',
+    \   'ctrl-v': 'vsplit',
     \ }
 '''
 
@@ -205,7 +206,7 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-    nnoremap [fugitive]  <Nop>
+    nnoremap [fugitive] <Nop>
     nmap <space>g [fugitive]
     nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
     nnoremap <silent> [fugitive]a :Gwrite<CR>
