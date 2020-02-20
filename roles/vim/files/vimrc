@@ -11,12 +11,13 @@ set encoding=utf-8
 set fileformats=unix,dos,mac
 scriptencoding utf-8
 
-" General Settings --------------------
+" General Settings
 set updatetime=250
 set number
 set ttyfast
 set noswapfile
-" 括弧やfunctionで[%]ジャンプ
+
+" % jump to (), if endif 
 source $VIMRUNTIME/macros/matchit.vim
 
 set whichwrap=b,s,h,l,<,>,[,],~
@@ -35,7 +36,7 @@ imap <C-S-CR> <Up><End><CR>
 nnoremap <S-CR> mzo<ESC>`z
 nnoremap <C-S-CR> mzO<ESC>`z
 
-" Start Dein Settings -----------------
+" Start Dein Settings
 let s:dein_dir = $HOME . '/.vim/cache'
 if has('nvim')
     let s:dein_dir = $HOME . '/.config/nvim/cache'
@@ -64,14 +65,14 @@ endif
 if dein#check_install()
     call dein#install()
 endif
-" End Dein Settings --------------------
+" End Dein Settings
 
-" Setting the Status & Tab Line -------------
+" Setting the Status & Tab Line
 set laststatus=2
 set noshowmode
 set showtabline=2
 
-" Tab & Indent Setting ----------------
+" Indent Setting
 set expandtab
 set tabstop=4
 set softtabstop=2
@@ -79,7 +80,10 @@ set autoindent
 set smartindent
 set shiftwidth=4
 
-" Highlight & Search Settings ------------------
+" yml file indent
+autocmd BufRead,BufNewFile *.yml,*.yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
+" Highlight & Search Settings
 set showmatch
 set cursorline
 " Highlight on Search Toggle
@@ -94,12 +98,12 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Setting the Color Scheme ------------
+" Setting the Color Scheme
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colorscheme night-owl
 
-" vimdiff Color ------------
+" vimdiff Color
 autocmd VimEnter,WinEnter,ColorScheme * highlight DiffAdd    cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
 autocmd VimEnter,WinEnter,ColorScheme * highlight DiffDelete cterm=bold ctermfg=Red         ctermbg=0x002b36 gui=none guifg=bg guibg=Red
 autocmd VimEnter,WinEnter,ColorScheme * highlight DiffChange cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red

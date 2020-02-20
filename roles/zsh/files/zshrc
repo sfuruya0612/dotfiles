@@ -45,6 +45,20 @@ fa() {
     export AWS_PROFILE=${awsProfile}
 }
 
+# fzf + gcloud config set project <project>
+fgcp() {
+    local gcpProject
+
+    gcpProject=$(gcloud projects list | fzf --header-lines=1 --query="$*" --select-1 -e | awk '{print $1}')
+
+    if [ "${gcpProject}" = "" ]; then
+        return 1
+    fi
+
+    echo "Set config project: ${gcpProject}"
+    gcloud config set project ${gcpProject}
+}
+
 # fzf + ssh login
 fs() {
     local sshLoginHost
@@ -121,7 +135,7 @@ fancy-ctrl-z () {
   fi
 }
 zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
+bindkey '^z' fancy-ctrl-z
 
 # cdd change directory selected before paths
 fzf-cdr() {
