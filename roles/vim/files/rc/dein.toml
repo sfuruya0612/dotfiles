@@ -230,3 +230,7 @@ repo = 'skanehira/translate.vim'
 #    let g:translate_target = "ja"
 #    let g:translate_winsize = 10
 #'''
+
+# Use docker
+[[plugins]]
+repo = 'skanehira/docker.vim'

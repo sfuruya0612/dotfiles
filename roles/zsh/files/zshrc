@@ -149,10 +149,7 @@ alias cdd='fzf-cdr'
 
 # Export path
 # asdf path
-export ASDF_ROOT=${HOME}/.asdf
-export PATH=${ASDF_ROOT}/bin:${PATH}
-source ${ASDF_ROOT}/asdf.sh
-source ${ASDF_ROOT}/completions/asdf.bash
+source `brew --prefix asdf`/asdf.sh
 
 # Go path
 export GOPATH=${HOME}/go
