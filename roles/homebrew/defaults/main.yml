@@ -41,7 +41,7 @@ brew_packages:
   - gpg
   - htop
   # - itchyny/tap/gojq
-  # - jmeter
+  - jmeter
   - jq
   - knqyf263/trivy/trivy
   - kubernetes-cli
@@ -49,6 +49,7 @@ brew_packages:
   - mackerelio/mackerel-agent/mackerel-agent
   - minikube
   # - mdcat
+  - mkdocs
   - nmap
   - neovim
   - openssl
