@@ -7,12 +7,12 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/deoplete.nvim'
 
 # require (not neovim)
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
+# [[plugins]]
+# repo = 'roxma/vim-hug-neovim-rpc'
 
 # require (not neovim)
-[[plugins]]
-repo = 'roxma/nvim-yarp'
+# [[plugins]]
+# repo = 'roxma/nvim-yarp'
 
 # Colorscheme
 [[plugins]]
@@ -134,18 +134,18 @@ hook_add = '''
         \ 'elixir': ['credo'],
         \ 'erlang': ['erlc'],
         \ 'go': ['golint'],
+        \ 'javascript': ['eslint'],
         \ 'json': ['jq'],
         \ 'markdown': ['textlint'],
         \ 'python': ['flake8'],
+        \ 'typescript': ['eslint'],
         \ 'vim': ['vint'],
-        \ 'yaml': ['yamllint'],
         \ }
     let g:ale_sign_error = 'E'
     let g:ale_sign_warning = 'W'
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
-    let g:ale_statusline_format = ['E %d', 'W %d', '']
     let g:ale_open_list = 0
     let g:ale_keep_list_window_open = 0
     let g:ale_javascript_prettier_use_local_config = 1
@@ -223,14 +223,16 @@ hook_add = '''
 repo = 'tpope/vim-commentary'
 
 # translate to popup window
-[[plugins]]
-repo = 'skanehira/translate.vim'
-#hook_add = '''
-#    let g:translate_source = "en"
-#    let g:translate_target = "ja"
-#    let g:translate_winsize = 10
-#'''
+# Not supported neovim
+# [[plugins]]
+# repo = 'skanehira/translate.vim'
+# hook_add = '''
+#     let g:translate_source = "en"
+#     let g:translate_target = "ja"
+#     let g:translate_winsize = 10
+# '''
 
 # Use docker
-[[plugins]]
-repo = 'skanehira/docker.vim'
+# Not supported neovim
+# [[plugins]]
+# repo = 'skanehira/docker.vim'

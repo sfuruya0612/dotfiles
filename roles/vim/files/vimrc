@@ -17,7 +17,7 @@ set number
 set ttyfast
 set noswapfile
 
-" % jump to (), if endif 
+" % jump to (), if endif
 source $VIMRUNTIME/macros/matchit.vim
 
 set whichwrap=b,s,h,l,<,>,[,],~
