@@ -79,6 +79,7 @@ repo = 'fatih/vim-go'
 on_ft = ['go']
 hook_add = '''
     autocmd FileType go set autowrite
+
     let g:go_highlight_functions = 1
     let g:go_highlight_methods = 1
     let g:go_highlight_structs = 1
@@ -93,22 +94,28 @@ hook_add = '''
 
     let g:go_list_type = "quickfix"
 
-    " When Saving
-    "" Auto go import
     let g:go_fmt_command = "goimports"
 
-    "" Check go vet
     let g:go_metalinter_autosave = 1
-    let g:go_metalinter_autosave_enabled = ['vet']
+    let g:go_metalinter_autosave_enabled = ["golint"]
 
-    " GoRun, GoTest window split
-    let g:go_term_mode = 'split'
+    let g:go_term_mode = "split"
+
+    let g:go_addtags_transform = "camelcase"
+
+    let g:go_auto_type_info = 1
+    autocmd FileType go set updatetime=100
+
+    let g:go_play_open_browser = 0
+
+    let g:go_auto_sameids = 1
 '''
 
 [[plugins]]
 repo = 'zchee/deoplete-go'
 build = 'make'
 on_ft = ['go']
+depends = ['deoplete.nvim']
 hook_source = '''
     let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
 '''
