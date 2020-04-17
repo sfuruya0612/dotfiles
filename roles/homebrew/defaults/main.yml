@@ -69,6 +69,7 @@ brew_packages:
   - vim
   - weaveworks/tap/eksctl
   - wget
+  - wxmac
   - zsh
   - zsh-autosuggestions
   - zsh-completions

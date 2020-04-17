@@ -204,4 +204,4 @@ on_ft = ['erl']
 # Elixir
 [[plugins]]
 repo = 'elixir-editors/vim-elixir'
-on_ft = ['ex', 'exs', 'eex', '.leex']
+on_ft = ['ex', 'exs']

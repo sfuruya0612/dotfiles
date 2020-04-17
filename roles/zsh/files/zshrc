@@ -34,7 +34,7 @@ bindkey '^r' fzf_history
 fa() {
     local awsProfile
 
-    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | fzf`
+    awsProfile=`grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | grep -v "#" | fzf`
 
     if [ "${awsProfile}" = "" ]; then
         return 1
@@ -63,7 +63,7 @@ fgcp() {
 fs() {
     local sshLoginHost
 
-    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | fzf`
+    sshLoginHost=`grep -iE "^host" ~/.ssh/config | awk '{print $2}' | grep -v "#" | fzf`
     if [ "${sshLoginHost}" = "" ]; then
         return 1
     fi
