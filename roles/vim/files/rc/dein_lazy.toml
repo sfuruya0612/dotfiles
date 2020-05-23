@@ -146,17 +146,17 @@ on_ft = ['javascript']
 repo = 'leafgarland/typescript-vim'
 on_ft = ['typescript', 'typescriptreact']
 
-[[plugins]]
-repo = 'mhartington/nvim-typescript'
-build = './install.sh'
-on_ft = ['typescript', 'typescriptreact']
-hook_add = '''
-    let g:nvim_typescript#javascript_support = 1
-    let g:nvim_typescript#vue_support = 1
+# [[plugins]]
+# repo = 'mhartington/nvim-typescript'
+# build = './install.sh'
+# on_ft = ['typescript', 'typescriptreact']
+# hook_add = '''
+#     let g:nvim_typescript#javascript_support = 1
+#     let g:nvim_typescript#vue_support = 1
 
-    let g:nvim_typescript#diagnostics_enable = 0
-    autocmd BufWrite *.ts,*.tsx TSGetDiagnostics
-'''
+#     let g:nvim_typescript#diagnostics_enable = 1
+#     autocmd BufWrite *.ts,*.tsx TSGetDiagnostics
+# '''
 
 # vue.js
 [[plugins]]
@@ -197,6 +197,7 @@ hook_add = '''
     let g:vim_markdown_codeblock_syntax = 0
 '''
 
+# Preview markdown file with Google Chrome
 [[plugins]]
 repo = 'kannokanno/previm'
 on_ft = ['markdown', 'md']
@@ -204,6 +205,11 @@ hook_add = '''
    autocmd BufRead,BufNewFile *.md set filetype=markdown
    let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
+
+# Make slide
+[[plugins]]
+repo = 'dhruvasagar/vim-marp'
+on_ft = ['markdown', 'md']
 
 # Erlang
 [[plugins]]
@@ -234,3 +240,8 @@ on_ft = ['elixir']
 [[plugins]]
 repo = 'avdgaag/vim-phoenix'
 on_ft = ['elixir']
+
+# # Dockerfile
+# [[plugins]]
+# repo = 'ekalinin/Dockerfile.vim'
+# on_ft = ['dockerfile']

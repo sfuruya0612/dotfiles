@@ -19,7 +19,7 @@ fi
 # To fzf command default options
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-export FZF_DEFAULT_OPTS='--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 40% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
+export FZF_DEFAULT_OPTS='--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 50% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
 
 # Editors
 export EDITOR='/usr/local/bin/nvim'
