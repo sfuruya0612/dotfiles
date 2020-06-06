@@ -24,7 +24,7 @@ global_settings:
     value: 2
   - key: InitialKeyRepeat
     type: int
-    value: 15
+    value: 12
 
 dock_settings:
   - key: autohide
