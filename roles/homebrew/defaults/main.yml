@@ -9,14 +9,14 @@ brew_taps:
 
 brew_cask_apps:
   - alacritty
-  - ChatWork
+  # - ChatWork
   - clipy
   - CotEditor
   - Docker
   # - firefox
   - google-chrome
   - google-cloud-sdk
-  - Karabiner-Elements
+  # - Karabiner-Elements
   - Slack
   - vagrant
   - virtualbox
