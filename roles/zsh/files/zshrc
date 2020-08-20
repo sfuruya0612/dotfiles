@@ -20,8 +20,6 @@ alias gcd='cd $(git rev-parse --show-toplevel)'
 alias gs="git status -s"
 # git diff
 alias gd="git diff"
-# gcloud command interactive
-alias gcloud="gcloud alpha interactive"
 
 # Functions and keybind
 # fzf + history
