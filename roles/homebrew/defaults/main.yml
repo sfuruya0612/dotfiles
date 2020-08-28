@@ -13,10 +13,8 @@ brew_cask_apps:
   - clipy
   - CotEditor
   - Docker
-  # - firefox
   - google-chrome
   - google-cloud-sdk
-  # - Karabiner-Elements
   - Slack
   - vagrant
   - virtualbox
@@ -33,23 +31,21 @@ brew_packages:
   - diffutils
   - expect
   - firebase-cli
+  - fish
   - fzf
   - gawk
   - git
-  # - git-lfs
-  - golangci/tap/golangci-lint
+  # - golangci/tap/golangci-lint
   - goodwithtech/dockle/dockle
   - gpg
   - htop
-  # - itchyny/tap/gojq
   - jmeter
   - jq
   - knqyf263/trivy/trivy
   - kubernetes-cli
   - loci
-  - mackerelio/mackerel-agent/mackerel-agent
+  # - mackerelio/mackerel-agent/mackerel-agent
   - minikube
-  # - mdcat
   - mkdocs
   - nmap
   - neovim

@@ -12,4 +12,4 @@
       /usr/local/bin/brew services restart mackerel-agent
     when: result.changed == true
 
-  when: API_KEY not in ""
+  when: MACKEREL_API_KEY not in ""

@@ -25,7 +25,7 @@ Building neovim, tmux, zsh environment of macOS with Ansible.
 
 ### Install
 
-When using mackerel, add `API_KEY` to `group_vars/all.yml`
+When using mackerel, add `MACKEREL_API_KEY` to `group_vars/all.yml`
 
 ```bash
 cd ~; git clone https://github.com/sfuruya0612/dotfiles.git; cd dotfile
