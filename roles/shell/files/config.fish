@@ -1,3 +1,20 @@
+#
+#       __ _     _
+#      / _(_)___| |__
+#     | |_| / __| '_ \
+#     |  _| \__ \ | | |
+#     |_| |_|___/_| |_|
+#
+
+# Export path
+# asdf path
+source (brew --prefix asdf)/asdf.fish
+
+# Go path
+set -x GOPATH $HOME/go
+set -x PATH $PATH $GOPATH/bin
+
+# Set theme
 set -g theme_display_vagrant no
 set -g theme_display_docker_machine yes
 set -g theme_display_hg yes
