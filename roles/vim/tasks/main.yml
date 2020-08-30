@@ -1,7 +1,7 @@
 ---
 - name: Create .config/nvim directory
   file:
-    path: '{{ ansible_env.HOME }}/.config/nvim'
+    path: "{{ ansible_env.HOME }}/.config/nvim"
     state: directory
 
 - name: Install neovim from pip3
@@ -12,7 +12,7 @@
 
 - name: Symbolic link vimrc to neovim init.vim
   file:
-    src: '{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc'
-    dest: '{{ ansible_env.HOME }}/.config/nvim/init.vim'
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
+    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
     state: link
     force: yes

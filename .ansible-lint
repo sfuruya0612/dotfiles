@@ -2,6 +2,7 @@ parseable: true
 quiet: false
 use_default_rules: true
 skip_list:
+  - '208'
   - '301'
   - '305'
   - '401'

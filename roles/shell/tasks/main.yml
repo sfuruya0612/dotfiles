@@ -27,8 +27,9 @@
 
 - block:
     - name: Install fisher
-      shell: >
-        curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+      get_url:
+        url: "https://git.io/fisher"
+        dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
 
     - name: Install plugins
       shell: >
