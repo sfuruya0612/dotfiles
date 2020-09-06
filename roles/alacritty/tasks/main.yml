@@ -4,7 +4,7 @@
     path: "{{ ansible_env.HOME }}/.config/alacritty"
     state: directory
 
-- name: Copy configuration file
+- name: Set configuration file
   template:
-    src: alacritty.yml.j2
+    src: "alacritty.yml.j2"
     dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"

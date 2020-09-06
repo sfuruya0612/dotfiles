@@ -9,9 +9,7 @@
     repo: "https://github.com/tmux-plugins/tpm"
     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
 
-- name: Symbolic link ~/dotfiles/roles/tmux/files/tmux.conf -> ~/.tmux.conf
-  file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/tmux/files/tmux.conf"
+- name: Set configuration file
+  template:
+    src: "tmux.conf.j2"
     dest: "{{ ansible_env.HOME }}/.tmux.conf"
-    state: link
-    force: yes

@@ -7,7 +7,7 @@
         recursive: yes
         force: yes
 
-    - name: Symbolic link zsh configure files
+    - name: Set zsh configure files
       file:
         src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/{{ item.src }}"
         dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
@@ -38,7 +38,18 @@
         - oh-my-fish/theme-bobthefish
         - jethrokuan/fzf
 
-    - name: Symbolic link fish configure files
+    - name: Set fish functions
+      file:
+        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
+        state: link
+        force: yes
+      loop:
+        - "fa.fish"
+        - "fgcp.fish"
+        - "fs.fish"
+
+    - name: Set fish configure files
       file:
         src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/{{ item }}"
         dest: "{{ ansible_env.HOME }}/.config/fish/{{ item }}"
