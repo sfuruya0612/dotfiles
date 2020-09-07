@@ -1,7 +1,8 @@
 ---
 brew_taps:
   - aws/tap
-  - caskroom/cask
+  - homebrew/cask
+  - homebrew/cask-versions
   - homebrew/core
   - jkawamoto/loci
   - knqyf263/trivy

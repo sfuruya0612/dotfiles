@@ -26,6 +26,11 @@
   when: SHELL == "zsh"
 
 - block:
+    - name: Create fish config directory
+      file:
+        path: "{{ ansible_env.HOME }}/.config/fish/functions"
+        state: directory
+
     - name: Install fisher
       get_url:
         url: "https://git.io/fisher"

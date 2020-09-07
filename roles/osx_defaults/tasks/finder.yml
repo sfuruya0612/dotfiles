@@ -6,7 +6,7 @@
     type: "{{ finder_setting_item.type }}"
     value: "{{ finder_setting_item.value }}"
     state: present
-  with_items: "{{ finder_settings }}"
+  loop: "{{ finder_settings }}"
   loop_control:
     loop_var: finder_setting_item
   notify: restart finder

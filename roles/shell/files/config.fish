@@ -33,9 +33,10 @@ alias ls "gls --color=auto -F"
 alias ll "ls -aFGl"
 # Git
 alias gcd "cd (git rev-parse --show-toplevel)"
-alias gs "git status -s"
+alias gs "git status"
 alias gd "git diff"
 alias gp "git pull"
+alias gg "git grep"
 # alias gl "git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --preview "echo {} | awk '{print \$2}' | xargs git show --color=always""
 # alias gb "git checkout `git branch -a | tr -d " " | fzf --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g"`"
 # Docker

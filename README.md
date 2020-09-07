@@ -4,32 +4,64 @@
 
 ## Description
 
-Building neovim, tmux, zsh environment of macOS with Ansible.  
-*Supports MacOS version after mojave.*  
+Setting macOS with Ansible.
+
+## Directory
+
+```bash
+.
+├── Makefile
+├── README.md
+├── ansible.cfg
+├── group_vars
+│   └── all.yml
+├── install.sh
+├── inventory
+│   └── local
+├── main.yml
+└── roles
+    ├── alacritty
+    ├── fonts
+    ├── homebrew
+    ├── mackerel
+    ├── osx_defaults
+    ├── shell
+    ├── tmux
+    └── vim
+```
 
 ## Settings
 
 ### Prepere
 
-- Install homebrew when not installed.
+If these are not installed, install them.
+
+- Install homebrew
 
 ```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-- Install git, python3, ansible.
+- Install git, python3, ansible
 
 ```bash
 /usr/local/bin/brew install git python3 ansible
 ```
 
-### Install
-
-When using mackerel, add `MACKEREL_API_KEY` to `group_vars/all.yml`
+- Install xcode command line tools
 
 ```bash
-cd ~; git clone https://github.com/sfuruya0612/dotfiles.git; cd dotfile
-make
-
-# Restart your Terminal or Start Alacritty
+xcode-select --install
 ```
+
+### Install
+
+To change the Login Shell, change the `SHELL` parameter in `group_vars/all.yml` file.  
+(Default fish shell)
+
+```bash
+cd ~ && git clone https://github.com/sfuruya0612/dotfiles.git && dotfiles && make
+# Enter sudo password
+```
+
+Reboot your PC after execution.

@@ -25,6 +25,9 @@ global_settings:
   - key: InitialKeyRepeat
     type: int
     value: 12
+  - key: _HIHideMenuBar
+    type: bool
+    value: false
 
 dock_settings:
   - key: autohide
@@ -51,6 +54,9 @@ dock_settings:
   - key: wvous-br-modifier
     type: int
     value: 0
+  - key: show-recents
+    type: bool
+    value: false
 
 safari_settings:
   - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled
@@ -112,3 +118,8 @@ trackpad_settings:
   - key: Clicking
     type: int
     value: 1
+
+# universalaccess_settings:
+#   - key: mouseDriverCursorSize
+#     type: float
+#     value: 2.2

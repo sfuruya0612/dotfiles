@@ -1,4 +1,12 @@
 ---
+- name: Create apps and project directory
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  loop:
+    - "apps"
+    - "works"
+
 - name: Clone powerline fonts repo
   git:
     repo: "https://github.com/powerline/fonts.git"
