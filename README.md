@@ -1,34 +1,70 @@
 # dotfiles
+
 [![Build Status](https://travis-ci.org/sfuruya0612/dotfiles.svg?branch=master)](https://travis-ci.org/sfuruya0612/dotfiles)
 
 ## Description
 
-Building neovim, tmux, zsh environment of macOS with Ansible.  
-*Supports MacOS version after mojave.*  
+Setting macOS with Ansible.
+
+## Directory
+
+```bash
+.
+├── Makefile
+├── README.md
+├── ansible.cfg
+├── group_vars
+│   └── all.yml
+├── install.sh
+├── inventory
+│   └── local
+├── main.yml
+└── roles
+    ├── alacritty
+    ├── fonts
+    ├── homebrew
+    ├── mackerel
+    ├── osx_defaults
+    ├── shell
+    ├── tmux
+    └── vim
+```
 
 ## Settings
 
-#### Prepere
+### Prepere
 
-- Install homebrew when not installed.
+If these are not installed, install them.
 
-```sh
+- Install homebrew
+
+```bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-- Install git, python3, ansible.
+- Install git, python3, ansible
 
-```sh
+```bash
 /usr/local/bin/brew install git python3 ansible
 ```
 
-#### Execute playbook
+- Install xcode command line tools
 
-When using mackerel, add `API_KEY` to `group_vars/all.yml`
-
-```sh
-cd ~; git clone https://github.com/sfuruya0612/dotfiles.git; cd dotfile
-make
-
-# Restart your Terminal or Start Alacritty
+```bash
+xcode-select --install
 ```
+
+### Install
+
+To change the Login Shell, change the `SHELL` parameter in `group_vars/all.yml` file.  
+(Default fish shell)
+
+```bash
+cd ~ && git clone https://github.com/sfuruya0612/dotfiles.git && dotfiles && make
+# Enter sudo password
+
+# Install tmux plugins
+# <prefix> + I
+```
+
+Reboot your PC after install.

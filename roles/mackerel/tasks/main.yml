@@ -1,15 +1,14 @@
 ---
 - block:
+    - name: Copy mackerel agent config
+      template:
+        src: mackerel-agent.conf.j2
+        dest: /usr/local/etc/mackerel-agent.conf
+      register: result
 
-  - name: Copy mackerel agent config
-    template:
-      src: mackerel-agent.conf.j2
-      dest: /usr/local/etc/mackerel-agent.conf
-    register: result
+    - name: Restart mackerel agent
+      shell: >
+        /usr/local/bin/brew services restart mackerel-agent
+      when: result.changed == true
 
-  - name: Restart mackerel agent
-    shell: >
-      /usr/local/bin/brew services restart mackerel-agent
-    when: result.changed == true
-
-  when: API_KEY not in ""
+  when: MACKEREL_API_KEY not in ""

@@ -12,7 +12,7 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 # open a highlighted selection(URL, File)
 set -g @plugin 'tmux-plugins/tmux-open'
 # Display Local PC memory, Load Average
-set -g @plugin 'knakayama/tmux-mem'
+# set -g @plugin 'knakayama/tmux-mem'
 set -g @plugin 'knakayama/tmux-cpu'
 
 run -b '~/.tmux/plugins/tpm/tpm'
@@ -40,7 +40,7 @@ set -g status-right-length 90
 set -g status-left "\
 #{?client_prefix,#[fg=colour15]#[bg=colour170],#[fg=colour245]#[bg=colour240]} #h ${S_RIGHT_THIN} #S \
 #{?client_prefix,#[fg=colour170]#[bg=colour22],#[fg=colour240]#[bg=colour22]}${S_RIGHT_BOLD}\
-#[fg=colour15,bg=colour22] #{cpu} ${S_RIGHT_THIN} #{mem} \
+#[fg=colour15,bg=colour22] #{cpu} \
 #[fg=colour22,bg=colour236]${S_RIGHT_BOLD}"
 
 # Right side: Wi-Fi, date
@@ -64,12 +64,14 @@ set-window-option -g window-status-current-format "\
 #[fg=colour170, bg=colour236]${S_RIGHT_BOLD}"
 
 # Require settings --------------------
+# Set default shell
+set -g default-shell "/usr/local/bin/{{ SHELL }}"
 # Esc入力時のディレイを減らす
 set -s escape-time 0
 # Esc入力時の待ち時間をキャンセル
 set -s escape-time 0
 # 256色端末を使用する
-set -g default-terminal "tmux"
+set -g default-terminal "xterm-256color"
 set -ga terminal-overrides ",xterm-256color:Tc"
 # ウィンドウ履歴の最大行数
 set -g history-limit 10000

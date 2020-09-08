@@ -6,7 +6,7 @@
     type: "{{ clock_setting_item.type }}"
     value: "{{ clock_setting_item.value }}"
     state: present
-  with_items: "{{ clock_settings }}"
+  loop: "{{ clock_settings }}"
   loop_control:
     loop_var: clock_setting_item
 
@@ -17,6 +17,6 @@
     type: "{{ battery_setting_item.type }}"
     value: "{{ battery_setting_item.value }}"
     state: present
-  with_items: "{{ battery_settings }}"
+  loop: "{{ battery_settings }}"
   loop_control:
     loop_var: battery_setting_item

@@ -1,2 +1,3 @@
 ---
-API_KEY: ""
+MACKEREL_API_KEY: ""
+SHELL: "fish"

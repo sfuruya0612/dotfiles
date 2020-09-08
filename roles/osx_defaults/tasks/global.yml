@@ -6,6 +6,6 @@
     type: "{{ global_setting_item.type }}"
     value: "{{ global_setting_item.value }}"
     state: present
-  with_items: "{{ global_settings }}"
+  loop: "{{ global_settings }}"
   loop_control:
     loop_var: global_setting_item

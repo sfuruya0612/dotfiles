@@ -6,7 +6,7 @@
     type: "{{ dock_setting_item.type }}"
     value: "{{ dock_setting_item.value }}"
     state: present
-  with_items: "{{ dock_settings }}"
+  loop: "{{ dock_settings }}"
   loop_control:
     loop_var: dock_setting_item
   notify: restart dock

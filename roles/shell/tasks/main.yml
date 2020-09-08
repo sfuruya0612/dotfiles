@@ -1,30 +1,95 @@
 ---
-- name: Search path zsh
+- block:
+    - name: Clone prezto repo
+      git:
+        repo: "https://github.com/sorin-ionescu/prezto.git"
+        dest: "{{ ansible_env.HOME }}/.zprezto"
+        recursive: yes
+        force: yes
+
+    - name: Set zsh configure files
+      file:
+        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/{{ item.src }}"
+        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+        state: link
+        force: yes
+      loop:
+        - src: "zshrc"
+          dest: ".zshrc"
+        - src: "zprofile"
+          dest: ".zprofile"
+        - src: "zpreztorc"
+          dest: ".zpreztorc"
+        - src: "p10k.zsh"
+          dest: ".p10k.zsh"
+
+  when: SHELL == "zsh"
+
+- block:
+    - name: Create fish config directory
+      file:
+        path: "{{ ansible_env.HOME }}/.config/fish/functions"
+        state: directory
+
+    - name: Install fisher
+      get_url:
+        url: "https://git.io/fisher"
+        dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
+
+    - name: Install plugins
+      shell: >
+        fish -c "fisher add {{ item }}"
+      loop:
+        - oh-my-fish/theme-bobthefish
+        - jethrokuan/fzf
+
+    - name: Set fish functions
+      file:
+        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
+        state: link
+        force: yes
+      loop:
+        - "fa.fish"
+        - "fgcp.fish"
+        - "fs.fish"
+
+    - name: Set fish configure files
+      file:
+        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/fish/{{ item }}"
+        state: link
+        force: yes
+      loop:
+        - "config.fish"
+
+  when: SHELL == "fish"
+
+- name: Search shell path
   shell: >
-    /usr/bin/which zsh
-  register: which_zsh
+    /usr/bin/which {{ SHELL }}
+  register: shell_path
   ignore_errors: True
 
 - name: Check shells file
   shell: >
-    /bin/cat /etc/shells | /usr/bin/grep "{{ which_zsh.stdout }}"
-  register: grep_shells
+    /bin/cat /etc/shells | /usr/bin/grep "{{ shell_path.stdout }}"
+  register: chk_shell
   ignore_errors: True
 
 - block:
-
-  - name: Append shells
-    lineinfile:
+    - name: Append shells
+      lineinfile:
         dest: /etc/shells
-        line: "{{ which_zsh.stdout }}"
-        regexp: "{{ which_zsh.stdout }}"
+        line: "{{ shell_path.stdout }}"
+        regexp: "{{ shell_path.stdout }}"
         insertafter: EOF
 
-  - name: Change login shell
-    shell: >
-      /usr/bin/chpass -s "{{ which_zsh.stdout }}"
-    register: result
-    until: result.rc == 0
+    - name: Change login shell
+      shell: >
+        /usr/bin/chpass -s "{{ shell_path.stdout }}"
+      register: result
+      until: result.rc == 0
 
-  when: grep_shells.rc != 0
+  when: chk_shell.rc != 0
   become: true

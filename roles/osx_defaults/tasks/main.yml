@@ -1,10 +1,11 @@
 ---
-- name: Settings OS X
+- name: Settings OSX
   include_tasks: "{{ item }}"
-  with_items:
+  loop:
     - global.yml
     - dock.yml
     - safari.yml
     - finder.yml
     - menuextra.yml
     - trackpad.yml
+    # - universalaccess.yml

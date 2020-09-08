@@ -6,6 +6,6 @@
     type: "{{ trackpad_setting_item.type }}"
     value: "{{ trackpad_setting_item.value }}"
     state: present
-  with_items: "{{ trackpad_settings }}"
+  loop: "{{ trackpad_settings }}"
   loop_control:
     loop_var: trackpad_setting_item

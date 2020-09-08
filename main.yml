@@ -5,12 +5,10 @@
   connection: local
   gather_facts: yes
   roles:
+    - common
     - homebrew
     - vim
     - tmux
-    - zsh
     - alacritty
-    - fonts
-    - osx_defaults
-    - mackerel
     - shell
+    - osx_defaults
