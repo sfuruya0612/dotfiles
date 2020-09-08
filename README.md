@@ -62,6 +62,9 @@ To change the Login Shell, change the `SHELL` parameter in `group_vars/all.yml` 
 ```bash
 cd ~ && git clone https://github.com/sfuruya0612/dotfiles.git && dotfiles && make
 # Enter sudo password
+
+# Install tmux plugins
+# <prefix> + I
 ```
 
-Reboot your PC after execution.
+Reboot your PC after install.

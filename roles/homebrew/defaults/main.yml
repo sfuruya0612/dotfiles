@@ -16,6 +16,7 @@ brew_cask_apps:
   - Docker
   - google-chrome
   - google-cloud-sdk
+  - session-manager-plugin
   - Slack
   - vagrant
   - virtualbox

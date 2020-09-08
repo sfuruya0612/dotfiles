@@ -13,3 +13,7 @@
   template:
     src: "tmux.conf.j2"
     dest: "{{ ansible_env.HOME }}/.tmux.conf"
+
+- name: Enable tmux plugin
+  shell: >
+    tmux source ~/.tmux.conf
