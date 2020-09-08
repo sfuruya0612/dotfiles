@@ -68,7 +68,7 @@ set -g theme_display_jobs_verbose yes
 
 set -g theme_display_date yes
 set -g theme_date_timezone Asia/Tokyo
-set -g theme_date_format "+%a %T"
+set -g theme_date_format "+%T"
 
 set -g theme_title_display_process yes
 set -g theme_title_display_path yes
