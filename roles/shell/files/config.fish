@@ -38,7 +38,7 @@ alias gd "git diff"
 alias gp "git pull"
 alias gg "git grep"
 # alias gl "git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --preview "echo {} | awk '{print \$2}' | xargs git show --color=always""
-# alias gb "git checkout `git branch -a | tr -d " " | fzf --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g"`"
+# alias gb "git checkout (git branch -a | tr -d " " | fzf --preview "git log --color=always {}" | head -n 1 | sed -e "s/^\*\s*//g" | perl -pe "s/remotes\/origin\///g")"
 # Docker
 alias dp "docker ps"
 alias dpa "docker ps -a"
@@ -73,6 +73,9 @@ set -g theme_date_format "+%T"
 set -g theme_title_display_process yes
 set -g theme_title_display_path yes
 set -g theme_title_use_abbreviated_path no
+
+# Set key binding
+bind \cx change_recentdir
 
 # Init function
 # Attach tmux session at launch new terminal

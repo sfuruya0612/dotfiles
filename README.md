@@ -64,6 +64,8 @@ cd ~ && git clone https://github.com/sfuruya0612/dotfiles.git && dotfiles && mak
 # Enter sudo password
 
 # Install tmux plugins
+# Launch tmux
+tmux && tmux source ~/.tmux.conf
 # <prefix> + I
 ```
 

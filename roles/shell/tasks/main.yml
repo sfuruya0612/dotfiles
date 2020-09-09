@@ -42,6 +42,7 @@
       loop:
         - oh-my-fish/theme-bobthefish
         - jethrokuan/fzf
+        - jethrokuan/z
 
     - name: Set fish functions
       file:
@@ -50,6 +51,7 @@
         state: link
         force: yes
       loop:
+        - "change_recentdir.fish"
         - "fa.fish"
         - "fgcp.fish"
         - "fs.fish"
