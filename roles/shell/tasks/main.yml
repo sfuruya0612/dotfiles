@@ -51,10 +51,10 @@
         state: link
         force: yes
       loop:
-        - "change_recentdir.fish"
+        - "change_recent_directory.fish"
         - "fa.fish"
-        - "fgcp.fish"
         - "fs.fish"
+        - "gcs.fish"
 
     - name: Set fish configure files
       file:

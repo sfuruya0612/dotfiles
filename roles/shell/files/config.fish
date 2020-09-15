@@ -9,7 +9,6 @@
 # Export path
 # asdf path
 source (brew --prefix asdf)/asdf.fish
-
 # Go path
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
@@ -19,11 +18,9 @@ set -x PATH $PATH $GOPATH/bin
 set -U EDITOR /usr/local/bin/nvim
 set -U VISUAL /usr/local/bin/nvim
 set -U PAGER /usr/bin/less
-
 # Set history options
 set -U HISTSIZE 10000
 set -U SAVEHIST 100000
-
 # Set theme
 set -U TERM xterm-256color
 
@@ -57,44 +54,41 @@ set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi -
 # Set prompt
 set -g theme_display_git_dirty yes
 set -g theme_display_git_untracked yes
-
 set -g theme_show_exit_status yes
 set -g theme_color_scheme dracula
 set -g theme_newline_cursor yes
 set -g theme_powerline_fonts yes
-
 set -g theme_display_cmd_duration yes
 set -g theme_display_jobs_verbose yes
-
 set -g theme_display_date yes
 set -g theme_date_timezone Asia/Tokyo
 set -g theme_date_format "+%T"
-
 set -g theme_title_display_process yes
 set -g theme_title_display_path yes
 set -g theme_title_use_abbreviated_path no
 
+# Own functions
 # Set key binding
-bind \cx change_recentdir
+bind \cx change_recent_directory
 
 # Init function
 # Attach tmux session at launch new terminal
-function attach_tmux_session_if_needed
-    set ID (tmux list-sessions)
-    if test -z "$ID"
-        tmux new-session
-        return
-    end
+# function attach_tmux_session_if_needed
+#     set ID (tmux list-sessions)
+#     if test -z "$ID"
+#         tmux new-session
+#         return
+#     end
 
-    set new_session "Create New Session"
-    set ID (echo $ID\n$new_session | fzf | cut -d: -f1)
-    if test "$ID" = "$new_session"
-        tmux new-session
-    else if test -n "$ID"
-        tmux attach-session -t "$ID"
-    end
-end
+#     set new_session "Create New Session"
+#     set ID (echo $ID\n$new_session | fzf | cut -d: -f1)
+#     if test "$ID" = "$new_session"
+#         tmux new-session
+#     else if test -n "$ID"
+#         tmux attach-session -t "$ID"
+#     end
+# end
 
-if test -z $TMUX && status --is-login
-    attach_tmux_session_if_needed
-end
+# if test -z $TMUX && status --is-login
+#     attach_tmux_session_if_needed
+# end
