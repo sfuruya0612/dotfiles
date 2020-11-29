@@ -10,7 +10,6 @@
 - name: Upgrade homebrew cask all packages
   homebrew_cask:
     upgrade_all: yes
-    # sudo_password: "{{ ansible_become_pass }}"
 
 - name: Install homebrew cask packages
   homebrew_cask:
@@ -18,7 +17,6 @@
     state: "present"
     install_options: "appdir=/Applications"
     accept_external_apps: yes
-    # sudo_password: "{{ ansible_become_pass }}"
   loop: "{{ brew_cask_apps }}"
   loop_control:
     loop_var: brew_cask_app_item

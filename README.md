@@ -6,6 +6,8 @@
 
 Setting macOS with Ansible.
 
+Supported for later OS than Catalina.
+
 ## Directory
 
 ```bash
@@ -21,7 +23,7 @@ Setting macOS with Ansible.
 ├── main.yml
 └── roles
     ├── alacritty
-    ├── fonts
+    ├── common
     ├── homebrew
     ├── mackerel
     ├── osx_defaults

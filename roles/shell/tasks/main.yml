@@ -38,7 +38,7 @@
 
     - name: Install plugins
       shell: >
-        fish -c "fisher add {{ item }}"
+        fish -c "fisher install {{ item }}"
       loop:
         - oh-my-fish/theme-bobthefish
         - jethrokuan/fzf
