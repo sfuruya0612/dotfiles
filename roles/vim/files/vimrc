@@ -37,34 +37,34 @@ nnoremap <S-CR> mzo<ESC>`z
 nnoremap <C-S-CR> mzO<ESC>`z
 
 " Start Dein Settings
-let s:dein_dir = $HOME . '/.vim/cache'
-if has('nvim')
-    let s:dein_dir = $HOME . '/.config/nvim/cache'
-endif
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-    endif
-
-	execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
-if dein#load_state(s:dein_dir)
-    call dein#begin(s:dein_dir)
-
-    let g:dein_plugin_dir = expand($HOME . '/dotfiles/roles/vim/files/rc')
-    call dein#load_toml(g:dein_plugin_dir . '/dein.toml', {'lazy': 0})
-    call dein#load_toml(g:dein_plugin_dir . '/dein_lazy.toml', {'lazy': 1})
-
-    call dein#end()
-    call dein#save_state()
-endif
-
-if dein#check_install()
-    call dein#install()
-endif
+" let s:dein_dir = $HOME . '/.vim/cache'
+" if has('nvim')
+"     let s:dein_dir = $HOME . '/.config/nvim/cache'
+" endif
+" let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+"
+" if &runtimepath !~# '/dein.vim'
+"     if !isdirectory(s:dein_repo_dir)
+"         execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+"     endif
+"
+" 	execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+" endif
+"
+" if dein#load_state(s:dein_dir)
+"     call dein#begin(s:dein_dir)
+"
+"     let g:dein_plugin_dir = expand($HOME . '/dotfiles/roles/vim/files/rc')
+"     call dein#load_toml(g:dein_plugin_dir . '/dein.toml', {'lazy': 0})
+"     call dein#load_toml(g:dein_plugin_dir . '/dein_lazy.toml', {'lazy': 1})
+"
+"     call dein#end()
+"     call dein#save_state()
+" endif
+"
+" if dein#check_install()
+"     call dein#install()
+" endif
 " End Dein Settings
 
 " Setting the Status & Tab Line

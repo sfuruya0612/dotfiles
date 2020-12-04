@@ -1,3 +1,6 @@
 ---
 MACKEREL_API_KEY: ""
+# Select editor vim or neovim
+VIM: "vim"
+# Select default shell fish or zsh
 SHELL: "fish"
