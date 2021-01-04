@@ -15,8 +15,10 @@ set -x PATH $PATH $GOPATH/bin
 
 # Universal environment
 # Editors path
-set -U EDITOR /usr/local/bin/nvim
-set -U VISUAL /usr/local/bin/nvim
+# set -U EDITOR /usr/local/bin/nvim
+# set -U VISUAL /usr/local/bin/nvim
+set -U EDITOR /usr/local/bin/vim
+set -U VISUAL /usr/local/bin/vim
 set -U PAGER /usr/bin/less
 # Set history options
 set -U HISTSIZE 10000
@@ -45,7 +47,8 @@ alias dk "docker kill"
 alias dka "docker kill (docker ps -q)"
 alias dcp "docker container prune -f"
 # Editor
-alias vim (brew --prefix)/bin/nvim
+# alias vim (brew --prefix)/bin/nvim
+alias vim (brew --prefix)/bin/vim
 
 # Set fzf options
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'

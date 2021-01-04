@@ -154,3 +154,5 @@ source `brew --prefix asdf`/asdf.sh
 # Go path
 export GOPATH=${HOME}/go
 export PATH=${PATH}:${GOPATH}/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

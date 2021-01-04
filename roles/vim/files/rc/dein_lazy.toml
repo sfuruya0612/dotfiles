@@ -31,7 +31,6 @@ hook_source = '''
   let g:coc_global_extensions = [
       \ 'coc-lists',
       \ 'coc-go',
-      \ 'coc-json',
       \ 'coc-yaml',
       \ 'coc-python',
       \ 'coc-snippets',
@@ -241,7 +240,7 @@ on_ft = ['elixir']
 repo = 'avdgaag/vim-phoenix'
 on_ft = ['elixir']
 
-# # Dockerfile
-# [[plugins]]
-# repo = 'ekalinin/Dockerfile.vim'
-# on_ft = ['dockerfile']
+# Dockerfile
+[[plugins]]
+repo = 'ekalinin/Dockerfile.vim'
+on_ft = ['dockerfile']
