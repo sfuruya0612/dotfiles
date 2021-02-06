@@ -22,20 +22,21 @@ rev = 'release'
 on_i = 1
 merged = '0'
 hook_source = '''
-  set hidden
-  set nobackup
-  set nowritebackup
+    set hidden
+    set nobackup
+    set nowritebackup
 
-  set cmdheight=2
+    set cmdheight=2
 
-  let g:coc_global_extensions = [
-      \ 'coc-lists',
-      \ 'coc-go',
-      \ 'coc-yaml',
-      \ 'coc-snippets',
-      \ 'coc-eslint',
-      \ 'coc-elixir',
-      \ ]
+    let g:coc_global_extensions = [
+    \    'coc-lists',
+    \    'coc-go',
+    \    'coc-yaml',
+    \    'coc-snippets',
+    \    'coc-eslint',
+    \    'coc-elixir',
+    \    'coc-rls',
+    \ ]
 '''
 
 # snippet
@@ -46,22 +47,19 @@ repo = 'Shougo/neosnippet-snippets'
 [[plugins]]
 repo = 'Shougo/neosnippet'
 hook_source = '''
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
+
+    if has('conceal')
+        set conceallevel=2 concealcursor=niv
+    endif
 '''
 on_i = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
 # python
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-on_ft = ['python']
-
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
 on_ft = ['python']
@@ -156,14 +154,6 @@ on_ft = ['typescript', 'typescriptreact']
 #     autocmd BufWrite *.ts,*.tsx TSGetDiagnostics
 # '''
 
-# vue.js
-[[plugins]]
-repo = 'posva/vim-vue'
-on_ft = ['vue']
-hook_source = '''
-    autocmd FileType vue syntax sync fromstart
-'''
-
 # html
 [[plugins]]
 repo = 'othree/html5.vim'
@@ -200,14 +190,9 @@ hook_add = '''
 repo = 'kannokanno/previm'
 on_ft = ['markdown', 'md']
 hook_add = '''
-   autocmd BufRead,BufNewFile *.md set filetype=markdown
-   let g:previm_open_cmd = 'open -a Google\ Chrome'
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
-
-# Make slide
-[[plugins]]
-repo = 'dhruvasagar/vim-marp'
-on_ft = ['markdown', 'md']
 
 # Erlang
 [[plugins]]
@@ -231,15 +216,19 @@ on_ft = ['erlang']
 repo = 'elixir-editors/vim-elixir'
 on_ft = ['elixir']
 
+# Rust
 [[plugins]]
-repo = 'kbrw/elixir.nvim'
-on_ft = ['elixir']
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
+hook_add = '''
+    let g:rustfmt_autosave = 1
+    let g:rust_clip_command = 'pbcopy'
+'''
 
-[[plugins]]
-repo = 'avdgaag/vim-phoenix'
-on_ft = ['elixir']
-
+{% if VIM == "vim" %}
 # Dockerfile
 [[plugins]]
 repo = 'ekalinin/Dockerfile.vim'
 on_ft = ['dockerfile']
+
+{% endif %}

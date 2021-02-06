@@ -42,9 +42,11 @@
 
 - name: Set dein toml file
   template:
-    src: "{{ item }}"
-    dest: "{{ ansible_env.HOME }}/.config/vim/{{ item }}"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     force: yes
   loop:
-    - "dein.toml"
-    - "dein_lazy.toml"
+    - src: "dein.toml.j2"
+      dest: "{{ ansible_env.HOME }}/.config/vim/dein.toml"
+    - src: "dein_lazy.toml.j2"
+      dest: "{{ ansible_env.HOME }}/.config/vim/dein_lazy.toml"
