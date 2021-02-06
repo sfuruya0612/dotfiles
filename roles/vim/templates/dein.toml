@@ -6,14 +6,16 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 
+{% if VIM == "vim" %}
 # require (not neovim)
-# [[plugins]]
-# repo = 'roxma/vim-hug-neovim-rpc'
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
 
 # require (not neovim)
-# [[plugins]]
-# repo = 'roxma/nvim-yarp'
+[[plugins]]
+repo = 'roxma/nvim-yarp'
 
+{% endif %}
 # Colorscheme
 [[plugins]]
 repo = 'haishanh/night-owl.vim'
@@ -134,9 +136,7 @@ hook_add = '''
         \ 'javascript': ['eslint'],
         \ 'json': ['jq'],
         \ 'markdown': ['textlint'],
-        \ 'python': ['flake8'],
         \ 'typescript': ['eslint'],
-        \ 'vim': ['vint'],
         \ }
     let g:ale_sign_error = 'E'
     let g:ale_sign_warning = 'W'
@@ -172,15 +172,15 @@ hook_add = '''
     \ }
 '''
 
-# if, funcのendを補完
+# if, func の end を補完
 [[plugins]]
 repo = 'tpope/vim-endwise'
 
-# 左端にgit diff iconを表示
+# 左端に git diff icon を表示
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
-# Gblame, GstatusなどのGit操作
+# Gblame, Gstatus などの Git 操作
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
@@ -219,6 +219,7 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
+{% if VIM == "vim" %}
 # translate to popup window
 # Not supported neovim
 [[plugins]]
@@ -233,3 +234,5 @@ hook_add = '''
 # Not supported neovim
 [[plugins]]
 repo = 'skanehira/docker.vim'
+
+{% endif %}

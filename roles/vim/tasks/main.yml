@@ -1,4 +1,12 @@
 ---
+- name: Unlink config file
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    - "{{ ansible_env.HOME }}/.vimrc"
+
 - block:
   - name: Create .config/nvim directory
     file:
@@ -19,10 +27,24 @@
       force: yes
   when: VIM == "neovim"
 
-- name: Symbolic link vimrc to neovim init.vim
+- name: Symbolic link vimrc
   file:
     src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
     dest: "{{ ansible_env.HOME }}/.vimrc"
     state: link
     force: yes
   when: VIM == "vim"
+
+- name: Create dein toml directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/vim"
+    state: directory
+
+- name: Set dein toml file
+  template:
+    src: "{{ item }}"
+    dest: "{{ ansible_env.HOME }}/.config/vim/{{ item }}"
+    force: yes
+  loop:
+    - "dein.toml"
+    - "dein_lazy.toml"

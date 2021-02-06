@@ -1,11 +1,11 @@
 ---
-- name: Unlink zsh config file
+- name: Unlink prezto config file
   file:
     path: "{{ item.path }}"
     state: absent
   loop: "{{ zsh_prezto_config }}"
 
-- name: Unlink fish config file
+- name: Unlink fish function file
   file:
     path: "{{ item.path }}"
     state: absent

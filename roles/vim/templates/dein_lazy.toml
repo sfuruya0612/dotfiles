@@ -32,7 +32,6 @@ hook_source = '''
       \ 'coc-lists',
       \ 'coc-go',
       \ 'coc-yaml',
-      \ 'coc-python',
       \ 'coc-snippets',
       \ 'coc-eslint',
       \ 'coc-elixir',
