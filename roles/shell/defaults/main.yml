@@ -1,0 +1,26 @@
+---
+zsh_prezto_config:
+  - src: "zpreztorc"
+    path: "{{ ansible_env.HOME }}/.zpreztorc"
+  - src: "p10k.zsh"
+    path: "{{ ansible_env.HOME }}/.p10k.zsh"
+
+zsh_config:
+  - src: "zshrc.j2"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+  - src: "zprofile.j2"
+    dest: "{{ ansible_env.HOME }}/.zprofile"
+
+fish_function:
+  - src: "functions/change_recent_directory.fish"
+    path: "{{ ansible_env.HOME }}/.config/fish/functions/change_recent_directory.fish"
+  - src: "functions/fa.fish"
+    path: "{{ ansible_env.HOME }}/.config/fish/functions/fa.fish"
+  - src: "functions/fs.fish"
+    path: "{{ ansible_env.HOME }}/.config/fish/functions/fs.fish"
+  - src: "functions/gcs.fish"
+    path: "{{ ansible_env.HOME }}/.config/fish/functions/gcs.fish"
+
+fish_config:
+  - src: config.fish.j2
+    dest: "{{ ansible_env.HOME }}/.config/fish/config.fish"

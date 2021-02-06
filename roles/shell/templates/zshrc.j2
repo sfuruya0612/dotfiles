@@ -10,8 +10,13 @@ alias ls="gls --color=auto -F"
 alias ll="ls -aFGl"
 # history
 alias history="history -iD"
+{% if VIM == "neovim" %}
 # neovim
 alias vim="`brew --prefix`/bin/nvim"
+{% else %}
+# vim
+alias vim="`brew --prefix`/bin/vim"
+{% endif %}
 # view command
 alias view="vim -R"
 # change direcotry to git root direcotry
@@ -24,8 +29,8 @@ alias gd="git diff"
 # Functions and keybind
 # fzf + history
 fzf_history() {
-  BUFFER=`history -n -r 1 | cut -d " " -f6- | fzf --query "$LBUFFER"`
-  CURSOR=$#BUFFER
+    BUFFER=`history -n -r 1 | cut -d " " -f6- | fzf --query "$LBUFFER"`
+    CURSOR=$#BUFFER
 }
 zle -N fzf_history
 bindkey '^r' fzf_history
@@ -126,13 +131,13 @@ google() {
 
 # Ctrl+z foreground/background switch process
 fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
+    if [[ $#BUFFER -eq 0 ]]; then
+        BUFFER="fg"
+        zle accept-line
+    else
+        zle push-input
+        zle clear-screen
+    fi
 }
 zle -N fancy-ctrl-z
 bindkey '^z' fancy-ctrl-z
@@ -142,7 +147,7 @@ fzf-cdr() {
     target_dir=`cdr -l | sed 's/^[^ ][^ ]*  *//' | fzf`
     target_dir=`echo ${target_dir/\~/$HOME}`
     if [ -n "${target_dir}" ]; then
-        cd ${target_dir}
+    cd ${target_dir}
     fi
 }
 alias cdd='fzf-cdr'

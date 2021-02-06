@@ -10,7 +10,6 @@ brew_taps:
 
 brew_cask_apps:
   - alacritty
-  # - ChatWork
   - clipy
   - CotEditor
   - Docker
@@ -37,7 +36,6 @@ brew_packages:
   - fzf
   - gawk
   - git
-  # - golangci/tap/golangci-lint
   - goodwithtech/dockle/dockle
   - gpg
   - htop
@@ -46,15 +44,14 @@ brew_packages:
   - knqyf263/trivy/trivy
   - kubernetes-cli
   - loci
-  # - mackerelio/mackerel-agent/mackerel-agent
   - minikube
-  - mkdocs
-  - nmap
+  # Document generate tool
+  # - mkdocs
   - neovim
+  - nmap
   - openssl
   - pstree
   - python3
-  - pwgen
   - reattach-to-user-namespace
   - ripgrep
   - stern
@@ -64,7 +61,6 @@ brew_packages:
   - travis
   - tree
   - urlview
-  - vegeta
   - vim
   - weaveworks/tap/eksctl
   - wget

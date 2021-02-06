@@ -1,69 +1,73 @@
 ---
-- block:
-    - name: Clone prezto repo
-      git:
-        repo: "https://github.com/sorin-ionescu/prezto.git"
-        dest: "{{ ansible_env.HOME }}/.zprezto"
-        recursive: yes
-        force: yes
+- name: Unlink zsh config file
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ zsh_prezto_config }}"
 
-    - name: Set zsh configure files
-      file:
-        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/{{ item.src }}"
-        dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-        state: link
-        force: yes
-      loop:
-        - src: "zshrc"
-          dest: ".zshrc"
-        - src: "zprofile"
-          dest: ".zprofile"
-        - src: "zpreztorc"
-          dest: ".zpreztorc"
-        - src: "p10k.zsh"
-          dest: ".p10k.zsh"
+- name: Unlink fish config file
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ fish_function }}"
+
+- block:
+  - name: Clone prezto repo
+    git:
+      repo: "https://github.com/sorin-ionescu/prezto.git"
+      dest: "{{ ansible_env.HOME }}/.zprezto"
+      recursive: yes
+      force: yes
+
+  - name: Set zsh config files
+    file:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      state: link
+      force: yes
+    loop: "{{ zsh_prezto_config }}"
+
+  - name: Set prezto config files
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      force: yes
+    loop: "{{ zsh_config }}"
   when: SHELL == "zsh"
 
 - block:
-    - name: Create fish config directory
-      file:
-        path: "{{ ansible_env.HOME }}/.config/fish/functions"
-        state: directory
+  - name: Create fish config directory
+    file:
+      path: "{{ ansible_env.HOME }}/.config/fish/functions"
+      state: directory
 
-    - name: Install fisher
-      get_url:
-        url: "https://git.io/fisher"
-        dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
+  - name: Install fisher
+    get_url:
+      url: "https://git.io/fisher"
+      dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
 
-    - name: Install plugins
-      shell: >
-        fish -c "fisher install {{ item }}"
-      loop:
-        - oh-my-fish/theme-bobthefish
-        - jethrokuan/fzf
-        - jethrokuan/z
+  - name: Install plugins
+    shell: >
+      fish -c "fisher install {{ item }}"
+    loop:
+      - oh-my-fish/theme-bobthefish
+      - jethrokuan/fzf
+      - jethrokuan/z
 
-    - name: Set fish functions
-      file:
-        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
-        state: link
-        force: yes
-      loop:
-        - "change_recent_directory.fish"
-        - "fa.fish"
-        - "fs.fish"
-        - "gcs.fish"
+  - name: Set fish functions
+    file:
+      src: "{{ item.src }}"
+      path: "{{ item.path }}"
+      state: link
+      force: yes
+    loop: "{{ fish_function }}"
 
-    - name: Set fish configure files
-      file:
-        src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/fish/{{ item }}"
-        state: link
-        force: yes
-      loop:
-        - "config.fish"
-
+  - name: Set fish config files
+    template:
+      src: "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      force: yes
+    loop: "{{ fish_config }}"
   when: SHELL == "fish"
 
 - name: Search shell path
@@ -78,18 +82,17 @@
   register: chk_shell
   ignore_errors: True
 
-- block:
-    - name: Append shells
-      lineinfile:
-        dest: /etc/shells
-        line: "{{ shell_path.stdout }}"
-        regexp: "{{ shell_path.stdout }}"
-        insertafter: EOF
-
-    - name: Change login shell
-      shell: >
-        /usr/bin/chpass -s "{{ shell_path.stdout }}"
-      register: result
-      until: result.rc == 0
+- name: Append shells
+  lineinfile:
+    dest: /etc/shells
+    line: "{{ shell_path.stdout }}"
+    regexp: "{{ shell_path.stdout }}"
+    insertafter: EOF
   when: chk_shell.rc != 0
   become: true
+
+- name: Change login shell
+  shell: >
+    /usr/bin/chpass -s "{{ shell_path.stdout }}"
+  register: result
+  until: result.rc == 0

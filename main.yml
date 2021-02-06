@@ -5,10 +5,17 @@
   connection: local
   gather_facts: yes
   roles:
-    - common
-    - homebrew
-    - vim
-    - tmux
-    - alacritty
-    - shell
-    - osx_defaults
+    - role: common
+      tags: common
+    - role: homebrew
+      tags: homebrew
+    - role: vim
+      tags: vim
+    - role: tmux
+      tags: tmux
+    - role: alacritty
+      tags: alacritty
+    - role: shell
+      tags: shell
+    - role: osx
+      tags: osx

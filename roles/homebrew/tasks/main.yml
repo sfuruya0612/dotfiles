@@ -8,11 +8,12 @@
     loop_var: brew_tap_item
 
 - name: Upgrade homebrew cask all packages
-  homebrew_cask:
+  community.general.homebrew_cask:
+    update_homebrew: yes
     upgrade_all: yes
 
 - name: Install homebrew cask packages
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ brew_cask_app_item }}"
     state: "present"
     install_options: "appdir=/Applications"
