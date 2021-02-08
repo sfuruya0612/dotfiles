@@ -30,7 +30,6 @@ install.role:
 
 	/usr/local/bin/ansible-playbook main.yml \
 		-i inventory/local \
-		--ask-become-pass \
 		--tags ${ROLE}
 
 	@echo "\033[33mDone\033[00m\n"

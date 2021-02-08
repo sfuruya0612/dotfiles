@@ -7,7 +7,7 @@
 
 - name: Unlink fish function file
   file:
-    path: "{{ item.path }}"
+    path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
     state: absent
   loop: "{{ fish_function }}"
 
@@ -56,8 +56,8 @@
 
   - name: Set fish functions
     file:
-      src: "{{ item.src }}"
-      path: "{{ item.path }}"
+      src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
+      path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
       state: link
       force: yes
     loop: "{{ fish_function }}"
