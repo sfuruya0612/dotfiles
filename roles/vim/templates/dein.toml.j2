@@ -67,6 +67,13 @@ hook_add = '''
         endif
     endfunction
 
+    function! LightlineTabFilename(n) abort
+        let buflist = tabpagebuflist(a:n)
+        let winnr = tabpagewinnr(a:n)
+        let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
+        return _ !=# '' ? _ : '[No Name]'
+    endfunction
+
     let g:lightline = {
     \    'colorscheme': 'nightowl',
     \    'active': {
@@ -90,65 +97,162 @@ hook_add = '''
     \    'subseparator': {
     \        'left': "\ue0b1",
     \        'right': "\ue0b3"
+    \    },
+    \    'mode_map': {
+    \        'n' : 'N',
+    \        'i' : 'I',
+    \        'R' : 'R',
+    \        'v' : 'V',
+    \        'V' : 'VL',
+    \        "\<C-v>": 'VB',
+    \        'c' : 'C',
+    \        's' : 'S',
+    \        'S' : 'SL',
+    \        "\<C-s>": 'SB',
+    \        't': 'T',
+    \    },
+    \    'tab': {
+    \        'active': [ 'tabnum', 'filename', 'modified' ],
+    \        'inactive': [ 'tabnum', 'filename', 'modified' ]
+    \    },
+    \    'tab_component_function': {
+    \        'tabnum': 'lightline#tab#tabnum',
+    \        'filename': 'LightlineTabFilename',
+    \        'modified': 'lightline#tab#modified'
+    \    },
+    \    'tabline': {
+    \        'left': [ [ 'tabs' ] ],
+    \        'right': [ [ 'close' ] ]
     \    }
     \ }
 
-    function! LightlineTabFilename(n) abort
-        let buflist = tabpagebuflist(a:n)
-        let winnr = tabpagewinnr(a:n)
-        let _ = pathshorten(expand('#'.buflist[winnr - 1].':f'))
-        return _ !=# '' ? _ : '[No Name]'
-    endfunction
-
-    let g:lightline.tab = {
-    \    'active': [ 'tabnum', 'filename', 'modified' ],
-    \    'inactive': [ 'tabnum', 'filename', 'modified' ]
-    \ }
-
-    let g:lightline.tab_component_function = {
-    \    'tabnum': 'lightline#tab#tabnum',
-    \    'filename': 'LightlineTabFilename',
-    \    'modified': 'lightline#tab#modified'
-    \ }
-
-    let g:lightline.tabline = {
-    \    'left': [ [ 'tabs' ] ],
-    \    'right': [ [ 'close' ] ]
-    \ }
 '''
 
-# linter
+# Adds filetype icons
 [[plugins]]
-repo = 'dense-analysis/ale'
-hook_add = '''
-    let g:ale_set_highlights = 0
-    let g:ale_lint_on_enter = 1
-    let g:ale_lint_on_save = 1
-    let g:ale_lint_on_text_changed = 0
-    let g:ale_sign_column_always = 1
-    let g:ale_linters = {
-        \ 'ansible': ['ansible-lint'],
-        \ 'cloudformation': ['cfn-python-lint'],
-        \ 'dockerfile': ['hadolint'],
-        \ 'elixir': ['credo'],
-        \ 'erlang': ['erlc'],
-        \ 'go': ['golint'],
-        \ 'javascript': ['eslint'],
-        \ 'json': ['jq'],
-        \ 'markdown': ['textlint'],
-        \ 'typescript': ['eslint'],
-        \ }
-    let g:ale_sign_error = 'E'
-    let g:ale_sign_warning = 'W'
-    let g:ale_echo_msg_error_str = 'E'
-    let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
-    let g:ale_open_list = 0
-    let g:ale_keep_list_window_open = 0
-    let g:ale_javascript_prettier_use_local_config = 1
-    let g:ale_set_quickfix = 1
-    let g:ale_set_loclist = 0
+repo = 'ryanoasis/vim-devicons'
+hook_add = """
+    let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+    let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+
+    " after a re-source, fix syntax matching issues (concealing brackets):
+    if exists('g:loaded_webdevicons')
+        call webdevicons#refresh()
+    endif
+"""
+
+# snippet
+# [[plugins]]
+# repo = 'Shougo/neosnippet-snippets'
+
+# # snippet
+# [[plugins]]
+# repo = 'Shougo/neosnippet'
+# hook_source = '''
+#     imap <C-k> <Plug>(neosnippet_expand_or_jump)
+#     smap <C-k> <Plug>(neosnippet_expand_or_jump)
+#     xmap <C-k> <Plug>(neosnippet_expand_target)
+
+#     if has('conceal')
+#         set conceallevel=2 concealcursor=niv
+#     endif
+# '''
+# on_i = 1
+# on_ft = ['snippet']
+# depends = ['neosnippet-snippets']
+
+# LSP
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = '0'
+hook_source = '''
+    set hidden
+    set nobackup
+    set nowritebackup
+
+    set cmdheight=2
+
+    let g:coc_global_extensions = [
+    \    'coc-lists',
+    \    'coc-git',
+    \    'coc-explorer',
+    \    'coc-snippets',
+    \    'coc-json'
+    \ ]
+
+    nnoremap <silent> <C-n> :CocCommand explorer<CR>
+    let g:coc_explorer_global_presets = {
+    \   '.vim': {
+    \     'root-uri': '~/.vim',
+    \   },
+    \   'tab': {
+    \     'position': 'tab',
+    \     'quit-on-open': v:true,
+    \   },
+    \   'floating': {
+    \     'position': 'floating',
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'floatingTop': {
+    \     'position': 'floating',
+    \     'floating-position': 'center-top',
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'floatingLeftside': {
+    \     'position': 'floating',
+    \     'floating-position': 'left-center',
+    \     'floating-width': 50,
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'floatingRightside': {
+    \     'position': 'floating',
+    \     'floating-position': 'right-center',
+    \     'floating-width': 50,
+    \     'open-action-strategy': 'sourceWindow',
+    \   },
+    \   'simplify': {
+    \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+    \   },
+    \   'buffer': {
+    \     'sources': [{'name': 'buffer', 'expand': v:true}]
+    \   },
+    \ }
 '''
+
+# LSP
+# [[plugins]]
+# repo = 'dense-analysis/ale'
+# hook_add = '''
+#     let g:ale_set_highlights = 0
+#     let g:ale_lint_on_enter = 1
+#     let g:ale_lint_on_save = 1
+#     let g:ale_lint_on_text_changed = 0
+#     let g:ale_sign_column_always = 1
+#     let g:ale_linters = {
+#         \ 'ansible': ['ansible-lint'],
+#         \ 'cloudformation': ['cfn-python-lint'],
+#         \ 'dockerfile': ['hadolint'],
+#         \ 'elixir': ['credo'],
+#         \ 'erlang': ['erlc'],
+#         \ 'go': ['golint'],
+#         \ 'javascript': ['eslint'],
+#         \ 'json': ['jq'],
+#         \ 'markdown': ['textlint'],
+#         \ 'typescript': ['eslint'],
+#         \ }
+#     let g:ale_sign_error = 'E'
+#     let g:ale_sign_warning = 'W'
+#     let g:ale_echo_msg_error_str = 'E'
+#     let g:ale_echo_msg_warning_str = 'W'
+#     let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
+#     let g:ale_open_list = 0
+#     let g:ale_keep_list_window_open = 0
+#     let g:ale_javascript_prettier_use_local_config = 1
+#     let g:ale_set_quickfix = 1
+#     let g:ale_set_loclist = 0
+# '''
 
 # fzf
 [[plugins]]
@@ -181,19 +285,19 @@ repo = 'tpope/vim-endwise'
 repo = 'airblade/vim-gitgutter'
 
 # Gblame, Gstatus などの Git 操作
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-hook_add = '''
-    nnoremap [fugitive] <Nop>
-    nmap <space>g [fugitive]
-    nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
-    nnoremap <silent> [fugitive]a :Gwrite<CR>
-    nnoremap <silent> [fugitive]c :Gcommit-v<CR>
-    nnoremap <silent> [fugitive]b :Gblame<CR>
-    nnoremap <silent> [fugitive]p :Gpull<CR>
-    nnoremap <silent> [fugitive]d :Gdiff<CR>
-    nnoremap <silent> [fugitive]m :Gmerge<CR>
-'''
+# [[plugins]]
+# repo = 'tpope/vim-fugitive'
+# hook_add = '''
+#     nnoremap [fugitive] <Nop>
+#     nmap <space>g [fugitive]
+#     nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+#     nnoremap <silent> [fugitive]a :Gwrite<CR>
+#     nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+#     nnoremap <silent> [fugitive]b :Gblame<CR>
+#     nnoremap <silent> [fugitive]p :Gpull<CR>
+#     nnoremap <silent> [fugitive]d :Gdiff<CR>
+#     nnoremap <silent> [fugitive]m :Gmerge<CR>
+# '''
 
 # vim window resize
 # usage: <C-x> start, h, j, k, l resize

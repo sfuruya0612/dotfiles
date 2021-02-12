@@ -2,6 +2,7 @@
 brew_taps:
   - aws/tap
   - homebrew/cask
+  - homebrew/cask-fonts
   - homebrew/cask-versions
   - homebrew/core
   - jkawamoto/loci
@@ -13,6 +14,7 @@ brew_cask_apps:
   - clipy
   - CotEditor
   - Docker
+  - font-hack-nerd-font
   - google-chrome
   - google-cloud-sdk
   - session-manager-plugin

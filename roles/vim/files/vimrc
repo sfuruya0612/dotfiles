@@ -17,6 +17,8 @@ set number
 set ttyfast
 set noswapfile
 set backspace=indent,eol,start
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 11
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
 
 " % jump to (), if endif
 source $VIMRUNTIME/macros/matchit.vim
