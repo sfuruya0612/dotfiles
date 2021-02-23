@@ -4,40 +4,16 @@
 "     \ V /| | | | | | | | | (__
 "    (_)_/ |_|_| |_| |_|_|  \___|
 "
-filetype plugin indent off
 
 " Encoding settings -------------------
 set encoding=utf-8
-set fileformats=unix,dos,mac
 scriptencoding utf-8
 
-" General Settings
-set updatetime=250
-set number
-set ttyfast
-set noswapfile
-set backspace=indent,eol,start
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete\ 11
-" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
-
-" % jump to (), if endif
-source $VIMRUNTIME/macros/matchit.vim
-
-set whichwrap=b,s,h,l,<,>,[,],~
-
-nnoremap j gj
-nnoremap k gk
-nnoremap <C-a> ^
-nnoremap <C-e> $
-
-set clipboard+=unnamed
-
-noremap <leader>u :w<Home>silent <End> !urlview<CR>
-
-imap <S-CR> <End><CR>
-imap <C-S-CR> <Up><End><CR>
-nnoremap <S-CR> mzo<ESC>`z
-nnoremap <C-S-CR> mzO<ESC>`z
+if has('nvim')
+    let g:loaded_python_provider = 0
+    " let g:python_host_prog = $HOME . '/.config/nvim/neovim2/bin/python'
+    let g:python3_host_prog = $HOME . '/.asdf/shims/python'
+endif
 
 " Start Dein Settings
 let s:dein_dir = $HOME . '/.vim/cache'
@@ -68,10 +44,52 @@ if dein#load_state(s:dein_dir)
     call dein#save_state()
 endif
 
+filetype plugin indent on
+syntax enable
+
 if dein#check_install()
     call dein#install()
 endif
 " End Dein Settings
+
+" Setting the Color Scheme
+set termguicolors
+colorscheme night-owl
+set background=dark
+
+" General Settings
+set fenc=utf-8
+set fileencoding=utf-8
+set fileformats=unix,dos,mac
+set nobackup
+set noswapfile
+set autoread
+set hidden
+set showcmd
+set updatetime=250
+set number
+set ttyfast
+set backspace=indent,eol,start
+" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
+
+" % jump to (), if endif
+" source $VIMRUNTIME/macros/matchit.vim
+
+set whichwrap=b,s,h,l,<,>,[,],~
+
+nnoremap j gj
+nnoremap k gk
+nnoremap <C-a> ^
+nnoremap <C-e> $
+
+set clipboard+=unnamed
+
+noremap <leader>u :w<Home>silent <End> !urlview<CR>
+
+imap <S-CR> <End><CR>
+imap <C-S-CR> <Up><End><CR>
+nnoremap <S-CR> mzo<ESC>`z
+nnoremap <C-S-CR> mzO<ESC>`z
 
 " Setting the Status & Tab Line
 set laststatus=2
@@ -105,16 +123,6 @@ augroup END
 set incsearch
 set ignorecase
 set smartcase
-
-" Setting the Color Scheme
-if (has("termguicolors"))
-    set termguicolors
-endif
-
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-syntax enable
-colorscheme night-owl
 
 " vimdiff Color
 autocmd VimEnter,WinEnter,ColorScheme * highlight DiffAdd    cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red

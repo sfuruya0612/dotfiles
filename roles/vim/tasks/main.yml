@@ -15,8 +15,17 @@
 
   - name: Install neovim from pip3
     pip:
-      name: neovim
+      name: "{{ item }}"
       executable: pip3
+      state: latest
+    loop:
+      - neovim
+      - pynvim
+
+  - name: Install neovim from yarn
+    yarn:
+      name: neovim
+      global: yes
       state: latest
 
   - name: Symbolic link vimrc to neovim init.vim

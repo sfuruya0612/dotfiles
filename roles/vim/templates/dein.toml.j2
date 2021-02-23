@@ -2,20 +2,6 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
-# require
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-
-{% if VIM == "vim" %}
-# require (not neovim)
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
-# require (not neovim)
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-{% endif %}
 # Colorscheme
 [[plugins]]
 repo = 'haishanh/night-owl.vim'
@@ -36,23 +22,7 @@ hook_add = '''
     augroup END
 '''
 
-# vim 非同期処理用
-[[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = 'make'
-
-# save vim session
-[[plugins]]
-repo = 'tpope/vim-obsession'
-
-# ( ) coloring
-[[plugins]]
-repo = 'luochen1990/rainbow'
-hook_add = '''
-    let g:rainbow_active = 1
-'''
-
-# Statusline design
+# Statusline
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
@@ -128,38 +98,21 @@ hook_add = '''
 
 '''
 
-# Adds filetype icons
+# Auto close parentheses
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
-hook_add = """
-    let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-    let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+repo = 'cohama/lexima.vim'
 
-    " after a re-source, fix syntax matching issues (concealing brackets):
-    if exists('g:loaded_webdevicons')
-        call webdevicons#refresh()
-    endif
-"""
+# Coloring parentheses
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+    let g:rainbow_active = 1
+'''
 
-# snippet
-# [[plugins]]
-# repo = 'Shougo/neosnippet-snippets'
-
-# # snippet
-# [[plugins]]
-# repo = 'Shougo/neosnippet'
-# hook_source = '''
-#     imap <C-k> <Plug>(neosnippet_expand_or_jump)
-#     smap <C-k> <Plug>(neosnippet_expand_or_jump)
-#     xmap <C-k> <Plug>(neosnippet_expand_target)
-
-#     if has('conceal')
-#         set conceallevel=2 concealcursor=niv
-#     endif
-# '''
-# on_i = 1
-# on_ft = ['snippet']
-# depends = ['neosnippet-snippets']
+# vim 非同期処理
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 # LSP
 [[plugins]]
@@ -179,10 +132,15 @@ hook_source = '''
     \    'coc-git',
     \    'coc-explorer',
     \    'coc-snippets',
-    \    'coc-json'
+    \    'coc-json',
+    \    'coc-yaml',
+    \    'coc-elixir',
+    \    'coc-go',
+    \    'coc-rls'
     \ ]
 
-    nnoremap <silent> <C-n> :CocCommand explorer<CR>
+    :nnoremap <space>e :CocCommand explorer<CR>
+
     let g:coc_explorer_global_presets = {
     \   '.vim': {
     \     'root-uri': '~/.vim',
@@ -221,38 +179,22 @@ hook_source = '''
     \ }
 '''
 
-# LSP
+# Adds filetype icons
 # [[plugins]]
-# repo = 'dense-analysis/ale'
-# hook_add = '''
-#     let g:ale_set_highlights = 0
-#     let g:ale_lint_on_enter = 1
-#     let g:ale_lint_on_save = 1
-#     let g:ale_lint_on_text_changed = 0
-#     let g:ale_sign_column_always = 1
-#     let g:ale_linters = {
-#         \ 'ansible': ['ansible-lint'],
-#         \ 'cloudformation': ['cfn-python-lint'],
-#         \ 'dockerfile': ['hadolint'],
-#         \ 'elixir': ['credo'],
-#         \ 'erlang': ['erlc'],
-#         \ 'go': ['golint'],
-#         \ 'javascript': ['eslint'],
-#         \ 'json': ['jq'],
-#         \ 'markdown': ['textlint'],
-#         \ 'typescript': ['eslint'],
-#         \ }
-#     let g:ale_sign_error = 'E'
-#     let g:ale_sign_warning = 'W'
-#     let g:ale_echo_msg_error_str = 'E'
-#     let g:ale_echo_msg_warning_str = 'W'
-#     let g:ale_echo_msg_format = '[%linter%] %s (%severity%)'
-#     let g:ale_open_list = 0
-#     let g:ale_keep_list_window_open = 0
-#     let g:ale_javascript_prettier_use_local_config = 1
-#     let g:ale_set_quickfix = 1
-#     let g:ale_set_loclist = 0
-# '''
+# repo = 'ryanoasis/vim-devicons'
+# hook_add = """
+#     let g:webdevicons_enable = 1
+#     let g:webdevicons_enable_nerdtree = 1
+
+#     " let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
+#     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+#     let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
+
+#     " after a re-source, fix syntax matching issues (concealing brackets):
+#     if exists('g:loaded_webdevicons')
+#         call webdevicons#refresh()
+#     endif
+# """
 
 # fzf
 [[plugins]]
@@ -276,28 +218,9 @@ hook_add = '''
     \ }
 '''
 
-# if, func の end を補完
-[[plugins]]
-repo = 'tpope/vim-endwise'
-
 # 左端に git diff icon を表示
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
-# Gblame, Gstatus などの Git 操作
-# [[plugins]]
-# repo = 'tpope/vim-fugitive'
-# hook_add = '''
-#     nnoremap [fugitive] <Nop>
-#     nmap <space>g [fugitive]
-#     nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
-#     nnoremap <silent> [fugitive]a :Gwrite<CR>
-#     nnoremap <silent> [fugitive]c :Gcommit-v<CR>
-#     nnoremap <silent> [fugitive]b :Gblame<CR>
-#     nnoremap <silent> [fugitive]p :Gpull<CR>
-#     nnoremap <silent> [fugitive]d :Gdiff<CR>
-#     nnoremap <silent> [fugitive]m :Gmerge<CR>
-# '''
 
 # vim window resize
 # usage: <C-x> start, h, j, k, l resize
@@ -312,10 +235,11 @@ hook_add = '''
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
     let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'coc-explorer']
     let g:indent_guides_auto_colors = 0
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=17
+
+    " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black
+    " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=17
 '''
 
 # Comment in/out
@@ -324,16 +248,6 @@ hook_add = '''
 repo = 'tpope/vim-commentary'
 
 {% if VIM == "vim" %}
-# translate to popup window
-# Not supported neovim
-[[plugins]]
-repo = 'skanehira/translate.vim'
-hook_add = '''
-    let g:translate_source = "en"
-    let g:translate_target = "ja"
-    let g:translate_winsize = 10
-'''
-
 # Use docker
 # Not supported neovim
 [[plugins]]

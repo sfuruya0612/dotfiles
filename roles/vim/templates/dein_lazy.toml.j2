@@ -48,14 +48,14 @@ hook_add = '''
     let g:go_auto_sameids = 1
 '''
 
-[[plugins]]
-repo = 'zchee/deoplete-go'
-build = 'make'
-on_ft = ['go']
-depends = ['deoplete.nvim']
-hook_source = '''
-    let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
-'''
+# [[plugins]]
+# repo = 'zchee/deoplete-go'
+# build = 'make'
+# on_ft = ['go']
+# depends = ['deoplete.nvim']
+# hook_source = '''
+#     let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+# '''
 
 # yaml
 [[plugins]]
