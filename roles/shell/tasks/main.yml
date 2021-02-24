@@ -11,6 +11,11 @@
     state: absent
   loop: "{{ fish_function }}"
 
+- name: Unlink starship config file
+  file:
+    path: "{{ ansible_env.HOME }}/.config/starship.toml"
+    state: absent
+
 - block:
   - name: Clone prezto repo
     git:
@@ -50,7 +55,6 @@
     shell: >
       fish -c "fisher install {{ item }}"
     loop:
-      - oh-my-fish/theme-bobthefish
       - jethrokuan/fzf
       - jethrokuan/z
 
@@ -61,6 +65,13 @@
       state: link
       force: yes
     loop: "{{ fish_function }}"
+
+  - name: Set starship config
+    file:
+      src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/starship.toml"
+      path: ~/.config/starship.toml
+      state: link
+      force: yes
 
   - name: Set fish config files
     template:

@@ -1,0 +1,40 @@
+add_newline = false
+
+# Prompt format
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$hg_branch\
+$aws\
+$gcloud\
+$line_break\
+$jobs\
+$status\
+$character"""
+
+[directory]
+# style = "bg:blue"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 8
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[line_break]
+disabled = false
+
+[aws]
+format = "[$symbol:$profile]($style) "
+symbol = "AWS"
+
+[gcloud]
+format = "[$symbol:$project]($style) "
+symbol = "GCP"
+
+[status]
+disabled = false
+# style = "bg:blue"
+symbol = "🔴"
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true

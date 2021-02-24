@@ -73,22 +73,6 @@ alias vim (brew --prefix)/bin/nvim
 alias vim (brew --prefix)/bin/vim
 {% endif %}
 
-# Set prompt
-set -g theme_display_git_dirty yes
-set -g theme_display_git_untracked yes
-set -g theme_show_exit_status yes
-set -g theme_color_scheme dracula
-set -g theme_newline_cursor yes
-set -g theme_powerline_fonts yes
-set -g theme_display_cmd_duration yes
-set -g theme_display_jobs_verbose yes
-set -g theme_display_date yes
-set -g theme_date_timezone Asia/Tokyo
-set -g theme_date_format "+%T"
-set -g theme_title_display_process yes
-set -g theme_title_display_path yes
-set -g theme_title_use_abbreviated_path no
-
 # Own functions
 # Set key binding
 bind \cx change_recent_directory
@@ -114,3 +98,6 @@ bind \cx change_recent_directory
 # if test -z $TMUX && status --is-login
 #     attach_tmux_session_if_needed
 # end
+
+# Init starship
+starship init fish | source
