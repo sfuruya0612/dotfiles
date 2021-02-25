@@ -7,108 +7,59 @@
 # tmux plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
-# tmux resurrect
+
+# Color scheme
+set -g @plugin 'kylepeeler/tmux-nightowl'
+
+set -g @nightowl-show-battery false
+set -g @nightowl-cpu-usage true
+set -g @nightowl-gpu-usage false
+set -g @nightowl-show-network true
+set -g @nightowl-show-weather false
+set -g @nightowl-show-fahrenheit false
+set -g @nightowl-military-time true
+set -g @nightowl-show-left-icon session
+set -g @nightowl-show-powerline true
+
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-# open a highlighted selection(URL, File)
 set -g @plugin 'tmux-plugins/tmux-open'
-# Display Local PC memory, Load Average
-# set -g @plugin 'knakayama/tmux-mem'
-set -g @plugin 'knakayama/tmux-cpu'
 
 run -b '~/.tmux/plugins/tpm/tpm'
 
-# Status Line setting
-# 区切り記号
-S_LEFT_BOLD=""
-S_LEFT_THIN=""
-S_RIGHT_BOLD=""
-S_RIGHT_THIN=""
-# ベースとなるfg, bgのcolor
-set -g status-fg colour240
-set -g status-bg colour236
-
 set -g status on
-# ステータスラインをトップに配置する
 set -g status-position top
-# ステータスラインを1秒毎に描画し直す
 set -g status-interval 1
-# 左右のステータスラインの長さを決定する
-set -g status-left-length 70
-set -g status-right-length 90
-
-# Left side: Host name, Session Number, LA, Memory
-set -g status-left "\
-#{?client_prefix,#[fg=colour15]#[bg=colour170],#[fg=colour245]#[bg=colour240]} #h ${S_RIGHT_THIN} #S \
-#{?client_prefix,#[fg=colour170]#[bg=colour22],#[fg=colour240]#[bg=colour22]}${S_RIGHT_BOLD}\
-#[fg=colour15,bg=colour22] #{cpu} \
-#[fg=colour22,bg=colour236]${S_RIGHT_BOLD}"
-
-# Right side: Wi-Fi, date
-set -g status-right "\
-#[fg=colour25,bg=colour236]${S_LEFT_BOLD}\
-#[fg=colour15,bg=colour25] #(~/dotfiles/roles/tmux/files/getwifi)\
-#[fg=colour136,bg=colour25]${S_LEFT_BOLD}\
-#[fg=colour15,bg=colour136] %Y-%m-%d(%a) ${S_LEFT_THIN} %H:%M:%S #[default]"
-
-# Center
 set -g status-justify "left"
 
-set-window-option -g window-status-format "\
-#[fg=colour236, bg=colour240]${S_RIGHT_BOLD}\
-#[fg=colour245, bg=colour240] #I ${S_RIGHT_THIN} #W \
-#[fg=colour240, bg=colour236]${S_RIGHT_BOLD}"
-
-set-window-option -g window-status-current-format "\
-#[fg=colour236, bg=colour170]${S_RIGHT_BOLD}\
-#[fg=colour15, bg=colour170] #I ${S_RIGHT_THIN} #W \
-#[fg=colour170, bg=colour236]${S_RIGHT_BOLD}"
-
 # Require settings --------------------
-# Set default shell
 set -g default-shell "/usr/local/bin/{{ SHELL }}"
-# Esc入力時のディレイを減らす
 set -s escape-time 0
-# Esc入力時の待ち時間をキャンセル
-set -s escape-time 0
-# 256色端末を使用する
 set -g default-terminal "xterm-256color"
 set -ga terminal-overrides ",xterm-256color:Tc"
-# ウィンドウ履歴の最大行数
 set -g history-limit 10000
-# キーストロークのディレイを減らす
 set -g base-index 1
-# ペインのインデックスを1から始める
 setw -g pane-base-index 1
 
 # Key bind settings -------------------
-# C-rで.tmux.confを再読み込みする
 bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
-# C-vでペインを垂直分割する
 bind v split-window -h -c "#{pane_current_path}"
-# C-sでペインを水平分割する
 bind s split-window -v -c "#{pane_current_path}"
-# Alt + 十字キーでペインのサイズを変更
-# (OSX ターミナル.appの場合はAltをmeta keyとして認識する設定が必要)
 bind-key -n M-Up resize-pane -U 5
 bind-key -n M-Down resize-pane -D 5
 bind-key -n M-Left resize-pane -L 5
 bind-key -n M-Right resize-pane -R 5
-# C-eでsynchronize panes on/offの切り替え
+
 unbind e
 bind e setw synchronize-panes\; display-message "synchronize-panes #{?pane_synchronized,on,off}"
 
 # Mouse setting -----------------------
-# require tmux version grater then 2.1.
 set -g mouse on
 bind -n WheelUpPane   select-pane -t= \; copy-mode -e \; send-keys -M
 bind -n WheelDownPane select-pane -t= \;                 send-keys -M
 
 # Copy to Clipboard -------------------
-# Update default binding of `Enter` to also use copy-pipe
 unbind-key -T copy-mode-vi Enter
-# Use vim keybindings in copy mode
 setw -g mode-keys vi
-# Setup 'v' to begin selection as in Vim
 bind-key -T copy-mode-vi v send-keys -X begin-selection
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
 bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
