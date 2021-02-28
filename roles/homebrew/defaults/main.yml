@@ -40,6 +40,7 @@ brew_packages:
   - git
   - goodwithtech/dockle/dockle
   - gpg
+  - hashicorp/tap/terraform-ls
   - htop
   - jmeter
   - jq

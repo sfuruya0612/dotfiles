@@ -164,6 +164,15 @@ hook_add = '''
     let g:rust_clip_command = 'pbcopy'
 '''
 
+# terraform
+[[plugins]]
+repo = 'hashivim/vim-terraform'
+on_ft = ['terraform', 'tf']
+hook_add = '''
+    let g:terraform_align=1
+    let g:terraform_fmt_on_save=1
+'''
+
 {% if VIM == "vim" %}
 # Dockerfile
 [[plugins]]
