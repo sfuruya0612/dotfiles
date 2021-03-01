@@ -1,0 +1,10 @@
+---
+plugin_list:
+  - elixir
+  - erlang
+  - golang
+  - nodejs
+  - python
+  - rust
+  - terraform
+

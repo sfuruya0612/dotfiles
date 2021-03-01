@@ -9,6 +9,8 @@
       tags: common
     - role: homebrew
       tags: homebrew
+    - role: asdf
+      tags: asdf
     - role: vim
       tags: vim
     - role: tmux
