@@ -24,9 +24,19 @@
 
   - name: Install neovim from yarn
     yarn:
-      name: neovim
+      name: "{{ item }}"
       global: yes
       state: latest
+    loop:
+      - neovim
+      - bash-language-server
+
+  - name: Symbolic link coc setting file
+    file:
+      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
+      dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
+      state: link
+      force: yes
 
   - name: Symbolic link vimrc to neovim init.vim
     file:
@@ -36,12 +46,20 @@
       force: yes
   when: VIM == "neovim"
 
-- name: Symbolic link vimrc
-  file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
-    dest: "{{ ansible_env.HOME }}/.vimrc"
-    state: link
-    force: yes
+- block:
+  - name: Symbolic link coc setting file
+    file:
+      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
+      dest: "{{ ansible_env.HOME }}/.vim/coc-settings.json"
+      state: link
+      force: yes
+
+  - name: Symbolic link vimrc
+    file:
+      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
+      dest: "{{ ansible_env.HOME }}/.vimrc"
+      state: link
+      force: yes
   when: VIM == "vim"
 
 - name: Create dein toml directory
