@@ -80,6 +80,8 @@ nnoremap <C-e> $
 
 set clipboard+=unnamed
 
+nnoremap <C-n> :CocCommand explorer<CR>
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)

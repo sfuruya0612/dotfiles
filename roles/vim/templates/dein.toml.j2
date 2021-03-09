@@ -136,10 +136,10 @@ hook_source = '''
     \    'coc-yaml',
     \    'coc-elixir',
     \    'coc-go',
-    \    'coc-rls'
+    \    'coc-rls',
+    \    'coc-docker',
+    \    'coc-markdownlint'
     \ ]
-
-    :nnoremap <space>e :CocCommand explorer<CR>
 
     let g:coc_explorer_global_presets = {
     \   '.vim': {
@@ -178,23 +178,6 @@ hook_source = '''
     \   },
     \ }
 '''
-
-# Adds filetype icons
-# [[plugins]]
-# repo = 'ryanoasis/vim-devicons'
-# hook_add = """
-#     let g:webdevicons_enable = 1
-#     let g:webdevicons_enable_nerdtree = 1
-
-#     " let g:WebDevIconsNerdTreeBeforeGlyphPadding = ""
-#     let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-#     let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
-
-#     " after a re-source, fix syntax matching issues (concealing brackets):
-#     if exists('g:loaded_webdevicons')
-#         call webdevicons#refresh()
-#     endif
-# """
 
 # fzf
 [[plugins]]
