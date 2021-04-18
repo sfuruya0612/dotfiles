@@ -8,7 +8,6 @@ $git_commit\
 $git_status\
 $hg_branch\
 $aws\
-$gcloud\
 $line_break\
 $jobs\
 $status\
@@ -28,9 +27,9 @@ disabled = false
 format = "[$symbol:$profile]($style) "
 symbol = "AWS"
 
-[gcloud]
-format = "[$symbol:$project]($style) "
-symbol = "GCP"
+# [gcloud]
+# format = "[$symbol:$project]($style) "
+# symbol = "GCP"
 
 [status]
 disabled = false

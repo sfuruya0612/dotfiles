@@ -27,6 +27,7 @@ brew_cask_apps:
 brew_packages:
   - ansible-lint
   - asdf
+  - awscli
   - aws-sam-cli
   - cfn-lint
   - colordiff
