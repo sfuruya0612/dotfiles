@@ -120,7 +120,12 @@ trackpad_settings:
     type: int
     value: 1
 
-# universalaccess_settings:
-#   - key: mouseDriverCursorSize
-#     type: float
-#     value: 2.2
+keyboard_settings:
+  - key: JIMPrefCharacterForYenKey
+    type: int
+    value: 1
+
+universalaccess_settings:
+   - key: mouseDriverCursorSize
+     type: float
+     value: 2.5
