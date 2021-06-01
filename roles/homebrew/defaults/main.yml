@@ -39,7 +39,7 @@ brew_packages:
   - fzf
   - gawk
   - git
-  - goodwithtech/dockle/dockle
+  - goodwithtech/r/dockle
   - gpg
   - hashicorp/tap/terraform-ls
   - htop
