@@ -24,16 +24,19 @@ set -U EDITOR /opt/homebrew/bin/nvim
 set -U VISUAL /opt/homebrew/bin/nvim
 set -U PAGER /usr/bin/less
 
-# Set history options
+# Set history
 set -U HISTSIZE 10000
 set -U SAVEHIST 100000
 
 # Set theme
 set -U TERM xterm-256color
 
-# Set fzf options
+# Set fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 50% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
+
+# Set tmux
+set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
 # Alias
 # Linux command

@@ -1,8 +1,11 @@
 ---
 - name: Create ~/.tmux/plugins directory
   file:
-    path: "{{ ansible_env.HOME }}/.tmux/plugins/"
+    path: "{{ item }}"
     state: directory
+  loop:
+    - "{{ ansible_env.HOME }}/.tmux/tmp/"
+    - "{{ ansible_env.HOME }}/.tmux/plugins/"
 
 - name: Clone tmux plugin repo
   git:

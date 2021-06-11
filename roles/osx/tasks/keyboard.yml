@@ -1,0 +1,11 @@
+---
+- name: Setting Keyboard
+  osx_defaults:
+    domain: com.apple.inputmethod.Kotoeri
+    key: "{{ keyboard_setting_item.key }}"
+    type: "{{ keyboard_setting_item.type }}"
+    value: "{{ keyboard_setting_item.value }}"
+    state: present
+  loop: "{{ keyboard_settings }}"
+  loop_control:
+    loop_var: keyboard_setting_item

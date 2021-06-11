@@ -16,7 +16,6 @@ brew_cask_apps:
   - Docker
   - font-hack-nerd-font
   - google-chrome
-  - google-cloud-sdk
   - session-manager-plugin
   - Slack
   - vagrant
@@ -39,14 +38,12 @@ brew_packages:
   - fzf
   - gawk
   - git
-  - goodwithtech/dockle/dockle
+  - goodwithtech/r/dockle
   - gpg
   - hashicorp/tap/terraform-ls
   - htop
-  - jmeter
   - jq
   - knqyf263/trivy/trivy
-  - kubernetes-cli
   - loci
   - minikube
   # Document generate tool
@@ -66,7 +63,6 @@ brew_packages:
   - tree
   - urlview
   - vim
-  - weaveworks/tap/eksctl
   - wget
   - wxmac
   - zsh

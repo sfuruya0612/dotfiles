@@ -6,6 +6,7 @@
   loop:
     - "apps"
     - "works"
+    - "tmp"
 
 - name: Clone powerline fonts repo
   git:
