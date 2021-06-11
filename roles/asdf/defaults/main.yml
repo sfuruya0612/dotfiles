@@ -7,4 +7,4 @@ plugin_list:
   - python
   - rust
   - terraform
-
+  - yarn

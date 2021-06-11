@@ -15,7 +15,7 @@ install:
 	@echo ""
 	@echo "\033[32mExecute ansible playbook\033[0m"
 
-	/usr/local/bin/ansible-playbook main.yml \
+	ansible-playbook main.yml \
 		-i inventory/local \
 		--ask-become-pass
 
@@ -28,7 +28,7 @@ install.role:
 	@echo "\033[32mExecute ansible playbook\033[0m"
 	@echo "\033[32mTarget role: ${ROLE}\033[0m"
 
-	/usr/local/bin/ansible-playbook main.yml \
+	ansible-playbook main.yml \
 		-i inventory/local \
 		--tags ${ROLE}
 
