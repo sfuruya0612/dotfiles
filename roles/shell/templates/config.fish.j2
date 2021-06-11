@@ -25,16 +25,19 @@ set -U VISUAL /usr/local/bin/vim
 {% endif %}
 set -U PAGER /usr/bin/less
 
-# Set history options
+# Set history
 set -U HISTSIZE 10000
 set -U SAVEHIST 100000
 
 # Set theme
 set -U TERM xterm-256color
 
-# Set fzf options
+# Set fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 50% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
+
+# Set tmux
+set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
 # Alias
 # Linux command
@@ -103,9 +106,6 @@ bind \cx change_recent_directory
 # if test -z $TMUX && status --is-login
 #     attach_tmux_session_if_needed
 # end
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f (brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc ]; . (brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.fish.inc; end
 
 # Init starship
 starship init fish | source
