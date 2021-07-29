@@ -2,7 +2,6 @@
 plugin_list:
   - elixir
   - erlang
-  - gcloud
   - golang
   - kubectl
   - nodejs
