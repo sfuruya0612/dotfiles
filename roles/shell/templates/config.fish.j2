@@ -72,7 +72,13 @@ alias ds "docker stop"
 alias dsa "docker stop (docker ps -q)"
 
 # Editor
-alias vim /opt/homebrew/bin/nvim
+{% if VIM == "neovim" %}
+alias v (brew --prefix)/bin/nvim
+alias vim (brew --prefix)/bin/nvim
+{% else %}
+alias v (brew --prefix)/bin/vim
+alias vim (brew --prefix)/bin/vim
+{% endif %}
 
 # Terraform
 alias tf "terraform"

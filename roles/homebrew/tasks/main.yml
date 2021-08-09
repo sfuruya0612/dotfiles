@@ -23,11 +23,11 @@
     loop_var: brew_cask_app_item
 
 - name: Update homebrew and upgrade all packages
-  homebrew:
+  community.general.homebrew:
     update_homebrew: yes
     upgrade_all: yes
 
 - name: Install homebrew packages
-  homebrew:
+  community.general.homebrew:
     name: "{{ brew_packages }}"
     state: "present"
