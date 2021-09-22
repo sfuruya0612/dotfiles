@@ -57,6 +57,7 @@
     loop:
       - jethrokuan/fzf
       - jethrokuan/z
+      - evanlucas/fish-kubectl-completions
 
   - name: Set fish functions
     file:
