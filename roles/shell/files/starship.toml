@@ -1,6 +1,6 @@
 # Prompt settings
 add_newline = false
-scan_timeout = 10
+scan_timeout = 20
 command_timeout = 100
 
 # Prompt format
@@ -11,17 +11,25 @@ $git_commit\
 $git_status\
 $hg_branch\
 $aws\
+$gcloud\
+$kubernetes\
 $line_break\
 $jobs\
 $status\
+$cmd_duration\
 $character"""
 
 [directory]
 # style = "bg:blue"
 format = "[$path]($style)[$read_only]($read_only_style) "
+style = "white bold"
 truncation_length = 8
 truncate_to_repo = false
 truncation_symbol = "…/"
+
+[git_branch]
+format = "on [$symbol $branch]($style) "
+symbol = ""
 
 [git_commit]
 commit_hash_length = 16
@@ -36,16 +44,24 @@ behind = "⇣${count}"
 disabled = false
 
 [aws]
-format = "[$symbol:$profile]($style) "
-symbol = "AWS"
+format = "[$symbol $profile]($style) "
+symbol = ""
 
-# [gcloud]
-# format = "[$symbol:$project]($style) "
-# symbol = "GCP"
+[gcloud]
+format = "[$symbol $project]($style) "
+symbol = ""
+
+[kubernetes]
+format = "[$symbol $context]($style) "
+symbol = ""
+disabled = false
 
 [status]
 disabled = false
-# style = "bg:blue"
 symbol = "🔴"
 format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
+
+[cmd_duration]
+format = "[祥$duration]($style) "
+min_time = 1000
