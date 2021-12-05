@@ -50,6 +50,7 @@
     get_url:
       url: "https://git.io/fisher"
       dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
+      validate_certs: no
 
   - name: Install plugins
     shell: >
