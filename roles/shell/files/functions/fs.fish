@@ -3,7 +3,8 @@
 function fs
     set -l sshHost (grep -iE "^host" ~/.ssh/config | awk '{print $2}' | grep -v "#" | fzf)
 
-    if test "$sshHost" = ""
+    if test -z "$sshHost"
+        echo "SSH host is not selected."
         return 1
     end
 
