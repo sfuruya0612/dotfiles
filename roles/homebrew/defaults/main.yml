@@ -10,6 +10,7 @@ brew_taps:
   - weaveworks/tap
 
 brew_cask_apps:
+  - aerial
   - alacritty
   - clipy
   - CotEditor
@@ -65,6 +66,7 @@ brew_packages:
   - vim
   - wget
   - wxmac
+  - exa
   - zsh
   - zsh-autosuggestions
   - zsh-completions

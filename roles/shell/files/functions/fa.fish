@@ -3,7 +3,8 @@
 function fa
     set -l awsProfile (grep "\[profile" ~/.aws/config | sed 's/^\[profile\ \(.*\)\]$/\1/g' | grep -v "#" | fzf)
 
-    if test $awsProfile = ""
+    if test -z "$awsProfile"
+        echo "Credential is not selected."
         return 1
     end
 

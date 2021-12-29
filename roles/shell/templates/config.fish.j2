@@ -14,7 +14,6 @@ source (brew --prefix asdf)/asdf.fish
 set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
 
-# Universal environment
 # Editors path
 {% if VIM == "neovim" %}
 set -U EDITOR /usr/local/bin/nvim
@@ -40,17 +39,23 @@ set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi -
 set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
 # Alias
-# Linux command
-alias ls "gls --color=auto -F"
-alias ll "ls -aFGlh"
+# File/Directory command
+if type -q exa
+    alias ls "exa -l -g --icons"
+    alias ll "ls -a"
+    alias tree "ls --tree"
+else
+    alias ls "gls --color=auto -F"
+    alias ll "ls -aFGlh"
+end
 
 # Git
+alias g "git"
 alias gcd "cd (git rev-parse --show-toplevel)"
 alias gb "git branch"
-alias gbr "git branch -r"
 alias gs "git status"
 alias gd "git diff"
-alias gv "git difftool --tool=vimdiff --no-prompt"
+alias gdv "git difftool --tool=vimdiff --no-prompt"
 alias gp "git pull"
 alias gg "git grep"
 alias gl "git log"
@@ -60,6 +65,7 @@ alias glg "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d
 alias gc "git checkout"
 
 # Docker
+alias d "docker"
 alias di "docker images"
 alias dp "docker ps"
 alias dpa "docker ps -a"
@@ -86,7 +92,6 @@ alias tf "terraform"
 # Kubectl
 alias k "kubectl"
 
-# Own functions
 # Set key binding
 bind \cx change_recent_directory
 
