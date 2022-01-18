@@ -62,9 +62,9 @@ alias gd "git diff"
 alias gdv "git difftool --tool=vimdiff --no-prompt"
 alias gp "git pull"
 alias gg "git grep"
-alias gl "git log"
+alias gl "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 # alias glg "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' | fzf --preview "echo {} | awk '{print \$2}' | xargs git show --color=always""
-alias glg "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+alias gla "git log --graph --branches --remotes --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 # alias gc "git checkout (git branch -a | tr -d \  | sed -e "s/^\*\s*//g" | fzf --preview "git log --color=always {}" | head -n 1 | perl -pe "s/remotes\/origin\///g")"
 alias gc "git checkout"
 
@@ -73,12 +73,8 @@ alias d "docker"
 alias di "docker images"
 alias dp "docker ps"
 alias dpa "docker ps -a"
-alias dr "docker run"
-alias de "dokcer exec"
-alias dk "docker kill"
 alias dka "docker kill (docker ps -q)"
 alias dcp "docker container prune -f"
-alias ds "docker stop"
 alias dsa "docker stop (docker ps -q)"
 
 # Editor
@@ -96,30 +92,11 @@ alias tf "terraform"
 # Kubectl
 alias k "kubectl"
 
+# Make
+alias m "make"
+
 # Set key binding
 bind \cx change_recent_directory
-
-# Init function
-# Attach tmux session at launch new terminal
-# function attach_tmux_session_if_needed
-#     set ID (tmux list-sessions)
-#     if test -z "$ID"
-#         tmux new-session
-#         return
-#     end
-
-#     set new_session "Create New Session"
-#     set ID (echo $ID\n$new_session | fzf | cut -d: -f1)
-#     if test "$ID" = "$new_session"
-#         tmux new-session
-#     else if test -n "$ID"
-#         tmux attach-session -t "$ID"
-#     end
-# end
-
-# if test -z $TMUX && status --is-login
-#     attach_tmux_session_if_needed
-# end
 
 # Init starship
 starship init fish | source

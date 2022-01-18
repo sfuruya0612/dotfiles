@@ -1,16 +1,10 @@
 {
     "explorer.width": 30,
-    "explorer.file.showHiddenFiles": true,
     "explorer.icon.enableNerdfont": true,
-    "explorer.previewAction.onHover": false,
-    "explorer.keyMappings.global": {
-        "<cr>": [
-            "expandable?",
-            "expand",
-            "open"
-        ]
-    },
     "explorer.quitOnOpen": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.file.column.clip.copy": "",
+    "explorer.file.column.clip.cut": "",
     "coc.preferences.formatOnSaveFiletypes": [
         "elixir"
     ],
