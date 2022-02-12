@@ -19,8 +19,8 @@ brew_cask_apps:
   - google-chrome
   - session-manager-plugin
   - Slack
-  - vagrant
-  - virtualbox
+  # - vagrant
+  # - virtualbox
   - visual-studio-code
   - Wireshark
 
