@@ -58,9 +58,9 @@ alias gd "git diff"
 alias gdv "git difftool --tool=vimdiff --no-prompt"
 alias gp "git pull"
 alias gg "git grep"
-alias gl "git log"
+alias gl "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 # alias glg "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' | fzf --preview "echo {} | awk '{print \$2}' | xargs git show --color=always""
-alias glg "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+alias gla "git log --graph --branches --remotes --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 # alias gc "git checkout (git branch -a | tr -d \  | sed -e "s/^\*\s*//g" | fzf --preview "git log --color=always {}" | head -n 1 | perl -pe "s/remotes\/origin\///g")"
 alias gc "git checkout"
 
@@ -91,6 +91,9 @@ alias tf "terraform"
 
 # Kubectl
 alias k "kubectl"
+
+# Make
+alias m "make"
 
 # Set key binding
 bind \cx change_recent_directory
