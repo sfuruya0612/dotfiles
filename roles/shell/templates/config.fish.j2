@@ -20,11 +20,9 @@ set -x PATH $PATH /opt/homebrew/bin
 
 # Editors path
 {% if VIM == "neovim" %}
-alias v (brew --prefix)/bin/nvim
-alias vim (brew --prefix)/bin/nvim
+set -U EDITOR (brew --prefix)/bin/nvim
 {% else %}
-alias v (brew --prefix)/bin/vim
-alias vim (brew --prefix)/bin/vim
+set -U EDITOR (brew --prefix)/bin/vim
 {% endif %}
 set -U PAGER /usr/bin/less
 
@@ -43,14 +41,19 @@ set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi -
 set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
 # Alias
-# File/Directory command
+# exa command
 if type -q exa
-    alias ls "exa -l -g --icons"
-    alias ll "ls -a"
-    alias tree "ls --tree"
+    alias ls "exa --long --git --icons"
+    alias ll "exa --long --git --icons --all"
+    alias tree "exa --long --git --icons --all --tree"
 else
     alias ls "gls --color=auto -F"
-    alias ll "ls -aFGlh"
+    alias ll "gls -aFGlh"
+end
+
+# bat command
+if type -q bat
+    alias cat "bat --wrap auto -p --theme=Coldark-Dark"
 end
 
 # Git
@@ -94,6 +97,9 @@ alias k "kubectl"
 
 # Make
 alias m "make"
+
+# ranger
+alias r "ranger"
 
 # Set key binding
 bind \cx change_recent_directory

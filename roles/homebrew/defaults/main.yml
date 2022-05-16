@@ -29,6 +29,7 @@ brew_packages:
   - asdf
   - awscli
   - aws-sam-cli
+  - bat
   - cfn-lint
   - colordiff
   - coreutils
@@ -54,6 +55,7 @@ brew_packages:
   - openssl
   - pstree
   - python3
+  - ranger
   - reattach-to-user-namespace
   - ripgrep
   - starship
