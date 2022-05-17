@@ -49,7 +49,7 @@ hook_add = '''
     \    'active': {
     \        'left': [
     \            [ 'mode', 'paste' ],
-    \            [ 'readonly', 'filename', 'modified' ]
+    \            [ 'readonly', 'gitbranch', 'filename', 'modified' ]
     \        ],
     \        'right': [
     \            [ 'lineinfo' ],
@@ -58,7 +58,8 @@ hook_add = '''
     \        ]
     \    },
     \    'component_function': {
-    \        'filename': 'AbsolutePath'
+    \        'filename': 'AbsolutePath',
+    \        'gitbranch': 'FugitiveHead'
     \    },
     \    'separator': {
     \        'left': "\ue0b0",
@@ -165,7 +166,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = "tpope/vim-fugitive"
+repo = 'tpope/vim-fugitive'
 
 # 左端に git diff icon を表示
 [[plugins]]

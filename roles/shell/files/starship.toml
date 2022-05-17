@@ -46,6 +46,7 @@ disabled = false
 [aws]
 format = "[$symbol $profile]($style) "
 symbol = ""
+force_display = true
 
 [gcloud]
 format = "[$symbol $project]($style) "

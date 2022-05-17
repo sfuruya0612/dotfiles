@@ -26,7 +26,7 @@
     yarn:
       name: "{{ item }}"
       global: yes
-      state: latest
+      state: present
     loop:
       - neovim
       - bash-language-server
