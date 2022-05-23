@@ -1,6 +1,6 @@
-# gcs (fzf + gcloud config set project)
+# fgp (fzf + gcloud config set project)
 # Interactively select a GCP Project
-function gcs
+function fgp
     set -l gcpProject (gcloud projects list | fzf --header-lines=1 | awk '{print $1}')
 
     if test "$gcpProject" = ""

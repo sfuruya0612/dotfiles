@@ -14,8 +14,10 @@ zsh_config:
 fish_function:
   - "change_recent_directory.fish"
   - "fa.fish"
+  - "fgp.fish"
   - "fs.fish"
-  - "gcs.fish"
+  - "gcb.fish"
+  - "gl.fish"
 
 fish_config:
   - src: config.fish.j2

@@ -35,7 +35,7 @@ set -U TERM xterm-256color
 
 # Set fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
-set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 50% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
+set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 70% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
 
 # Set tmux
 set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
@@ -59,16 +59,12 @@ end
 # Git
 alias g "git"
 alias gcd "cd (git rev-parse --show-toplevel)"
-alias gb "git branch"
 alias gs "git status"
 alias gd "git diff"
 alias gdv "git difftool --tool=vimdiff --no-prompt"
 alias gp "git pull"
 alias gg "git grep"
-alias gl "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-# alias glg "git log --graph --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' | fzf --preview "echo {} | awk '{print \$2}' | xargs git show --color=always""
-alias gla "git log --graph --branches --remotes --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-# alias gc "git checkout (git branch -a | tr -d \  | sed -e "s/^\*\s*//g" | fzf --preview "git log --color=always {}" | head -n 1 | perl -pe "s/remotes\/origin\///g")"
+alias glg "git log --graph --branches --remotes --color=always --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 alias gc "git checkout"
 
 # Docker
