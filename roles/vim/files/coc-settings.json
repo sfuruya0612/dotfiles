@@ -1,7 +1,11 @@
 {
-    "explorer.width": 30,
+    "explorer.width": 40,
+    "explorer.toggle": true,
+    "explorer.focus": true,
+    "explorer.quitOnOpen": false,
+    "explorer.previewAction.onHover": "content",
     "explorer.icon.enableNerdfont": true,
-    "explorer.quitOnOpen": true,
+    "explorer.icon.source": "nerdfont.vim",
     "explorer.file.showHiddenFiles": true,
     "explorer.file.column.clip.copy": "",
     "explorer.file.column.clip.cut": "",

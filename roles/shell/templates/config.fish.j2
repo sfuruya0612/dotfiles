@@ -53,7 +53,7 @@ end
 
 # bat command
 if type -q bat
-    alias cat "bat --wrap auto -p --theme=Coldark-Dark"
+    alias cat "bat --wrap auto -p --theme=Coldark-Dark --paging=never"
 end
 
 # Git
@@ -71,7 +71,6 @@ alias gc "git checkout"
 alias d "docker"
 alias di "docker images"
 alias dp "docker ps"
-alias dpa "docker ps -a"
 alias dka "docker kill (docker ps -q)"
 alias dcp "docker container prune -f"
 alias dsa "docker stop (docker ps -q)"

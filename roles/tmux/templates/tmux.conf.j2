@@ -44,9 +44,13 @@ setw -g pane-base-index 1
 bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 bind v split-window -h -c "#{pane_current_path}"
 bind s split-window -v -c "#{pane_current_path}"
+bind -r h resize-pane -L 5
+bind -r j resize-pane -D 5
+bind -r k resize-pane -U 5
+bind -r l resize-pane -R 5
+bind-key -n M-Left resize-pane -L 5
 bind-key -n M-Up resize-pane -U 5
 bind-key -n M-Down resize-pane -D 5
-bind-key -n M-Left resize-pane -L 5
 bind-key -n M-Right resize-pane -R 5
 
 unbind e

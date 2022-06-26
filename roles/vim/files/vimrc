@@ -80,7 +80,7 @@ nnoremap <C-e> $
 
 set clipboard+=unnamed
 
-nnoremap <C-n> :CocCommand explorer<CR>
+nnoremap <C-n> :CocCommand explorer --root-strategies keep<CR>
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
