@@ -101,3 +101,8 @@ bind \cx change_recent_directory
 
 # Init starship
 starship init fish | source
+
+# Define direnv
+if type -q direnv
+    eval (direnv hook fish)
+end

@@ -35,6 +35,7 @@ brew_packages:
   - colordiff
   - coreutils
   - diffutils
+  - direnv
   - expect
   - firebase-cli
   - fish
@@ -45,6 +46,7 @@ brew_packages:
   - gpg
   - hashicorp/tap/terraform-ls
   - htop
+  - infracost
   - jq
   - knqyf263/trivy/trivy
   - loci
@@ -62,6 +64,7 @@ brew_packages:
   - starship
   - stern
   - telnet
+  - terraformer
   - tmux
   - travis
   - tree
