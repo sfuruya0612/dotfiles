@@ -10,7 +10,8 @@
     "explorer.file.column.clip.copy": "",
     "explorer.file.column.clip.cut": "",
     "coc.preferences.formatOnSaveFiletypes": [
-        "elixir"
+        "elixir",
+        "yaml"
     ],
     "languageserver": {
         "terraform": {
