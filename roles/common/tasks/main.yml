@@ -6,19 +6,18 @@
   loop:
     - "apps"
     - "works"
+    - "fonts"
     - "tmp"
 
-- name: Clone powerline fonts repo
+- name: Clone fonts repo
   git:
-    repo: "https://github.com/powerline/fonts.git"
-    dest: "{{ ansible_env.HOME }}/fonts"
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
     depth: 1
+  loop:
+    - repo: "https://github.com/powerline/fonts.git"
+      dest: "{{ ansible_env.HOME }}/fonts/powerline"
 
 - name: Install powerline fonts
   shell: >
-    {{ ansible_env.HOME }}/fonts/install.sh
-
-- name: Remove powerline fonts repo
-  file:
-    path: "{{ ansible_env.HOME }}/fonts/"
-    state: absent
+    {{ ansible_env.HOME }}/fonts/powerline/install.sh
