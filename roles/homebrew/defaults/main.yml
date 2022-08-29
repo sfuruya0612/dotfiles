@@ -34,6 +34,7 @@ brew_packages:
   - cmake
   - colordiff
   - coreutils
+  - cloudflare-wrangler
   - diffutils
   - direnv
   - expect

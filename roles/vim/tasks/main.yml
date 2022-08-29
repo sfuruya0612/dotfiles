@@ -16,7 +16,8 @@
   - name: Install neovim from pip3
     pip:
       name: "{{ item }}"
-      executable: "{{ ansible_env.HOME }}/.asdf/shims/pip"
+      # executable: "{{ ansible_env.HOME }}/.asdf/shims/pip"
+      executable: "pip"
       state: latest
     loop:
       - neovim

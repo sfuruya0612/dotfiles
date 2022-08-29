@@ -8,7 +8,7 @@
 
 # Export path
 # asdf path
-source /opt/homebrew/lib/asdf.fish
+source (brew --prefix asdf)/asdf.fish
 set -x PATH $PATH $HOME/.asdf/shims
 
 # Go path
@@ -16,7 +16,7 @@ set -x GOPATH $HOME/go
 set -x PATH $PATH $GOPATH/bin
 
 # Homebrew path
-set -x PATH $PATH /opt/homebrew/bin
+# set -x PATH $PATH /opt/homebrew/bin
 
 # Editors path
 {% if VIM == "neovim" %}
