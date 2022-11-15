@@ -17,10 +17,9 @@ brew_cask_apps:
   - Docker
   - font-hack-nerd-font
   - google-chrome
+  - google-cloud-sdk
   - session-manager-plugin
   - Slack
-  # - vagrant
-  # - virtualbox
   - visual-studio-code
   - Wireshark
 
@@ -35,6 +34,7 @@ brew_packages:
   - colordiff
   - coreutils
   - cloudflare-wrangler
+  - deno
   - diffutils
   - direnv
   - expect
