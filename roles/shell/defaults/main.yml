@@ -1,16 +1,4 @@
 ---
-zsh_prezto_config:
-  - src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/zpreztorc"
-    path: "{{ ansible_env.HOME }}/.zpreztorc"
-  - src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/p10k.zsh"
-    path: "{{ ansible_env.HOME }}/.p10k.zsh"
-
-zsh_config:
-  - src: "zshrc.j2"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-  - src: "zprofile.j2"
-    dest: "{{ ansible_env.HOME }}/.zprofile"
-
 fish_function:
   - "change_recent_directory.fish"
   - "fa.fish"

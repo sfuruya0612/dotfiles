@@ -8,7 +8,8 @@
 
 # Export path
 # asdf path
-source (brew --prefix asdf)/asdf.fish
+source (brew --prefix asdf)/libexec/asdf.fish
+set -x ASDF_DIR /usr/local/opt/asdf/libexec
 set -x PATH $PATH $HOME/.asdf/shims
 
 # Go path
@@ -74,6 +75,9 @@ alias dp "docker ps"
 alias dka "docker kill (docker ps -q)"
 alias dcp "docker container prune -f"
 alias dsa "docker stop (docker ps -q)"
+
+# Docker compose
+alias dcomp "docker compose"
 
 # Editor
 {% if VIM == "neovim" %}

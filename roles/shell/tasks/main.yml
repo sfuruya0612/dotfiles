@@ -1,10 +1,4 @@
 ---
-- name: Unlink prezto config file
-  file:
-    path: "{{ item.path }}"
-    state: absent
-  loop: "{{ zsh_prezto_config }}"
-
 - name: Unlink fish function file
   file:
     path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
@@ -16,72 +10,46 @@
     path: "{{ ansible_env.HOME }}/.config/starship.toml"
     state: absent
 
-- block:
-  - name: Clone prezto repo
-    git:
-      repo: "https://github.com/sorin-ionescu/prezto.git"
-      dest: "{{ ansible_env.HOME }}/.zprezto"
-      recursive: yes
-      force: yes
+- name: Create fish config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/fish/functions"
+    state: directory
 
-  - name: Set zsh config files
-    file:
-      src: "{{ item.src }}"
-      path: "{{ item.path }}"
-      state: link
-      force: yes
-    loop: "{{ zsh_prezto_config }}"
+- name: Install fisher
+  get_url:
+    url: "https://git.io/fisher"
+    dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
+    validate_certs: no
 
-  - name: Set prezto config files
-    template:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      force: yes
-    loop: "{{ zsh_config }}"
-  when: SHELL == "zsh"
+- name: Install plugins
+  shell: >
+    fish -c "fisher install {{ item }}"
+  loop:
+    - jethrokuan/fzf
+    - jethrokuan/z
+    - evanlucas/fish-kubectl-completions
 
-- block:
-  - name: Create fish config directory
-    file:
-      path: "{{ ansible_env.HOME }}/.config/fish/functions"
-      state: directory
+- name: Set fish functions
+  file:
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
+    path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
+    state: link
+    force: yes
+  loop: "{{ fish_function }}"
 
-  - name: Install fisher
-    get_url:
-      url: "https://git.io/fisher"
-      dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
-      validate_certs: no
+- name: Set starship config
+  file:
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/starship.toml"
+    path: ~/.config/starship.toml
+    state: link
+    force: yes
 
-  - name: Install plugins
-    shell: >
-      fish -c "fisher install {{ item }}"
-    loop:
-      - jethrokuan/fzf
-      - jethrokuan/z
-      - evanlucas/fish-kubectl-completions
-
-  - name: Set fish functions
-    file:
-      src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
-      path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
-      state: link
-      force: yes
-    loop: "{{ fish_function }}"
-
-  - name: Set starship config
-    file:
-      src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/starship.toml"
-      path: ~/.config/starship.toml
-      state: link
-      force: yes
-
-  - name: Set fish config files
-    template:
-      src: "{{ item.src }}"
-      dest: "{{ item.dest }}"
-      force: yes
-    loop: "{{ fish_config }}"
-  when: SHELL == "fish"
+- name: Set fish config files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: yes
+  loop: "{{ fish_config }}"
 
 - name: Search shell path
   shell: >

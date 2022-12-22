@@ -74,7 +74,3 @@ brew_packages:
   - wget
   - wxmac
   - exa
-  - zsh
-  - zsh-autosuggestions
-  - zsh-completions
-  - zsh-syntax-highlighting

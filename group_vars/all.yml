@@ -1,5 +1,3 @@
 ---
-# Select editor vim or neovim
 VIM: "neovim"
-# Select default shell fish or zsh
 SHELL: "fish"
