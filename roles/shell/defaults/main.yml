@@ -6,6 +6,8 @@ fish_function:
   - "fs.fish"
   - "gcb.fish"
   - "gl.fish"
+  - "csv.fish"
+  - "stail.fish"
 
 fish_config:
   - src: config.fish.j2
