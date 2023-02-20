@@ -12,7 +12,7 @@
 - name: Install neovim from pip3
   pip:
     name: "{{ item }}"
-    executable: "/opt/homebrew/bin/pip3"
+    executable: "/usr/local/bin/pip3"
     state: latest
   loop:
     - neovim
@@ -21,7 +21,7 @@
 - name: Install neovim from yarn
   yarn:
     name: "{{ item }}"
-    executable: "/opt/homebrew/bin/yarn"
+    executable: "/usr/local/bin/yarn"
     global: yes
     state: present
   loop:
