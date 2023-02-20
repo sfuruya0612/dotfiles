@@ -1,67 +1,46 @@
 ---
 - name: Unlink config file
   file:
-    path: "{{ item }}"
+    path: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
     state: absent
+
+- name: Create .config/nvim directory
+  file:
+    path: "{{ ansible_env.HOME }}/.config/nvim"
+    state: directory
+
+- name: Install neovim from pip3
+  pip:
+    name: "{{ item }}"
+    executable: "/opt/homebrew/bin/pip3"
+    state: latest
   loop:
-    - "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    - "{{ ansible_env.HOME }}/.vimrc"
+    - neovim
+    - pynvim
 
-- block:
-  - name: Create .config/nvim directory
-    file:
-      path: "{{ ansible_env.HOME }}/.config/nvim"
-      state: directory
+- name: Install neovim from yarn
+  yarn:
+    name: "{{ item }}"
+    executable: "/opt/homebrew/bin/yarn"
+    global: yes
+    state: present
+  loop:
+    - neovim
+    - bash-language-server
 
-  - name: Install neovim from pip3
-    pip:
-      name: "{{ item }}"
-      # executable: "{{ ansible_env.HOME }}/.asdf/shims/pip"
-      executable: "pip"
-      state: latest
-    loop:
-      - neovim
-      - pynvim
+- name: Symbolic link coc setting file
+  file:
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
+    dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
+    state: link
+    force: yes
 
-  - name: Install neovim from yarn
-    yarn:
-      name: "{{ item }}"
-      global: yes
-      state: present
-    loop:
-      - neovim
-      - bash-language-server
-
-  - name: Symbolic link coc setting file
-    file:
-      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
-      state: link
-      force: yes
-
-  - name: Symbolic link vimrc to neovim init.vim
-    file:
-      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-      state: link
-      force: yes
-  when: VIM == "neovim"
-
-- block:
-  - name: Symbolic link coc setting file
-    file:
-      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
-      dest: "{{ ansible_env.HOME }}/.vim/coc-settings.json"
-      state: link
-      force: yes
-
-  - name: Symbolic link vimrc
-    file:
-      src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
-      dest: "{{ ansible_env.HOME }}/.vimrc"
-      state: link
-      force: yes
-  when: VIM == "vim"
+- name: Symbolic link vimrc to neovim init.vim
+  file:
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
+    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    state: link
+    force: yes
 
 - name: Create dein toml directory
   file:

@@ -6,29 +6,14 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'lambdalisue/nerdfont.vim'
 
-# Colorscheme
+# ColorScheme
 [[plugins]]
-repo = 'haishanh/night-owl.vim'
-hook_add = '''
-    augroup TransparentBG
-        autocmd!
-        autocmd Colorscheme * highlight Normal ctermbg=none
-        autocmd Colorscheme * highlight NonText ctermbg=none
-        autocmd Colorscheme * highlight LineNr ctermbg=none
-        autocmd Colorscheme * highlight Folded ctermbg=none
-        autocmd Colorscheme * highlight EndOfBuffer ctermbg=none
-    augroup END
-
-    augroup transparent-windows
-        autocmd!
-        autocmd FileType denite set winblend=10
-        autocmd FileType denite-filter set winblend=10
-    augroup END
-'''
+repo = 'EdenEast/nightfox.nvim'
 
 # Statusline
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+depends = ['nightfox.nvim']
 hook_add = '''
     function! AbsolutePath()
         let path = expand("%F")
@@ -49,7 +34,7 @@ hook_add = '''
     endfunction
 
     let g:lightline = {
-    \    'colorscheme': 'nightowl',
+    \    'colorscheme': 'nightfox',
     \    'active': {
     \        'left': [
     \            [ 'mode', 'paste' ],
@@ -202,10 +187,6 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
-{% if VIM == "vim" %}
-# Use docker
-# Not supported neovim
+# Terminal file manager
 [[plugins]]
-repo = 'skanehira/docker.vim'
-
-{% endif %}
+repo = 'mcchrish/nnn.vim'

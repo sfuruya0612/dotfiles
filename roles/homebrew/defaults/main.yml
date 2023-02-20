@@ -56,8 +56,8 @@ brew_packages:
   # - mkdocs
   - neovim
   - nmap
+  - node
   - openssl
-  - pstree
   - python3
   - ranger
   - reattach-to-user-namespace
@@ -68,7 +68,6 @@ brew_packages:
   - terraformer
   - tmux
   - travis
-  - tree
   - urlview
   - vim
   - wget

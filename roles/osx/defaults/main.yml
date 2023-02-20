@@ -42,7 +42,7 @@ dock_settings:
     value: 30
   - key: orientation
     type: string
-    value: left
+    value: bottom
   - key: wvous-bl-corner
     type: int
     value: 11
@@ -126,6 +126,6 @@ keyboard_settings:
     value: 1
 
 universalaccess_settings:
-   - key: mouseDriverCursorSize
-     type: float
-     value: 2.5
+  - key: mouseDriverCursorSize
+    type: float
+    value: 2.5

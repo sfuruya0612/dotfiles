@@ -158,16 +158,8 @@ hook_add = '''
 # terraform
 [[plugins]]
 repo = 'hashivim/vim-terraform'
-on_ft = ['terraform', 'tf']
+on_ft = ['terraform', 'tf', 'hcl']
 hook_add = '''
     let g:terraform_align=1
     let g:terraform_fmt_on_save=1
 '''
-
-{% if VIM == "vim" %}
-# Dockerfile
-[[plugins]]
-repo = 'ekalinin/Dockerfile.vim'
-on_ft = ['dockerfile']
-
-{% endif %}

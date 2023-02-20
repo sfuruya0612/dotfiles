@@ -11,8 +11,8 @@ scriptencoding utf-8
 
 if has('nvim')
     let g:loaded_python_provider = 0
-    " let g:python_host_prog = $HOME . '/.config/nvim/neovim2/bin/python'
-    let g:python3_host_prog = $HOME . '/.asdf/shims/python'
+    let g:python3_host_prog = '/opt/homebrew/bin/python3'
+    let g:node_host_prog = '/opt/homebrew/bin/node'
 endif
 
 " Start Dein Settings
@@ -37,6 +37,7 @@ if dein#load_state(s:dein_dir)
 
     let g:dein_plugin_dir = expand($HOME . '/.config/vim')
 
+    " call dein#add('EdenEast/nightfox.nvim')
     call dein#load_toml(g:dein_plugin_dir . '/dein.toml', {'lazy': 0})
     call dein#load_toml(g:dein_plugin_dir . '/dein_lazy.toml', {'lazy': 1})
 
@@ -52,10 +53,11 @@ if dein#check_install()
 endif
 " End Dein Settings
 
-" Setting the Color Scheme
+"Setting the Color Scheme
 set termguicolors
-colorscheme night-owl
+colorscheme nightfox
 set background=dark
+" let g:lightline = {'colorscheme': 'nightfox'}
 
 " General Settings
 set fenc=utf-8

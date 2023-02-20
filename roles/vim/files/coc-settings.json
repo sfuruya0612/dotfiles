@@ -1,4 +1,5 @@
 {
+    "npm.binPath": "/opt/homebrew/bin/yarn",
     "explorer.width": 40,
     "explorer.toggle": true,
     "explorer.focus": true,
@@ -11,7 +12,8 @@
     "explorer.file.column.clip.cut": "",
     "coc.preferences.formatOnSaveFiletypes": [
         "elixir",
-        "yaml"
+        "yaml",
+        "markdown"
     ],
     "languageserver": {
         "terraform": {
