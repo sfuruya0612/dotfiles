@@ -45,6 +45,15 @@
             "filetypes": [
                 "erlang"
             ]
+        },
+        "jedi": {
+            "enable": true,
+            "startupMessage": false,
+            "executable.command": "jedi-language-server",
+            "filetypes": [
+                "python"
+            ]
         }
-    }
+    },
+    "snippets.ultisnips.pythonPrompt": false
 }

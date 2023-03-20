@@ -33,7 +33,7 @@ brew_packages:
   - cmake
   - colordiff
   - coreutils
-  - cloudflare-wrangler
+  - cloudflare-wrangler2
   - deno
   - diffutils
   - direnv

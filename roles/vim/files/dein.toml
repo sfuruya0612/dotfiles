@@ -130,6 +130,9 @@ hook_source = '''
     \    'coc-docker',
     \    'coc-markdownlint',
     \    'coc-prettier',
+    \    'coc-tsserver',
+    \    'coc-eslint',
+    \    'coc-jedi',
     \ ]
 '''
 

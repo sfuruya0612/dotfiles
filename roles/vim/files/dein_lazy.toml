@@ -53,36 +53,14 @@ hook_add = '''
 repo = 'stephpy/vim-yaml'
 on_ft = ['yml', 'yaml']
 
-# toml
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
-
 # javascript
 [[plugins]]
 repo = 'pangloss/vim-javascript'
-on_ft = ['javascript']
+on_ft = ['javascript', 'javascript.jsx']
 
 [[plugins]]
 repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript']
-
-# typescript
-[[plugins]]
-repo = 'leafgarland/typescript-vim'
-on_ft = ['typescript', 'typescriptreact']
-
-# [[plugins]]
-# repo = 'mhartington/nvim-typescript'
-# build = './install.sh'
-# on_ft = ['typescript', 'typescriptreact']
-# hook_add = '''
-#     let g:nvim_typescript#javascript_support = 1
-#     let g:nvim_typescript#vue_support = 1
-
-#     let g:nvim_typescript#diagnostics_enable = 1
-#     autocmd BufWrite *.ts,*.tsx TSGetDiagnostics
-# '''
+on_ft = ['javascript', 'javascript.jsx']
 
 # html
 [[plugins]]
