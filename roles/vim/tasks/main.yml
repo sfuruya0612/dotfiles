@@ -35,6 +35,7 @@
   loop:
     - neovim
     - bash-language-server
+    - vim-language-server
 
 - name: Symbolic link config files
   file:

@@ -73,6 +73,13 @@ set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi -
 # Set tmux
 set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
+# Set OPENAI API_KEY
+set -x OPENAI_API_KEY {{ OPENAI_API_KEY }}
+
+# Set DeepL
+set -x DEEPL_ENDPOINT {{ DEEPL_ENDPOINT }}
+set -x DEEPL_AUTH_KEY {{ DEEPL_AUTH_KEY }}
+
 # Alias
 # exa command
 if type -q exa
