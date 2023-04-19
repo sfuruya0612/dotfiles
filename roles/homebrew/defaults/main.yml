@@ -36,8 +36,8 @@ brew_packages:
   - cloudflare-wrangler2
   - deno
   - diffutils
-  - direnv
   - expect
+  - fd
   - firebase-cli
   - fish
   - fzf
@@ -52,14 +52,11 @@ brew_packages:
   - knqyf263/trivy/trivy
   - loci
   - minikube
-  # Document generate tool
-  # - mkdocs
   - neovim
   - nmap
   - node
   - openssl
   - python3
-  - ranger
   - reattach-to-user-namespace
   - ripgrep
   - starship

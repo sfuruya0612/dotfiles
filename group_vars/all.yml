@@ -2,3 +2,6 @@
 VIM: "neovim"
 SHELL: "fish"
 TERM: "xterm-256color"
+OPENAI_API_KEY: lookup("env", "OPENAI_API_KEY")
+DEEPL_ENDPOINT: lookup("env", "DEEPL_ENDPOINT")
+DEEPL_AUTH_KEY: lookup("env", "DEEPL_AUTH_KEY")

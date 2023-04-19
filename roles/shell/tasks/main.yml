@@ -17,7 +17,7 @@
 
 - name: Install fisher
   get_url:
-    url: "https://git.io/fisher"
+    url: "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
     dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
     validate_certs: no
 
