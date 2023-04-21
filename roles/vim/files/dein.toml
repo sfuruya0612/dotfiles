@@ -85,7 +85,6 @@ hook_add = '''
     \        'right': [ [ 'close' ] ]
     \    }
     \ }
-
 '''
 
 # Auto close parentheses
@@ -130,6 +129,10 @@ hook_source = '''
     \    'coc-docker',
     \    'coc-markdownlint',
     \    'coc-prettier',
+    \    'coc-tsserver',
+    \    'coc-eslint',
+    \    'coc-jedi',
+    \    'coc-vimlsp',
     \ ]
 '''
 
@@ -138,22 +141,6 @@ hook_source = '''
 repo = 'junegunn/fzf'
 build = './install --all'
 merged = 0
-
-# fzf.vim
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-depends = ['fzf']
-hook_add = '''
-    command! -bang -nargs=* Rg
-        \ call fzf#vim#grep
-        \ 'rg --line-number --no-heading '.shellescape(<q-args>), 0,
-        \ fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
-
-    let g:fzf_action = {
-    \   'ctrl-s': 'split',
-    \   'ctrl-v': 'vsplit',
-    \ }
-'''
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -175,7 +162,7 @@ hook_add = '''
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
     let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'coc-explorer']
+    let g:indent_guides_exclude_filetypes = ['help', 'coc-explorer']
     let g:indent_guides_auto_colors = 0
 
     " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black
@@ -187,6 +174,60 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
-# Terminal file manager
+# Use DeepL translate
 [[plugins]]
-repo = 'mcchrish/nnn.vim'
+repo = 'sfuruya0612/vim-translate'
+
+# Use GitHub Copilot
+[[plugins]]
+repo = 'github/copilot.vim'
+hook_add = '''
+    let g:copilot_node_command = "/opt/homebrew/bin/node"
+'''
+
+# telescope optional dependencies
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+
+# telescope and ChatGPT required dependencies
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+# ChatGPT.nvim requited dependencies
+[[plugins]]
+repo = 'MunifTanjim/nui.nvim'
+
+# fuzzy finder
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+rev = '0.1.1'
+hook_add = '''
+    " Using Lua functions
+    nmap <silent> ff <cmd>lua require('telescope.builtin').find_files()<cr>
+    nmap <silent> fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+    nmap <silent> fb <cmd>lua require('telescope.builtin').buffers()<cr>
+    nmap <silent> fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
+lua <<EOF
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-s>"] = require('telescope.actions').file_split,
+                ["<C-v>"] = require('telescope.actions').file_vsplit
+            }
+        }
+    }
+}
+EOF
+'''
+
+# Use ChatGPT
+[[plugins]]
+repo = 'jackMort/ChatGPT.nvim'
+depends = ['nui.nvim', 'plenary.nvim', 'telescope.nvim']
+hook_add = '''
+lua <<EOF
+require('chatgpt').setup()
+EOF
+'''

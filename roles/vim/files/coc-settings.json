@@ -10,6 +10,10 @@
     "explorer.file.showHiddenFiles": true,
     "explorer.file.column.clip.copy": "",
     "explorer.file.column.clip.cut": "",
+    "explorer.keyMappings.global": {
+        "s": "open:split",
+        "v": "open:vsplit"
+    },
     "coc.preferences.formatOnSaveFiletypes": [
         "elixir",
         "yaml",
@@ -44,6 +48,14 @@
             "command": "erlang_ls",
             "filetypes": [
                 "erlang"
+            ]
+        },
+        "jedi": {
+            "enable": true,
+            "startupMessage": false,
+            "executable.command": "jedi-language-server",
+            "filetypes": [
+                "python"
             ]
         }
     },

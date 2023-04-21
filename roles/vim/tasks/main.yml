@@ -1,13 +1,20 @@
 ---
 - name: Unlink config file
   file:
-    path: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    path: "{{ item }} "
     state: absent
+  loop:
+    - "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
+    - "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    - "{{ ansible_env.HOME }}/.config/nvim/dein.toml"
+    - "{{ ansible_env.HOME }}/.config/nvim/dein_lazy.toml"
 
-- name: Create .config/nvim directory
+- name: Create config files directory
   file:
-    path: "{{ ansible_env.HOME }}/.config/nvim"
+    path: "{{ item }} "
     state: directory
+  loop:
+    - "{{ ansible_env.HOME }}/.config/nvim"
 
 - name: Install neovim from pip3
   pip:
@@ -17,6 +24,7 @@
   loop:
     - neovim
     - pynvim
+    - jedi-language-server
 
 - name: Install neovim from yarn
   yarn:
@@ -27,33 +35,20 @@
   loop:
     - neovim
     - bash-language-server
+    - vim-language-server
 
-- name: Symbolic link coc setting file
+- name: Symbolic link config files
   file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
-    dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
-    state: link
-    force: yes
-
-- name: Symbolic link vimrc to neovim init.vim
-  file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
-    dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    state: link
-    force: yes
-
-- name: Create dein toml directory
-  file:
-    path: "{{ ansible_env.HOME }}/.config/vim"
-    state: directory
-
-- name: Set dein toml file
-  template:
     src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    dest: "{{ item.dest  }}"
+    state: link
     force: yes
   loop:
-    - src: "dein.toml.j2"
-      dest: "{{ ansible_env.HOME }}/.config/vim/dein.toml"
-    - src: "dein_lazy.toml.j2"
-      dest: "{{ ansible_env.HOME }}/.config/vim/dein_lazy.toml"
+    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
+      dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
+    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
+      dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
+    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/dein.toml"
+      dest: "{{ ansible_env.HOME }}/.config/nvim/dein.toml"
+    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/dein_lazy.toml"
+      dest: "{{ ansible_env.HOME }}/.config/nvim/dein_lazy.toml"
