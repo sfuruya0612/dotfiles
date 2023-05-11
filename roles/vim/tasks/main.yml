@@ -25,6 +25,8 @@
     - neovim
     - pynvim
     - jedi-language-server
+    - flake8
+    - black
 
 - name: Install neovim from yarn
   yarn:

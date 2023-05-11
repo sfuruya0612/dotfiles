@@ -1,63 +1,108 @@
 {
-    "npm.binPath": "/opt/homebrew/bin/yarn",
-    "explorer.width": 40,
-    "explorer.toggle": true,
-    "explorer.focus": true,
-    "explorer.quitOnOpen": false,
-    "explorer.previewAction.onHover": "content",
-    "explorer.icon.enableNerdfont": true,
-    "explorer.icon.source": "nerdfont.vim",
-    "explorer.file.showHiddenFiles": true,
-    "explorer.file.column.clip.copy": "",
-    "explorer.file.column.clip.cut": "",
-    "explorer.keyMappings.global": {
-        "s": "open:split",
-        "v": "open:vsplit"
+  "npm.binPath": "/opt/homebrew/bin/yarn",
+  "explorer.width": 40,
+  "explorer.toggle": true,
+  "explorer.focus": true,
+  "explorer.quitOnOpen": false,
+  "explorer.previewAction.onHover": "content",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.icon.source": "nerdfont.vim",
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.column.clip.copy": "",
+  "explorer.file.column.clip.cut": "",
+  "explorer.keyMappings.global": {
+    "s": "open:split",
+    "v": "open:vsplit"
+  },
+  "coc.preferences.formatOnSave": true,
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": [
+        "serve"
+      ],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
     },
-    "coc.preferences.formatOnSaveFiletypes": [
-        "elixir",
-        "yaml",
-        "markdown"
-    ],
-    "languageserver": {
-        "terraform": {
-            "command": "terraform-ls",
-            "args": [
-                "serve"
-            ],
-            "filetypes": [
-                "terraform",
-                "tf"
-            ],
-            "initializationOptions": {},
-            "settings": {}
-        },
-        "bash": {
-            "command": "bash-language-server",
-            "args": [
-                "start"
-            ],
-            "filetypes": [
-                "sh"
-            ],
-            "ignoredRootPaths": [
-                "~"
-            ]
-        },
-        "erlang": {
-            "command": "erlang_ls",
-            "filetypes": [
-                "erlang"
-            ]
-        },
-        "jedi": {
-            "enable": true,
-            "startupMessage": false,
-            "executable.command": "jedi-language-server",
-            "filetypes": [
-                "python"
-            ]
+    "bash": {
+      "command": "bash-language-server",
+      "args": [
+        "start"
+      ],
+      "filetypes": [
+        "sh"
+      ],
+      "ignoredRootPaths": [
+        "~"
+      ]
+    },
+    "erlang": {
+      "command": "erlang_ls",
+      "filetypes": [
+        "erlang"
+      ]
+    },
+    "jedi": {
+      "enable": true,
+      "startupMessage": false,
+      "executable.command": "jedi-language-server",
+      "filetypes": [
+        "python"
+      ]
+    }
+  },
+  "snippets.ultisnips.pythonPrompt": false,
+  "diagnostic-languageserver.filetypes": {
+    "python": [
+      "flake8"
+    ]
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": [
+      "black"
+    ]
+  },
+  "diagnostic-languageserver.linters": {
+    "flake8": {
+      "command": "flake8",
+      "debounce": 100,
+      "args": [
+        "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s",
+        "-"
+      ],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "flake8",
+      "formatLines": 1,
+      "formatPattern": [
+        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
         }
-    },
-    "snippets.ultisnips.pythonPrompt": false
+      ],
+      "securities": {
+        "W": "warning",
+        "E": "error",
+        "F": "error",
+        "C": "error",
+        "N": "error"
+      }
+    }
+  },
+  "diagnostic-languageserver.formatters": {
+    "black": {
+      "command": "black",
+      "args": [
+        "--quiet",
+        "-"
+      ]
+    }
+  }
 }
