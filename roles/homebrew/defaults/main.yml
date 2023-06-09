@@ -47,6 +47,7 @@ brew_packages:
   - gpg
   - hashicorp/tap/terraform-ls
   - htop
+  - httpie
   - infracost
   - jq
   - knqyf263/trivy/trivy
