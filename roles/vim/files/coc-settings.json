@@ -49,7 +49,7 @@
     "jedi": {
       "enable": true,
       "startupMessage": false,
-      "executable.command": "jedi-language-server",
+      "executable.command": "/opt/homebrew/bin/jedi-language-server",
       "filetypes": [
         "python"
       ]
