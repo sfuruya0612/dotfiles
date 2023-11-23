@@ -32,7 +32,7 @@ install.role:
 	ansible-playbook main.yml \
 		-i inventory/local \
 		--tags ${ROLE} \
-		-vvvv
+		-v
 
 	@echo "\033[33mDone\033[00m\n"
 

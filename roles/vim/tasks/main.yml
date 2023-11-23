@@ -19,7 +19,7 @@
 - name: Install neovim from pip3
   ansible.builtin.pip:
     name: "{{ item }}"
-    executable: "/usr/local/bin/pip3"
+    executable: "/opt/homebrew/bin/pip3"
     state: latest
   loop:
     - neovim
