@@ -54,7 +54,7 @@ set -g @prefix_highlight_sync_mode_attr 'fg=default,bg=green'
 run -b '~/.tmux/plugins/tpm/tpm'
 
 # Require settings --------------------
-set -g default-shell "/opt/homebrew/bin/{{ SHELL }}"
+set -g default-shell "/usr/local/bin/{{ SHELL }}"
 set -s escape-time 0
 set -g default-terminal "{{ TERM }}"
 set -ga terminal-overrides ",{{ TERM }}:Tc"
