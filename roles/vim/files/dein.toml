@@ -132,6 +132,7 @@ hook_source = '''
     \    'coc-tsserver',
     \    'coc-eslint',
     \    'coc-jedi',
+    \    'coc-diagnostic',
     \    'coc-vimlsp',
     \ ]
 '''
@@ -174,15 +175,15 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
-# Use DeepL translate
-[[plugins]]
-repo = 'sfuruya0612/vim-translate'
-
 # Use GitHub Copilot
 [[plugins]]
 repo = 'github/copilot.vim'
 hook_add = '''
     let g:copilot_node_command = "/opt/homebrew/bin/node"
+    let g:copilot_filetypes = {
+    \   'confini': v:false,
+    \   '*': v:true,
+    \ }
 '''
 
 # telescope optional dependencies

@@ -1,22 +1,22 @@
 ---
 - name: Setting Clock
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.menuextra.clock
-    key: "{{ clock_setting_item.key }}"
-    type: "{{ clock_setting_item.type }}"
-    value: "{{ clock_setting_item.value }}"
+    key: "{{ osx_clock_setting_item.key }}"
+    type: "{{ osx_clock_setting_item.type }}"
+    value: "{{ osx_clock_setting_item.value }}"
     state: present
-  loop: "{{ clock_settings }}"
+  loop: "{{ osx_clock_settings }}"
   loop_control:
-    loop_var: clock_setting_item
+    loop_var: osx_clock_setting_item
 
 - name: Setting Battery
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.menuextra.battery
-    key: "{{ battery_setting_item.key }}"
-    type: "{{ battery_setting_item.type }}"
-    value: "{{ battery_setting_item.value }}"
+    key: "{{ osx_battery_setting_item.key }}"
+    type: "{{ osx_battery_setting_item.type }}"
+    value: "{{ osx_battery_setting_item.value }}"
     state: present
-  loop: "{{ battery_settings }}"
+  loop: "{{ osx_battery_settings }}"
   loop_control:
-    loop_var: battery_setting_item
+    loop_var: osx_battery_setting_item

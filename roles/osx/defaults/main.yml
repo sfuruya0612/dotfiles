@@ -1,5 +1,5 @@
 ---
-global_settings:
+osx_global_settings:
   - key: AppleInterfaceStyle
     type: string
     value: Dark
@@ -30,7 +30,7 @@ global_settings:
     type: bool
     value: false
 
-dock_settings:
+osx_dock_settings:
   - key: autohide
     type: bool
     value: true
@@ -59,7 +59,7 @@ dock_settings:
     type: bool
     value: false
 
-safari_settings:
+osx_safari_settings:
   - key: com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled
     type: bool
     value: true
@@ -79,7 +79,7 @@ safari_settings:
     type: bool
     value: true
 
-finder_settings:
+osx_finder_settings:
   - key: ShowStatusBar
     type: bool
     value: true
@@ -93,7 +93,7 @@ finder_settings:
     type: bool
     value: true
 
-clock_settings:
+osx_clock_settings:
   - key: DateFormat
     type: string
     value: "M\\U6708d\\U65e5(EEE) H:mm:ss"
@@ -104,15 +104,15 @@ clock_settings:
     type: int
     value: 0
 
-battery_settings:
+osx_battery_settings:
   - key: DidShowFDEWarning
     type: int
     value: 1
   - key: ShowPercent
     type: string
-    value: YES
+    value: true
 
-trackpad_settings:
+osx_trackpad_settings:
   - key: TrackpadCornerSecondaryClick
     type: int
     value: 2
@@ -120,12 +120,12 @@ trackpad_settings:
     type: int
     value: 1
 
-keyboard_settings:
+osx_keyboard_settings:
   - key: JIMPrefCharacterForYenKey
     type: int
     value: 1
 
-universalaccess_settings:
+osx_universalaccess_settings:
   - key: mouseDriverCursorSize
     type: float
     value: 2.5

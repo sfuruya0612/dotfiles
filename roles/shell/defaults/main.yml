@@ -1,14 +1,14 @@
 ---
-fish_function:
-  - "change_recent_directory.fish"
-  - "fa.fish"
-  - "fgp.fish"
-  - "fs.fish"
-  - "gcb.fish"
-  - "gl.fish"
-  - "csv.fish"
-  - "stail.fish"
+shell_fish_function:
+  - change_recent_directory.fish
+  - fa.fish
+  - fgp.fish
+  - fs.fish
+  - gcb.fish
+  - gl.fish
+  - csv.fish
+  - stail.fish
 
-fish_config:
+shell_fish_config:
   - src: config.fish.j2
     dest: "{{ ansible_env.HOME }}/.config/fish/config.fish"

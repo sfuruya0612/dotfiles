@@ -1,10 +1,10 @@
 ---
 - name: Create alacritty config directory
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/alacritty"
     state: directory
 
 - name: Set configuration file
-  template:
+  ansible.builtin.template:
     src: "alacritty.yml.j2"
     dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"

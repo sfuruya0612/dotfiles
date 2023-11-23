@@ -1,16 +1,13 @@
 ---
-brew_taps:
-  - aws/tap
+homebrew_taps:
   - homebrew/cask
   - homebrew/cask-fonts
   - homebrew/cask-versions
   - homebrew/core
-  - jkawamoto/loci
   - knqyf263/trivy
   - weaveworks/tap
 
-brew_cask_apps:
-  - aerial
+homebrew_cask_apps:
   - alacritty
   - clipy
   - CotEditor
@@ -23,7 +20,7 @@ brew_cask_apps:
   - visual-studio-code
   - Wireshark
 
-brew_packages:
+homebrew_packages:
   - ansible-lint
   - asdf
   - awscli
@@ -43,14 +40,16 @@ brew_packages:
   - fzf
   - gawk
   - git
+  - git-delta
   - goodwithtech/r/dockle
   - gpg
   - hashicorp/tap/terraform-ls
   - htop
+  - httpie
   - infracost
   - jq
   - knqyf263/trivy/trivy
-  - loci
+  - k6
   - minikube
   - neovim
   - nmap
@@ -64,7 +63,6 @@ brew_packages:
   - telnet
   - terraformer
   - tmux
-  - travis
   - urlview
   - vim
   - wget

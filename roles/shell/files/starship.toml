@@ -67,7 +67,6 @@ disabled = false
 
 [aws]
 format = "[$symbol $profile]($style) "
-symbol = ""
 force_display = true
 
 [gcloud]
@@ -90,5 +89,5 @@ format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
 
 [cmd_duration]
-format = "[祥$duration]($style) "
+format = "[$duration]($style) "
 min_time= 1000

@@ -1,6 +1,6 @@
 ---
 - name: Create ~/.tmux/plugins directory
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
   loop:
@@ -8,11 +8,11 @@
     - "{{ ansible_env.HOME }}/.tmux/plugins/"
 
 - name: Clone tmux plugin repo
-  git:
+  ansible.builtin.git:
     repo: "https://github.com/tmux-plugins/tpm"
     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
 
 - name: Set configuration file
-  template:
+  ansible.builtin.template:
     src: "tmux.conf.j2"
     dest: "{{ ansible_env.HOME }}/.tmux.conf"

@@ -1,11 +1,11 @@
 ---
 - name: Setting Universalaccess
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.universalaccess
-    key: "{{ universalaccess_setting_item.key }}"
-    type: "{{ universalaccess_setting_item.type }}"
-    value: "{{ universalaccess_setting_item.value }}"
+    key: "{{ osx_universalaccess_setting_item.key }}"
+    type: "{{ osx_universalaccess_setting_item.type }}"
+    value: "{{ osx_universalaccess_setting_item.value }}"
     state: present
-  loop: "{{ universalaccess_settings }}"
+  loop: "{{ osx_universalaccess_settings }}"
   loop_control:
-    loop_var: universalaccess_setting_item
+    loop_var: osx_universalaccess_setting_item

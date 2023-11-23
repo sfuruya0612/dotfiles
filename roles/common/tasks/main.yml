@@ -1,16 +1,16 @@
 ---
 - name: Create apps and project directory
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/{{ item }}"
     state: directory
   loop:
-    - "apps"
-    - "works"
-    - "fonts"
-    - "tmp"
+    - apps
+    - works
+    - fonts
+    - tmp
 
 - name: Clone fonts repo
-  git:
+  ansible.builtin.git:
     repo: "{{ item.repo }}"
     dest: "{{ item.dest }}"
     depth: 1
@@ -19,5 +19,6 @@
       dest: "{{ ansible_env.HOME }}/fonts/powerline"
 
 - name: Install powerline fonts
-  shell: >
-    {{ ansible_env.HOME }}/fonts/powerline/install.sh
+  ansible.builtin.shell:
+    cmd: |
+      {{ ansible_env.HOME }}/fonts/powerline/install.sh

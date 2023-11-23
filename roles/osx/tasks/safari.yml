@@ -1,12 +1,12 @@
 ---
 - name: Setting Safari.app
-  osx_defaults:
+  community.general.osx_defaults:
     domain: com.apple.Safari
-    key: "{{ safari_setting_item.key }}"
-    type: "{{ safari_setting_item.type }}"
-    value: "{{ safari_setting_item.value }}"
+    key: "{{ osx_safari_setting_item.key }}"
+    type: "{{ osx_safari_setting_item.type }}"
+    value: "{{ osx_safari_setting_item.value }}"
     state: present
-  loop: "{{ safari_settings }}"
+  loop: "{{ osx_safari_settings }}"
   loop_control:
-    loop_var: safari_setting_item
+    loop_var: osx_safari_setting_item
   notify: restart safari
