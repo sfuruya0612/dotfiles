@@ -1,12 +1,12 @@
 ---
-- name: restart dock
-  command: |
+- name: Restart dock
+  ansible.builtin.command: |
     killall Dock
 
-- name: restart safari
-  command: |
+- name: Restart safari
+  ansible.builtin.command: |
     killall Safari
 
-- name: restart finder
-  command: |
+- name: Restart finder
+  ansible.builtin.command: |
     killall Finder

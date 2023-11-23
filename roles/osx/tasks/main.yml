@@ -1,10 +1,10 @@
 ---
 - name: Settings OSX
-  include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - global.yml
     - dock.yml
-    - safari.yml
+    # - safari.yml
     - finder.yml
     - menuextra.yml
     - trackpad.yml

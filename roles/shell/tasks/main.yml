@@ -1,70 +1,106 @@
 ---
 - name: Unlink fish function file
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
     state: absent
-  loop: "{{ fish_function }}"
+  loop: "{{ shell_fish_function }}"
 
 - name: Unlink starship config file
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/starship.toml"
     state: absent
 
 - name: Create fish config directory
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/fish/functions"
     state: directory
 
 - name: Install fisher
-  get_url:
+  ansible.builtin.get_url:
     url: "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
     dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
-    validate_certs: no
+    validate_certs: true
 
 - name: Install plugins
-  shell: >
-    fish -c "fisher install {{ item }}"
+  ansible.builtin.shell:
+    cmd: |
+      fish -c "fisher install {{ item }}"
   loop:
     - jethrokuan/fzf
     - jethrokuan/z
     - evanlucas/fish-kubectl-completions
 
 - name: Set fish functions
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
     path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
     state: link
-    force: yes
-  loop: "{{ fish_function }}"
+    force: true
+  loop: "{{ shell_fish_function }}"
 
 - name: Set starship config
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/starship.toml"
     path: ~/.config/starship.toml
     state: link
-    force: yes
+    force: true
 
 - name: Set fish config files
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    force: yes
-  loop: "{{ fish_config }}"
+    force: true
+  loop: "{{ shell_fish_config }}"
+
+- name: Append git-delta config to ~/.gitconfig
+  ansible.builtin.blockinfile:
+    path: "{{ ansible_env.HOME }}/.gitconfig"
+    block: |
+      [core]
+      pager = delta
+
+      [interactive]
+      diffFilter = delta --color-only --features=interactive
+
+      [delta]
+      features = decorations
+
+      side-by-side = true
+      line-numbers-left-format = ""
+      line-numbers-right-format = "│ "
+
+      [delta "interactive"]
+      keep-plus-minus-markers = false
+
+      [delta "decorations"]
+      commit-decoration-style = blue ol
+      commit-style = raw
+      file-style = omit
+      hunk-header-decoration-style = blue box
+      hunk-header-file-style = red
+      hunk-header-line-number-style = "#067a00"
+      hunk-header-style = file line-number syntax
+    marker: "# ANSIBLE MANAGED BLOCK: git-delta"
+    insertafter: EOF
+    state: present
 
 - name: Search shell path
-  shell: >
-    /usr/bin/which {{ SHELL }}
+  ansible.builtin.shell:
+    cmd: |
+      /usr/bin/which {{ SHELL }}
   register: shell_path
-  ignore_errors: True
+  failed_when: false
 
 - name: Check shells file
-  shell: >
-    /bin/cat /etc/shells | /usr/bin/grep "{{ shell_path.stdout }}"
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      /bin/cat /etc/shells | /usr/bin/grep {{ shell_path.stdout }}
   register: chk_shell
-  ignore_errors: True
+  failed_when: false
 
 - name: Append shells
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/shells
     line: "{{ shell_path.stdout }}"
     regexp: "{{ shell_path.stdout }}"
@@ -73,7 +109,9 @@
   become: true
 
 - name: Change login shell
-  shell: >
-    /usr/bin/chpass -s "{{ shell_path.stdout }}"
+  ansible.builtin.shell:
+    cmd: |
+      /usr/bin/chpass -s {{ shell_path.stdout }}
+  when: chk_shell.rc != 0
   register: result
   until: result.rc == 0

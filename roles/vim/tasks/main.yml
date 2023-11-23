@@ -1,6 +1,6 @@
 ---
 - name: Unlink config file
-  file:
+  ansible.builtin.file:
     path: "{{ item }} "
     state: absent
   loop:
@@ -10,14 +10,14 @@
     - "{{ ansible_env.HOME }}/.config/nvim/dein_lazy.toml"
 
 - name: Create config files directory
-  file:
+  ansible.builtin.file:
     path: "{{ item }} "
     state: directory
   loop:
     - "{{ ansible_env.HOME }}/.config/nvim"
 
 - name: Install neovim from pip3
-  pip:
+  ansible.builtin.pip:
     name: "{{ item }}"
     executable: "/opt/homebrew/bin/pip3"
     state: latest
@@ -29,10 +29,10 @@
     - black
 
 - name: Install neovim from yarn
-  yarn:
+  community.general.yarn:
     name: "{{ item }}"
     executable: "/opt/homebrew/bin/yarn"
-    global: yes
+    global: true
     state: present
   loop:
     - neovim
@@ -40,11 +40,11 @@
     - vim-language-server
 
 - name: Symbolic link config files
-  file:
+  ansible.builtin.file:
     src: "{{ item.src }}"
-    dest: "{{ item.dest  }}"
+    dest: "{{ item.dest }}"
     state: link
-    force: yes
+    force: true
   loop:
     - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
       dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"

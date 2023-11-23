@@ -175,27 +175,14 @@ hook_add = '''
 [[plugins]]
 repo = 'tpope/vim-commentary'
 
-# Use DeepL translate
-[[plugins]]
-repo = 'sfuruya0612/vim-translate'
-
 # Use GitHub Copilot
 [[plugins]]
 repo = 'github/copilot.vim'
 hook_add = '''
     let g:copilot_node_command = "/opt/homebrew/bin/node"
     let g:copilot_filetypes = {
-    \   '*': v:false,
-    \   'javascript': v:true,
-    \   'typescript': v:true,
-    \   'typescriptreact': v:true,
-    \   'go': v:true,
-    \   'python': v:true,
-    \   'markdown': v:true,
-    \   'vim': v:true,
-    \   'elixir': v:true,
-    \   'rust': v:true,
-    \   'dockerfile': v:true,
+    \   'confini': v:false,
+    \   '*': v:true,
     \ }
 '''
 
