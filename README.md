@@ -1,5 +1,7 @@
 # dotfiles
 
+[![Ansible lint](https://github.com/sfuruya0612/dotfiles/actions/workflows/lint.yml/badge.svg)](https://github.com/sfuruya0612/dotfiles/actions/workflows/lint.yml)
+
 ## Description
 
 Setting macOS with Ansible.
