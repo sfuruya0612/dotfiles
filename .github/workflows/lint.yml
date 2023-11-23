@@ -1,7 +1,10 @@
 name: Ansible lint
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - 'main'
+  schedule:
+    - cron: '0 0 * * 0'
 
 jobs:
   ansible-lint:
