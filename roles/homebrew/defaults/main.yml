@@ -33,6 +33,7 @@ homebrew_packages:
   - cloudflare-wrangler2
   - deno
   - diffutils
+  - exa
   - expect
   - fd
   - firebase-cli
@@ -59,6 +60,7 @@ homebrew_packages:
   - reattach-to-user-namespace
   - ripgrep
   - starship
+  - stats
   - stern
   - telnet
   - terraformer
@@ -67,4 +69,4 @@ homebrew_packages:
   - vim
   - wget
   - wxmac
-  - exa
+  - yarn

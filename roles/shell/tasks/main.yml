@@ -52,37 +52,10 @@
     force: true
   loop: "{{ shell_fish_config }}"
 
-- name: Append git-delta config to ~/.gitconfig
-  ansible.builtin.blockinfile:
-    path: "{{ ansible_env.HOME }}/.gitconfig"
-    block: |
-      [core]
-      pager = delta
-
-      [interactive]
-      diffFilter = delta --color-only --features=interactive
-
-      [delta]
-      features = decorations
-
-      side-by-side = true
-      line-numbers-left-format = ""
-      line-numbers-right-format = "│ "
-
-      [delta "interactive"]
-      keep-plus-minus-markers = false
-
-      [delta "decorations"]
-      commit-decoration-style = blue ol
-      commit-style = raw
-      file-style = omit
-      hunk-header-decoration-style = blue box
-      hunk-header-file-style = red
-      hunk-header-line-number-style = "#067a00"
-      hunk-header-style = file line-number syntax
-    marker: "# ANSIBLE MANAGED BLOCK: git-delta"
-    insertafter: EOF
-    state: present
+- name: Set gitconfig file
+  ansible.builtin.copy:
+    src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/gitconfig"
+    dest: "{{ ansible_env.HOME }}/.gitconfig"
 
 - name: Search shell path
   ansible.builtin.shell:
@@ -103,7 +76,6 @@
   ansible.builtin.lineinfile:
     dest: /etc/shells
     line: "{{ shell_path.stdout }}"
-    regexp: "{{ shell_path.stdout }}"
     insertafter: EOF
   when: chk_shell.rc != 0
   become: true

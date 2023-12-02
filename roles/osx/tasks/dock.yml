@@ -9,4 +9,3 @@
   loop: "{{ osx_dock_settings }}"
   loop_control:
     loop_var: osx_dock_setting_item
-  notify: restart dock

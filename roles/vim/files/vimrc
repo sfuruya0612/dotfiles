@@ -123,9 +123,19 @@ autocmd BufRead,BufNewFile *.yml,*.yaml,*.vue,*.ts,*.js,*tsx setlocal tabstop=2 
 autocmd BufNewFile,BufRead *.tsx let b:tsx_ext_found = 1
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 
+" Highlight
+hi Normal guibg=NONE ctermbg=NONE
+hi NonText guibg=NONE ctermbg=NONE
+
+hi DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+hi DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+hi DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+hi DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+
 " Highlight & Search Settings
 set showmatch
 set cursorline
+
 " Highlight on Search Toggle
 set hlsearch
     nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
@@ -137,11 +147,5 @@ augroup END
 set incsearch
 set ignorecase
 set smartcase
-
-" vimdiff Color
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffAdd    cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffDelete cterm=bold ctermfg=Red         ctermbg=0x002b36 gui=none guifg=bg guibg=Red
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffChange cterm=bold ctermfg=DarkMagenta ctermbg=0x002b36 gui=none guifg=bg guibg=Red
-autocmd VimEnter,WinEnter,ColorScheme * highlight DiffText   cterm=bold ctermfg=black       ctermbg=Red      gui=none guifg=bg guibg=Red
 
 filetype plugin indent on

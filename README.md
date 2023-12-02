@@ -10,6 +10,8 @@ Setting macOS with Ansible.
 
 ### Prepere
 
+Install homebrew and run `/opt/homebrew/bin/brew install git`.
+
 ```bash
 make init
 ```

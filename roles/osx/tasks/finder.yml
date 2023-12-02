@@ -9,4 +9,3 @@
   loop: "{{ osx_finder_settings }}"
   loop_control:
     loop_var: osx_finder_setting_item
-  notify: restart finder
