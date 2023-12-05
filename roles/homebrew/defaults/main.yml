@@ -21,6 +21,7 @@ homebrew_cask_apps:
   - Wireshark
 
 homebrew_packages:
+  - act
   - ansible-lint
   - asdf
   - awscli

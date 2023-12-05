@@ -134,6 +134,8 @@ hook_source = '''
     \    'coc-jedi',
     \    'coc-diagnostic',
     \    'coc-vimlsp',
+    \    'coc-lua',
+    \    'coc-sh',
     \ ]
 '''
 
@@ -194,6 +196,10 @@ repo = 'nvim-treesitter/nvim-treesitter'
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 
+# telescope required dependencies
+[[plugins]]
+repo = 'wbthomason/packer.nvim'
+
 # ChatGPT.nvim requited dependencies
 [[plugins]]
 repo = 'MunifTanjim/nui.nvim'
@@ -201,7 +207,7 @@ repo = 'MunifTanjim/nui.nvim'
 # fuzzy finder
 [[plugins]]
 repo = 'nvim-telescope/telescope.nvim'
-rev = '0.1.1'
+rev = '0.1.5'
 hook_add = '''
     " Using Lua functions
     nmap <silent> ff <cmd>lua require('telescope.builtin').find_files()<cr>

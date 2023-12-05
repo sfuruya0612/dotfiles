@@ -28,33 +28,22 @@
       "initializationOptions": {},
       "settings": {}
     },
-    "bash": {
-      "command": "bash-language-server",
-      "args": [
-        "start"
-      ],
-      "filetypes": [
-        "sh"
-      ],
-      "ignoredRootPaths": [
-        "~"
-      ]
-    },
     "erlang": {
       "command": "erlang_ls",
       "filetypes": [
         "erlang"
       ]
-    },
-    "jedi": {
-      "enable": true,
-      "startupMessage": false,
-      "executable.command": "/opt/homebrew/bin/jedi-language-server",
-      "filetypes": [
-        "python"
-      ]
     }
   },
+  "jedi.enable": true,
+  "jedi.startupMessage": false,
+  "jedi.executable.command": "jedi-language-server",
+  "jedi.trace.server": "off",
+  "jedi.workspace.symbols.ignoreFolders": [
+    ".venv",
+    "__pycache__",
+    "venv"
+  ],
   "snippets.ultisnips.pythonPrompt": false,
   "diagnostic-languageserver.filetypes": {
     "python": [
