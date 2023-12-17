@@ -238,3 +238,23 @@ lua <<EOF
 require('chatgpt').setup()
 EOF
 '''
+
+[[plugins]]
+repo = 'akinsho/toggleterm.nvim'
+hook_add = '''
+lua <<EOF
+require("toggleterm").setup{
+    size = 40,
+    open_mapping = [[<c-\>]],
+    shade_filetypes = {},
+    shade_terminals = true,
+    shading_factor = 1,
+    start_in_insert = true,
+    persist_size = true,
+    direction = 'horizontal',
+    close_on_exit = true,
+    shell = vim.o.shell,
+}
+EOF
+'''
+
