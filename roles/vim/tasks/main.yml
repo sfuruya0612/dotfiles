@@ -20,13 +20,13 @@
   ansible.builtin.pip:
     name: "{{ item }}"
     executable: "/opt/homebrew/bin/pip3"
+    extra_args: "--break-system-package"
     state: latest
   loop:
     - neovim
     - pynvim
     - jedi-language-server
-    - flake8
-    - black
+    - ruff-lsp
 
 - name: Install neovim from yarn
   community.general.yarn:
