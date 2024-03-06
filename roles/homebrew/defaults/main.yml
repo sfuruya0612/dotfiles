@@ -34,6 +34,7 @@ homebrew_packages:
   - cloudflare-wrangler2
   - deno
   - diffutils
+  - duckdb
   - exa
   - expect
   - fd
