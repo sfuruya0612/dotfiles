@@ -1,0 +1,21 @@
+# General
+import = [
+"~/.config/alacritty/colors.toml",
+"~/.config/alacritty/cursor.toml",
+"~/.config/alacritty/font.toml",
+"~/.config/alacritty/mouse.toml",
+"~/.config/alacritty/scrolling.toml",
+"~/.config/alacritty/selection.toml",
+"~/.config/alacritty/window.toml",
+]
+
+working_directory = "None"
+live_config_reload = true
+
+[shell]
+program = "/opt/homebrew/bin/{{ SHELL }}"
+args = ["--login"]
+
+# Env
+[env]
+TERM = "{{ TERM }}"

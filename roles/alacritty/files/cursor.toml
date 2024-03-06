@@ -1,0 +1,6 @@
+[cursor]
+blink_interval = 750
+
+[cursor.style]
+blinking = "On"
+shape = "Block"

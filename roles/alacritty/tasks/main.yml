@@ -1,10 +1,25 @@
 ---
 - name: Create alacritty config directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/alacritty"
+    path: "{{ dest_config_dir }}"
     state: directory
 
-- name: Set configuration file
+- name: Set additional config files
+  ansible.builtin.file:
+    src: "{{ src_config_dir }}/{{ item }}"
+    dest: "{{ dest_config_dir }}/{{ item }}"
+    state: link
+    force: true
+  loop:
+    - colors.toml
+    - cursor.toml
+    - font.toml
+    - mouse.toml
+    - scrolling.toml
+    - selection.toml
+    - window.toml
+
+- name: Set main config file
   ansible.builtin.template:
-    src: "alacritty.yml.j2"
-    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"
+    src: "alacritty.toml.j2"
+    dest: "{{ dest_config_dir }}/alacritty.toml"

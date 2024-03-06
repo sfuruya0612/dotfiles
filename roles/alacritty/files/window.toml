@@ -1,0 +1,14 @@
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = true
+opacity = 0.8
+startup_mode = "SimpleFullscreen"
+
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window.padding]
+x = 0
+y = 0
