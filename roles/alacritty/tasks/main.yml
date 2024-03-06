@@ -1,13 +1,13 @@
 ---
 - name: Create alacritty config directory
   ansible.builtin.file:
-    path: "{{ dest_config_dir }}"
+    path: "{{ alacritty_dest_config_dir }}"
     state: directory
 
 - name: Set additional config files
   ansible.builtin.file:
-    src: "{{ src_config_dir }}/{{ item }}"
-    dest: "{{ dest_config_dir }}/{{ item }}"
+    src: "{{ alacritty_src_config_dir }}/{{ item }}"
+    dest: "{{ alacritty_dest_config_dir }}/{{ item }}"
     state: link
     force: true
   loop:
@@ -22,4 +22,4 @@
 - name: Set main config file
   ansible.builtin.template:
     src: "alacritty.toml.j2"
-    dest: "{{ dest_config_dir }}/alacritty.toml"
+    dest: "{{ alacritty_dest_config_dir }}/alacritty.toml"

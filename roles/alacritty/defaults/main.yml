@@ -1,3 +1,3 @@
 ---
-src_config_dir: "{{ ansible_env.HOME }}/dotfiles/roles/alacritty/files"
-dest_config_dir: "{{ ansible_env.HOME }}/.config/alacritty"
+alacritty_src_config_dir: "{{ ansible_env.HOME }}/dotfiles/roles/alacritty/files"
+alacritty_dest_config_dir: "{{ ansible_env.HOME }}/.config/alacritty"
