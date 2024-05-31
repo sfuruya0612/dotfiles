@@ -9,4 +9,4 @@
   loop: "{{ osx_safari_settings }}"
   loop_control:
     loop_var: osx_safari_setting_item
-  notify: restart safari
+  notify: Restart safari

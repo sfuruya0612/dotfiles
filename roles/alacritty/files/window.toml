@@ -2,7 +2,7 @@
 decorations = "full"
 dynamic_padding = false
 dynamic_title = true
-opacity = 0.8
+opacity = 0.95
 startup_mode = "Fullscreen"
 
 [window.dimensions]

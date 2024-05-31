@@ -34,5 +34,5 @@ install.role:
 
 	@echo "\033[33mDone\033[00m\n"
 
-test:
+lint:
 	ansible-lint -c .ansible-lint main.yml

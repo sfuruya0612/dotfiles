@@ -35,4 +35,4 @@ jobs:
 
       - name: Execute ansible-lint
         run: |
-          make test
+          make lint
