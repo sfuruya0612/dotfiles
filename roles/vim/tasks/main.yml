@@ -15,6 +15,8 @@
     state: directory
   loop:
     - "{{ ansible_env.HOME }}/.config/nvim"
+    - "{{ ansible_env.HOME }}/.config/nvim/lua"
+    - "{{ ansible_env.HOME }}/.config/nvim/lua/copilot_chat_config"
 
 - name: Install neovim from pip3
   ansible.builtin.pip:
@@ -54,3 +56,5 @@
       dest: "{{ ansible_env.HOME }}/.config/nvim/dein.toml"
     - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/dein_lazy.toml"
       dest: "{{ ansible_env.HOME }}/.config/nvim/dein_lazy.toml"
+    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/copilot_chat_config.lua"
+      dest: "{{ ansible_env.HOME }}/.config/nvim/lua/copilot_chat_config/init.lua"
