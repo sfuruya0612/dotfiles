@@ -1,22 +1,11 @@
 ---
-- name: Unlink config file
-  ansible.builtin.file:
-    path: "{{ item }} "
-    state: absent
-  loop:
-    - "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
-    - "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    - "{{ ansible_env.HOME }}/.config/nvim/dein.toml"
-    - "{{ ansible_env.HOME }}/.config/nvim/dein_lazy.toml"
-
-- name: Create config files directory
+- name: Create config directories
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
   loop:
     - "{{ ansible_env.HOME }}/.config/nvim"
     - "{{ ansible_env.HOME }}/.config/nvim/lua"
-    - "{{ ansible_env.HOME }}/.config/nvim/lua/copilot_chat_config"
 
 - name: Install neovim from pip3
   ansible.builtin.pip:
@@ -41,20 +30,30 @@
     - bash-language-server
     - vim-language-server
 
+- name: Unlink config files
+  ansible.builtin.file:
+    path: "{{ vim_init_dest_dir }}{{ item }} "
+    state: absent
+  loop: "{{ vim_config_files }}"
+
+- name: Unlink lua files
+  ansible.builtin.file:
+    path: "{{ vim_lua_dest_dir }}{{ item }} "
+    state: absent
+  loop: "{{ vim_lua_files }}"
+
 - name: Symbolic link config files
   ansible.builtin.file:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
+    src: "{{ vim_src_dir }}{{ item }}"
+    dest: "{{ vim_init_dest_dir }}{{ item }}"
     state: link
     force: true
-  loop:
-    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/coc-settings.json"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/coc-settings.json"
-    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/vimrc"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/init.vim"
-    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/dein.toml"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/dein.toml"
-    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/dein_lazy.toml"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/dein_lazy.toml"
-    - src: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/copilot_chat_config.lua"
-      dest: "{{ ansible_env.HOME }}/.config/nvim/lua/copilot_chat_config/init.lua"
+  loop: "{{ vim_config_files }}"
+
+- name: Symbolic link lua files
+  ansible.builtin.file:
+    src: "{{ vim_src_dir }}{{ item }}"
+    dest: "{{ vim_lua_dest_dir }}{{ item }}"
+    state: link
+    force: true
+  loop: "{{ vim_lua_files }}"
