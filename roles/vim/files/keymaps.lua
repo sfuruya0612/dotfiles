@@ -80,5 +80,8 @@ keymap("n", "fg", ":lua require('telescope.builtin').live_grep()<CR>", term_opts
 keymap("n", "fb", ":lua require('telescope.builtin').buffers()<CR>", term_opts)
 keymap("n", "fh", ":lua require('telescope.builtin').help_tags()<CR>", term_opts)
 
+-- Copilot Chat
+keymap("n", "<leader>ccp", ":lua ShowCopilotChatActionPrompt()<CR>", opts)
+
 -- Call show_documentation func
 keymap("n", "K", ":lua show_documentation()<CR>", opts)
