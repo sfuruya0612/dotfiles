@@ -131,11 +131,12 @@ hook_source = '''
     \    'coc-prettier',
     \    'coc-tsserver',
     \    'coc-eslint',
-    \    'coc-jedi',
     \    'coc-diagnostic',
     \    'coc-vimlsp',
     \    'coc-lua',
     \    'coc-sh',
+    \    'coc-biome',
+    \    '@yaegassy/coc-ruff',
     \ ]
 '''
 

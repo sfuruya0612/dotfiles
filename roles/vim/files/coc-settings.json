@@ -33,22 +33,9 @@
       "filetypes": [
         "erlang"
       ]
-    },
-    "ruff-lsp": {
-      "command": "ruff-lsp",
-      "filetypes": [
-        "python"
-      ]
     }
   },
-  "jedi.enable": true,
-  "jedi.startupMessage": false,
-  "jedi.executable.command": "jedi-language-server",
-  "jedi.trace.server": "off",
-  "jedi.workspace.symbols.ignoreFolders": [
-    ".venv",
-    "__pycache__",
-    "venv"
-  ],
+  "ruff.autoFixOnSave": true,
+  "ruff.serverPath": "/opt/homebrew/bin/ruff-lsp",
   "snippets.ultisnips.pythonPrompt": false
 }

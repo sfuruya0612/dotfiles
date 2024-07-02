@@ -16,7 +16,6 @@
   loop:
     - neovim
     - pynvim
-    - jedi-language-server
     - ruff-lsp
 
 - name: Install neovim from yarn
