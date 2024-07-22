@@ -74,11 +74,11 @@ set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi -
 set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
 # Alias
-# exa command
-if type -q exa
-    alias ls "exa --long --git --icons"
-    alias ll "exa --long --git --icons --all"
-    alias tree "exa --long --git --icons --all --tree -I .git"
+# eza command
+if type -q eza
+    alias ls "eza --long --git --icons"
+    alias ll "eza --long --git --icons --all"
+    alias tree "eza --long --git --icons --all --tree -I .git"
 else
     alias ls "gls --color=auto -F"
     alias ll "gls -aFGlh"
