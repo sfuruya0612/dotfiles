@@ -57,6 +57,7 @@ homebrew_packages:
   - knqyf263/trivy/trivy
   - k6
   - minikube
+  - mise
   - neovim
   - nmap
   - node

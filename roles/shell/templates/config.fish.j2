@@ -47,9 +47,14 @@ set -g fish_pager_color_description $comment
 set -x PATH $PATH /opt/homebrew/bin
 
 # asdf path
-source (brew --prefix asdf)/libexec/asdf.fish
-set -x ASDF_DIR (brew --prefix asdf)/libexec
-set -x PATH $PATH $HOME/.asdf/shims
+# source (brew --prefix asdf)/libexec/asdf.fish
+# set -x ASDF_DIR (brew --prefix asdf)/libexec
+# set -x PATH $PATH $HOME/.asdf/shims
+
+# mise activate
+if type -q mise
+    $HOME/.local/bin/mise activate fish | source
+end
 
 # Go path
 set -x GOPATH $HOME/go

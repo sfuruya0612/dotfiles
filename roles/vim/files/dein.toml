@@ -130,7 +130,6 @@ hook_source = '''
     \    'coc-markdownlint',
     \    'coc-prettier',
     \    'coc-tsserver',
-    \    'coc-eslint',
     \    'coc-diagnostic',
     \    'coc-vimlsp',
     \    'coc-lua',
