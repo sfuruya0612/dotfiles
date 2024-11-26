@@ -11,19 +11,16 @@ homebrew_cask_apps:
   - alacritty
   - clipy
   - CotEditor
-  - Docker
   - font-hack-nerd-font
   - google-chrome
   - google-cloud-sdk
   - session-manager-plugin
   - Slack
-  - visual-studio-code
   - Wireshark
 
 homebrew_packages:
   - act
   - ansible-lint
-  - asdf
   - awscli
   - aws-sam-cli
   - bat
@@ -33,12 +30,10 @@ homebrew_packages:
   - colordiff
   - coreutils
   - cloudflare-wrangler2
-  - cloudformation-guard
   - deno
   - diffutils
   - duckdb
   - eza
-  - expect
   - fd
   - firebase-cli
   - fish
@@ -49,7 +44,6 @@ homebrew_packages:
   - goodwithtech/r/dockle
   - gpg
   - hashicorp/tap/terraform-ls
-  - htop
   - httpie
   - infracost
   - jnv
@@ -57,24 +51,29 @@ homebrew_packages:
   - knqyf263/trivy/trivy
   - k6
   - minikube
+  # asdf alternative
   - mise
   - neovim
   - nmap
   - node
   - openssl
+  # Docker alternative
+  - orbstack
   - protobuf
   - python3
-  - reattach-to-user-namespace
+  # - reattach-to-user-namespace
   - ripgrep
   - starship
   - stats
   - stern
   - telnet
   - terraformer
-  - tmux
+  # - tmux
   - urlview
   - vim
   - wget
   - wxmac
   - yarn
   - yq
+  # Terminal Multiplexer
+  - zellij

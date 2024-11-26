@@ -13,6 +13,8 @@
       tags: vim
     - role: tmux
       tags: tmux
+    - role: zellij
+      tags: zellij
     - role: alacritty
       tags: alacritty
     - role: shell
