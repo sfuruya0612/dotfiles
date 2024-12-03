@@ -1,15 +1,11 @@
 ---
 homebrew_taps:
-  - homebrew/cask
-  - homebrew/cask-fonts
-  - homebrew/cask-versions
-  - homebrew/core
+  - hashicorp/tap
   - knqyf263/trivy
   - weaveworks/tap
 
 homebrew_cask_apps:
   - alacritty
-  - clipy
   - CotEditor
   - font-hack-nerd-font
   - google-chrome
@@ -39,16 +35,17 @@ homebrew_packages:
   - fish
   - fzf
   - gawk
+  # GitHub CLI
+  - gh
   - git
   - git-delta
-  - goodwithtech/r/dockle
   - gpg
-  - hashicorp/tap/terraform-ls
+  - terraform-ls
   - httpie
   - infracost
   - jnv
   - jq
-  - knqyf263/trivy/trivy
+  - trivy
   - k6
   - minikube
   # asdf alternative
@@ -62,6 +59,8 @@ homebrew_packages:
   - protobuf
   - python3
   # - reattach-to-user-namespace
+  # Launcher Tool
+  - raycast
   - ripgrep
   - starship
   - stats

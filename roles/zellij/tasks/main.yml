@@ -1,10 +1,8 @@
 ---
 - name: Create ~/.config directories
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ ansible_env.HOME }}/.config/zellij"
     state: directory
-  loop:
-    - "{{ ansible_env.HOME }}/.zellij"
 
 - name: Unlink config file
   ansible.builtin.file:
