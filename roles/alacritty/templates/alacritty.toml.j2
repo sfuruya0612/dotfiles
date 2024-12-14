@@ -1,4 +1,8 @@
 # General
+[general]
+working_directory = "None"
+live_config_reload = true
+
 import = [
 "~/.config/alacritty/colors.toml",
 "~/.config/alacritty/cursor.toml",
@@ -9,12 +13,9 @@ import = [
 "~/.config/alacritty/window.toml",
 ]
 
-working_directory = "None"
-live_config_reload = true
-
-[shell]
+[terminal.shell]
 program = "/opt/homebrew/bin/{{ SHELL }}"
-args = ["-l", "-c", "zellij attach --index 0 --create"]
+args = ["-l"]
 
 # Env
 [env]
