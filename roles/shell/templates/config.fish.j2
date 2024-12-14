@@ -46,14 +46,9 @@ set -g fish_pager_color_description $comment
 # Homebrew path
 set -x PATH $PATH /opt/homebrew/bin
 
-# asdf path
-# source (brew --prefix asdf)/libexec/asdf.fish
-# set -x ASDF_DIR (brew --prefix asdf)/libexec
-# set -x PATH $PATH $HOME/.asdf/shims
-
 # mise activate
 if type -q mise
-    $HOME/.local/bin/mise activate fish | source
+    mise activate fish | source
 end
 
 # Go path
@@ -74,9 +69,6 @@ set -U TERM {{ TERM }}
 # Set fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
 set -x FZF_DEFAULT_OPTS '--no-sort --exact --cycle --exit-0 --select-1 --multi --ansi --height 70% --reverse --border --prompt=">>> " --bind=ctrl-j:preview-down --bind=ctrl-k:preview-up'
-
-# Set tmux
-set -x TMUX_TMPDIR "$HOME/.tmux/tmp/"
 
 # Alias
 # eza command

@@ -20,11 +20,6 @@ make init
 
 ```bash
 make
-
-# Install tmux plugins
-# Launch tmux
-tmux && tmux source ~/.tmux.conf
-# <prefix> + I
 ```
 
 Reboot your PC after install.
