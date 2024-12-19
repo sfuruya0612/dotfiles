@@ -6,13 +6,19 @@ homebrew_taps:
 
 homebrew_cask_apps:
   - alacritty
-  - CotEditor
+  - cloudflare-warp
+  - cotEditor
+  - deepl
+  - discord
   - font-hack-nerd-font
   - google-chrome
   - google-cloud-sdk
+  - jetbrains-toolbox
+  - notion
   - session-manager-plugin
-  - Slack
-  - Wireshark
+  - slack
+  - wireshark
+  - zoom
 
 homebrew_packages:
   - act
@@ -29,6 +35,8 @@ homebrew_packages:
   - deno
   - diffutils
   - duckdb
+  # mkpasswd command
+  - expect
   - eza
   - fd
   - firebase-cli
