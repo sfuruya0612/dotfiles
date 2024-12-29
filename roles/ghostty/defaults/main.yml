@@ -1,0 +1,3 @@
+---
+ghostty_src_config_dir: "{{ ansible_env.HOME }}/dotfiles/roles/ghostty/files"
+ghostty_dest_config_dir: "{{ ansible_env.HOME }}/.config/ghostty"

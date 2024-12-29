@@ -1,0 +1,12 @@
+---
+- name: Create ghostty config directory
+  ansible.builtin.file:
+    path: "{{ ghostty_dest_config_dir }}"
+    state: directory
+
+- name: Set config file
+  ansible.builtin.file:
+    src: "{{ ghostty_src_config_dir }}/config"
+    dest: "{{ ghostty_dest_config_dir }}/config"
+    state: link
+    force: true
