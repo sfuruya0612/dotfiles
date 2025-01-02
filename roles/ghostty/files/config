@@ -1,3 +1,8 @@
 font-size = 12
-background-opacity = 0.8
 theme = "nightfox"
+
+background-opacity = 0.85
+background-blur-radius = 20
+
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = transparent
