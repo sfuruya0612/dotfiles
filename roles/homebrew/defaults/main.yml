@@ -11,6 +11,7 @@ homebrew_cask_apps:
   - deepl
   - discord
   - font-hack-nerd-font
+  - font-jetbrains-mono-nerd-font
   - ghostty
   - google-chrome
   - google-cloud-sdk

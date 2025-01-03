@@ -4,9 +4,9 @@ local actions = require("CopilotChat.actions")
 
 
 require("CopilotChat").setup {
-  debug = true,      -- Enable debugging
+  debug = true, -- Enable debugging
 
-  model = 'gpt-4',   -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
+  model = 'gpt-4o',
   temperature = 0.1, -- GPT temperature
 
   prompts = {

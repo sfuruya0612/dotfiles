@@ -124,7 +124,14 @@ alias m "make"
 # Open memo file
 alias memo "vim ~/tmp/memo.txt"
 
+# AWS SSO Login
 alias al "aws sso login"
+
+# Snatch
+if type -q snatch
+  alias s "snatch"
+  snatch completion fish | source
+end
 
 # Set key binding
 bind \cx change_recent_directory
