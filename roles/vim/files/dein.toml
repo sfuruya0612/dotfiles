@@ -185,7 +185,7 @@ repo = 'github/copilot.vim'
 # Use GitHub Copilot Chat
 [[plugins]]
 repo = 'CopilotC-Nvim/CopilotChat.nvim'
-branch = 'canary'
+branch = 'main'
 depends = ['github/copilot.vim', 'nvim-lua/plenary.nvim']
 
 # telescope optional dependencies
