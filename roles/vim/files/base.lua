@@ -8,6 +8,7 @@ vim.wo.number = true
 vim.g.loaded_python_provider = 0
 vim.g.python3_host_prog = "/opt/homebrew/bin/python3.13"
 vim.g.node_host_prog = "/opt/homebrew/bin/neovim-node-host"
+vim.g.loaded_perl_provider = 0
 
 function _G.show_documentation()
   if vim.tbl_contains({ "vim", "help" }, vim.bo.filetype) then

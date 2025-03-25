@@ -22,4 +22,17 @@ make init
 make
 ```
 
-Reboot your PC after install.
+## Troubleshooting
+
+### Downgrade Lua
+
+If you have an lua newer than 5.1.5, you need to downgrade it.
+
+```bash
+wget https://www.lua.org/ftp/lua-5.1.5.tar.gz
+tar xvf lua-5.1.5.tar.gz
+cd lua-5.1.5
+make macosx
+sudo make install
+lua -v
+```

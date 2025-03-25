@@ -5,17 +5,14 @@ vim_lua_dest_dir: "{{ ansible_env.HOME }}/.config/nvim/lua/"
 
 vim_config_files:
   - init.lua
-  - dein.toml
-  - dein_lazy.toml
   - coc-settings.json
 
 vim_lua_files:
   - base.lua
   - autocmds.lua
+  - lazy_nvim.lua
   - plugins.lua
-  - copilot_config.lua
   - copilot_chat_config.lua
   - telescope_config.lua
   - options.lua
   - keymaps.lua
-  - colorscheme.lua

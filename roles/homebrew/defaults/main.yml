@@ -57,6 +57,7 @@ homebrew_packages:
   - jq
   - trivy
   - k6
+  - luarocks
   - minikube
   # asdf alternative
   - mise
