@@ -34,16 +34,13 @@ keymap("n", "gh", "gT", opts)
 keymap("n", "ss", ":split<Return><C-w>w", opts)
 keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
 
--- Do not yank with x
-keymap("n", "x", '"_x', opts)
-
 -- Delete a word backwards
 -- keymap("n", "dw", 'vb"_d', opts)
 
--- 行末までのヤンクにする
+-- yanke to the end of line
 keymap("n", "Y", "y$", opts)
 
--- ESC*2 でハイライトやめる
+-- ESC twice to clear highlights
 keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
 
 -- move cursor
@@ -56,7 +53,7 @@ keymap("n", "<C-e>", "$", opts)
 -- Press jk fast to exit insert mode
 -- keymap("i", "jk", "<ESC>", opts)
 
--- コンマの後に自動的にスペースを挿入
+-- Automatically insert a space after a comma
 keymap("i", ",", ",<Space>", opts)
 
 -- Visual --
@@ -65,7 +62,7 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- 0番レジスタを使いやすくした
-keymap("v", "<C-p>", '"0p', opts)
+-- keymap("v", "<C-p>", '"0p', opts)
 
 -- Coc.nvim
 keymap("n", "<C-n>", ":CocCommand explorer --root-strategies keep<CR>", opts)
@@ -82,6 +79,10 @@ keymap("n", "fh", ":lua require('telescope.builtin').help_tags()<CR>", term_opts
 
 -- Copilot Chat
 keymap("n", "<leader>ccp", ":lua ShowCopilotChatActionPrompt()<CR>", opts)
+
+-- Avante
+keymap("n", "<leader>ac", ":AvanteChat<CR>", opts)
+keymap("n", "<leader>acc", ":AvanteClear<CR>", opts)
 
 -- Call show_documentation func
 keymap("n", "K", ":lua show_documentation()<CR>", opts)
