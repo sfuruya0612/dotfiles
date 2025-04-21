@@ -6,7 +6,7 @@ local actions = require("CopilotChat.actions")
 require("CopilotChat").setup {
   debug = true, -- Enable debugging
 
-  model = 'claude-3.7-sonnet',
+  model = 'gemini-2.5-pro',
   temperature = 0.1, -- GPT temperature
 
   prompts = {

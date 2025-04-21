@@ -72,6 +72,8 @@ homebrew_packages:
   # - reattach-to-user-namespace
   # Launcher Tool
   - raycast
+  # https://github.com/yamadashy/repomix
+  - repomix
   - ripgrep
   - starship
   - stats

@@ -169,9 +169,8 @@ return {
       },
       copilot = {
         endpoint = "https://api.githubcopilot.com",
-        model = "claude-3.7-sonnet",
-        --   model = "gpt-4o-2024-08-06",
-        max_tokens = 4096,
+        model = "gemini-2.5-pro",
+        max_tokens = 2000000,
       },
     },
     dependencies = {
