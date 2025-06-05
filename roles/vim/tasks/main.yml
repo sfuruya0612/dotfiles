@@ -15,8 +15,8 @@
     state: latest
   loop:
     - neovim
-    - pynvim
-    - ruff-lsp
+    # - pynvim
+    # - ruff-lsp
 
 - name: Install neovim from yarn
   community.general.yarn:
@@ -26,8 +26,9 @@
     state: present
   loop:
     - neovim
-    - bash-language-server
-    - vim-language-server
+    # - bash-language-server
+    # - vim-language-server
+  ignore_errors: "{{ 'DeprecationWarning' in ansible_failed_result.stderr }}"
 
 - name: Unlink config files
   ansible.builtin.file:

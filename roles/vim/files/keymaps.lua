@@ -64,12 +64,8 @@ keymap("v", ">", ">gv", opts)
 -- 0番レジスタを使いやすくした
 -- keymap("v", "<C-p>", '"0p', opts)
 
--- Coc.nvim
-keymap("n", "<C-n>", ":CocCommand explorer --root-strategies keep<CR>", opts)
-keymap("n", "gd", "<Plug>(coc-definition)", {})
-keymap("n", "gy", "<Plug>(coc-type-definition)", {})
-keymap("n", "gi", "<Plug>(coc-implementation)", {})
-keymap("n", "gr", "<Plug>(coc-references)", {})
+-- File Explorer
+keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
 keymap("n", "ff", ":lua require('telescope.builtin').find_files()<CR>", term_opts)
@@ -81,8 +77,8 @@ keymap("n", "fh", ":lua require('telescope.builtin').help_tags()<CR>", term_opts
 keymap("n", "<leader>ccp", ":lua ShowCopilotChatActionPrompt()<CR>", opts)
 
 -- Avante
-keymap("n", "<leader>ac", ":AvanteChat<CR>", opts)
-keymap("n", "<leader>acc", ":AvanteClear<CR>", opts)
+-- keymap("n", "<leader>ac", ":AvanteChat<CR>", opts)
+-- keymap("n", "<leader>acc", ":AvanteClear<CR>", opts)
 
 -- Call show_documentation func
 keymap("n", "K", ":lua show_documentation()<CR>", opts)

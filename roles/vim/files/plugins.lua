@@ -79,6 +79,17 @@ return {
     end
   },
 
+  -- File Explorer
+  {
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup()
+      vim.opt.termguicolors = true
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end
+  },
+
   -- Auto close parentheses
   {
     "cohama/lexima.vim",
@@ -97,7 +108,7 @@ return {
     "nathanaelkane/vim-indent-guides",
     config = function()
       vim.g.indent_guides_enable_on_vim_startup = 1
-      vim.g.indent_guides_exclude_filetypes = { 'help', 'coc-explorer' }
+      vim.g.indent_guides_exclude_filetypes = { 'help' }
       vim.g.indent_guides_auto_colors = 0
     end
   },
@@ -110,16 +121,36 @@ return {
     enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
 
+  -- Claude Code
+  {
+    "greggh/claude-code.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("claude-code").setup({
+        window = {
+          split_ratio = 0.4,
+          position = "rightbelow vsplit",
+          enter_insert = true,
+          hide_numbers = true,
+          hide_signcolumn = true,
+        },
+      })
+    end
+  },
+
+
   -- GitHub Copilot
   {
     "github/copilot.vim",
     lazy = false,
     config = function()
-      require("copilot").setup({})
+      -- require("copilot").setup()
       vim.g.copilot_node_command = "/opt/homebrew/bin/node"
       vim.g.copilot_filetypes = {
         confini = false,
-        Avante = false,
+        -- Avante = false,
         ["*"] = true,
       }
     end,
@@ -136,82 +167,82 @@ return {
     }
   },
 
-  -- Emulate cursor AI IDE
-  {
-    "yetone/avante.nvim",
-    enabled = true,
-    event = "VeryLazy",
-    lazy = false,
-    version = false,
-    build = "make",
-    opts = {
-      provider = "copilot",
-      -- auto_suggestions_provider = "copilot",
-      behaviour = {
-        auto_suggestions = false,
-        auto_set_highlight_group = true,
-        auto_set_keymaps = true,
-        auto_apply_diff_after_generation = true,
-        support_paste_from_clipboard = true,
-      },
-      windows = {
-        position = "right",
-        width = 30,
-        sidebar_header = {
-          align = "center",
-          rounded = false,
-        },
-        ask = {
-          floating = true,
-          start_insert = true,
-          border = "rounded"
-        }
-      },
-      copilot = {
-        endpoint = "https://api.githubcopilot.com",
-        model = "gemini-2.5-pro",
-        max_tokens = 2000000,
-      },
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "echasnovski/mini.pick",         -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
-    },
-  },
+  -- -- Emulate cursor AI IDE
+  -- {
+  --   "yetone/avante.nvim",
+  --   enabled = true,
+  --   event = "VeryLazy",
+  --   lazy = false,
+  --   version = false,
+  --   build = "make",
+  --   opts = {
+  --     provider = "copilot",
+  --     -- auto_suggestions_provider = "copilot",
+  --     behaviour = {
+  --       auto_suggestions = false,
+  --       auto_set_highlight_group = true,
+  --       auto_set_keymaps = true,
+  --       auto_apply_diff_after_generation = true,
+  --       support_paste_from_clipboard = true,
+  --     },
+  --     windows = {
+  --       position = "right",
+  --       width = 30,
+  --       sidebar_header = {
+  --         align = "center",
+  --         rounded = false,
+  --       },
+  --       ask = {
+  --         floating = true,
+  --         start_insert = true,
+  --         border = "rounded"
+  --       }
+  --     },
+  --     copilot = {
+  --       endpoint = "https://api.githubcopilot.com",
+  --       model = "gemini-2.5-pro",
+  --       max_tokens = 2000000,
+  --     },
+  --   },
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "stevearc/dressing.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     --- The below dependencies are optional,
+  --     "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+  --     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+  --     "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+  --     "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+  --     "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+  --     "zbirenbaum/copilot.lua",
+  --     {
+  --       -- support for image pasting
+  --       "HakonHarnes/img-clip.nvim",
+  --       event = "VeryLazy",
+  --       opts = {
+  --         -- recommended settings
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --           -- required for Windows users
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --     {
+  --       -- Make sure to set this up properly if you have lazy=true
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { "markdown", "Avante" },
+  --       },
+  --       ft = { "markdown", "Avante" },
+  --     },
+  --   },
+  -- },
 
   -- Telescope
   {
@@ -251,112 +282,12 @@ return {
 
   -- LSP
   {
-    "neoclide/coc.nvim",
-    branch = "release",
-    config = function()
-      vim.opt.hidden = true
-      vim.opt.backup = false
-      vim.opt.writebackup = false
-      vim.opt.cmdheight = 2
-
-      vim.g.coc_global_extensions = {
-        'coc-lists',
-        'coc-git',
-        'coc-explorer',
-        'coc-snippets',
-        'coc-json',
-        'coc-yaml',
-        'coc-elixir',
-        'coc-go',
-        'coc-rls',
-        'coc-docker',
-        'coc-markdownlint',
-        'coc-prettier',
-        'coc-tsserver',
-        'coc-diagnostic',
-        'coc-vimlsp',
-        'coc-lua',
-        'coc-sh',
-        'coc-biome',
-        '@yaegassy/coc-ruff',
-        'coc-phpls',
-      }
-    end
-  },
-
-  -- Go言語
-  {
-    "fatih/vim-go",
-    ft = { "go" },
-    config = function()
-      vim.cmd([[autocmd FileType go set autowrite]])
-
-      vim.g.go_highlight_functions = 1
-      vim.g.go_highlight_methods = 1
-      vim.g.go_highlight_structs = 1
-      vim.g.go_highlight_operators = 1
-      vim.g.go_highlight_fields = 1
-      vim.g.go_highlight_variable_declarations = 1
-      vim.g.go_highlight_variable_assignments = 0
-      vim.g.go_highlight_string_spellcheck = 1
-      vim.g.go_highlight_types = 1
-      vim.g.go_highlight_function_parameters = 1
-      vim.g.go_highlight_extra_types = 1
-
-      vim.g.go_list_type = "quickfix"
-      vim.g.go_fmt_command = "goimports"
-      vim.g.go_metalinter_autosave = 1
-      vim.g.go_metalinter_autosave_enabled = { "golint" }
-      vim.g.go_term_mode = "split"
-      vim.g.go_addtags_transform = "camelcase"
-      vim.g.go_auto_type_info = 1
-
-      vim.cmd([[autocmd FileType go set updatetime=100]])
-
-      vim.g.go_play_open_browser = 0
-      vim.g.go_auto_sameids = 1
-    end
-  },
-
-  -- YAML
-  {
-    "stephpy/vim-yaml",
-    ft = { "yml", "yaml" }
-  },
-
-  -- JavaScript
-  {
-    "pangloss/vim-javascript",
-    ft = { "javascript", "javascript.jsx" }
-  },
-
-  {
-    "maxmellon/vim-jsx-pretty",
-    ft = { "javascript", "javascript.jsx" }
-  },
-
-  -- JSON
-  {
-    "elzr/vim-json",
-    ft = { "json" },
-    config = function()
-      vim.g.vim_json_syntax_conceal = 0
-    end
-  },
-
-  {
-    "rhysd/vim-fixjson",
-    ft = { "json" }
-  },
-
-  -- Markdown
-  {
-    "rcmdnk/vim-markdown",
-    ft = { "markdown", "md" },
-    config = function()
-      vim.g.vim_markdown_folding_disabled = 1
-      vim.g.vim_markdown_codeblock_syntax = 0
-    end
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
   },
 
   {
@@ -366,58 +297,5 @@ return {
       vim.cmd([[autocmd BufRead,BufNewFile *.md set filetype=markdown]])
       vim.g.previm_open_cmd = 'open -a Google\\ Chrome'
     end
-  },
-
-  -- Erlang
-  {
-    "vim-erlang/vim-erlang-runtime",
-    ft = { "erlang" }
-  },
-
-  {
-    "vim-erlang/vim-erlang-compiler",
-    ft = { "erlang" }
-  },
-
-  {
-    "vim-erlang/vim-erlang-tags",
-    ft = { "erlang" }
-  },
-
-  {
-    "vim-erlang/vim-erlang-omnicomplete",
-    ft = { "erlang" }
-  },
-
-  -- Elixir
-  {
-    "elixir-editors/vim-elixir",
-    ft = { "elixir" }
-  },
-
-  -- Rust
-  {
-    "rust-lang/rust.vim",
-    ft = { "rust" },
-    config = function()
-      vim.g.rustfmt_autosave = 1
-      vim.g.rust_clip_command = 'pbcopy'
-    end
-  },
-
-  -- Terraform
-  {
-    "hashivim/vim-terraform",
-    ft = { "terraform", "tf", "hcl" },
-    config = function()
-      vim.g.terraform_align = 1
-      vim.g.terraform_fmt_on_save = 1
-    end
-  },
-
-  -- Jsonnet
-  {
-    "google/vim-jsonnet",
-    ft = { "jsonnet" }
   },
 }

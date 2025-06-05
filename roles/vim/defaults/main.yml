@@ -12,7 +12,8 @@ vim_lua_files:
   - autocmds.lua
   - lazy_nvim.lua
   - plugins.lua
-  - copilot_chat_config.lua
+  # - copilot_chat_config.lua
   - telescope_config.lua
   - options.lua
   - keymaps.lua
+  - lsp_config.lua
