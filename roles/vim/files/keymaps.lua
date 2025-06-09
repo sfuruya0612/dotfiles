@@ -81,4 +81,4 @@ keymap("n", "<leader>ccp", ":lua ShowCopilotChatActionPrompt()<CR>", opts)
 -- keymap("n", "<leader>acc", ":AvanteClear<CR>", opts)
 
 -- Call show_documentation func
-keymap("n", "K", ":lua show_documentation()<CR>", opts)
+-- keymap("n", "K", ":lua show_documentation()<CR>", opts)

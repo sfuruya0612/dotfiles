@@ -1,61 +1,93 @@
-require("mason").setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗"
-    }
-  }
-})
+local lsp_servers = {
+	"lua_ls",
+	"vimls",
+	"ruff",
+	"biome",
+	"ts_ls",
+	"markdown_oxide",
+	"mdx_analyzer",
+	"jsonls",
+	"jsonnet_ls",
+	"yamlls",
+	"dockerls",
+	"bashls",
+	"golangci_lint_ls",
+	"gopls",
+	"terraformls",
+	"rust_analyzer",
+	"elixirls",
+}
 
+local formatters = {
+	"stylua",
+	"prettier",
+	"ruff_format",
+	"biome",
+	"shfmt",
+	"gofumpt",
+	"terraform_fmt",
+}
+
+local diagnostics = {
+	"ruff",
+	"eslint_d",
+	"tsserver",
+	"jsonlint",
+	"yamllint",
+	"dockerfile_lint",
+	"bashate",
+	"golangci_lint",
+	"terraform_validate",
+	"elixir_ls",
+}
+
+require("mason").setup({
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+})
 
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "vimls",
-    "ruff",
-    "biome",
-    "ts_ls",
-    "markdown_oxide",
-    "mdx_analyzer",
-    "lua_ls",
-    "jsonls",
-    "jsonnet_ls",
-    "yamlls",
-    "dockerls",
-    "bashls",
-    "golangci_lint_ls",
-    "gopls",
-    "terraformls",
-    "rust_analyzer",
-    "elixirls",
-    -- "erlangls"
-  }
+	ensure_installed = lsp_servers,
 })
 
-require("lspconfig").lua_ls.setup({
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-    },
-  },
+local lsp_config = require("lspconfig")
+for _, lsp_server in ipairs(lsp_servers) do
+	lsp_config[lsp_server].setup({
+		root_dir = function(fname)
+			return lsp_config.util.find_git_ancestor(fname) or vim.fn.getcwd()
+		end,
+	})
+end
+
+require("mason-null-ls").setup({
+	automatic_setup = true,
+	ensure_installed = vim.tbl_flatten({ formatters, diagnostics }),
+	handlers = {},
 })
 
-require("lspconfig").vimls.setup()
-require("lspconfig").ruff.setup()
-require("lspconfig").biome.setup()
-require("lspconfig").ts_ls.setup()
-require("lspconfig").markdown_oxide.setup()
-require("lspconfig").mdx_analyzer.setup()
-require("lspconfig").jsonls.setup()
-require("lspconfig").jsonnet_ls.setup()
-require("lspconfig").yamlls.setup()
-require("lspconfig").dockerls.setup()
-require("lspconfig").bashls.setup()
-require("lspconfig").golangci_lint_ls.setup()
-require("lspconfig").gopls.setup()
-require("lspconfig").terraformls.setup()
-require("lspconfig").rust_analyzer.setup()
-require("lspconfig").elixirls.setup()
+local null_ls = require("null-ls")
+local formatting_sources = {}
+for _, tool in ipairs(formatters) do
+	table.insert(formatting_sources, null_ls.builtins.formatting[tool])
+end
 
+local diagnostics_sources = {}
+for _, tool in ipairs(diagnostics) do
+	table.insert(diagnostics_sources, null_ls.builtins.diagnostics[tool])
+end
+
+null_ls.setup({
+	diagnostics_format = "[#{m}] #{s} (#{c})",
+	sources = vim.tbl_flatten({ formatting_sources, diagnostics_sources }),
+})
+
+require("lspsaga").setup({
+	symbol_in_winbar = {
+		separator = "  ",
+	},
+})

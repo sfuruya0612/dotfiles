@@ -28,7 +28,7 @@
     - neovim
     # - bash-language-server
     # - vim-language-server
-  ignore_errors: "{{ 'DeprecationWarning' in ansible_failed_result.stderr }}"
+  failed_when: false
 
 - name: Unlink config files
   ansible.builtin.file:

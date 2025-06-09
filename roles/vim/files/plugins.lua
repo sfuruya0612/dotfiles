@@ -282,14 +282,53 @@ return {
 
   -- LSP
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {},
+    "mason-org/mason.nvim",
     dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
+      "mason/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
+      "jay-babu/mason-null-ls.nvim",
+      "nvimtools/none-ls.nvim",
     },
   },
 
+  -- {
+  --   "mason-org/mason-lspconfig.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     { "mason-org/mason.nvim", opts = {} },
+  --     "neovim/nvim-lspconfig",
+  --   },
+  -- },
+
+  -- mason-null-ls
+  {
+    "jay-babu/mason-null-ls.nvim",
+    -- event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "mason-org/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    cmd = "Mason",
+  },
+
+  -- none-ls
+  {
+    "nvimtools/none-ls.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
+  -- lspsaga
+  {
+    "nvimdev/lspsaga.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    event = { "BufRead", "BufNewFile" },
+  },
+
+  -- Markdown Preview
   {
     "kannokanno/previm",
     ft = { "markdown", "md" },
