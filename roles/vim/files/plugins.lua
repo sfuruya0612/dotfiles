@@ -284,7 +284,7 @@ return {
   {
     "mason-org/mason.nvim",
     dependencies = {
-      "mason/mason-lspconfig.nvim",
+      "mason-org/mason-lspconfig.nvim",
       "neovim/nvim-lspconfig",
       "jay-babu/mason-null-ls.nvim",
       "nvimtools/none-ls.nvim",
