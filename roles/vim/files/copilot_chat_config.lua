@@ -1,8 +1,3 @@
-local select = require('CopilotChat.select')
-local actions = require("CopilotChat.actions")
--- local prompts = require("CopilotChat.prompts")
-
-
 require("CopilotChat").setup {
   debug = true, -- Enable debugging
 
@@ -25,10 +20,6 @@ require("CopilotChat").setup {
     Docs = {
       prompt = '/COPILOT_REFACTOR 選択したコードのドキュメントを書いてください。ドキュメントをコメントとして追加した元のコードを含むコードブロックで回答してください。使用するプログラミング言語に最も適したドキュメントスタイルを使用してください（例：JavaScriptのJSDoc、Pythonのdocstringsなど）',
     },
-    FixDiagnostic = {
-      prompt = 'ファイル内の次のような診断上の問題を解決してください：',
-      selection = select.diagnostics,
-    }
   },
 
   -- default window options
@@ -74,16 +65,6 @@ require("CopilotChat").setup {
     show_diff = {
       normal = 'gd'
     },
-    -- show_system_prompt = {
-    --   normal = 'gp'
-    -- },
-    -- show_user_selection = {
-    --   normal = 'gs'
-    -- },
   },
 
 }
-
-function ShowCopilotChatActionPrompt()
-  require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-end
