@@ -18,19 +18,20 @@
     state: present
     install_options: "appdir=/Applications"
     accept_external_apps: true
+    sudo_password: "{{ ansible_become_password | default(omit) }}"
   loop: "{{ homebrew_cask_apps }}"
   loop_control:
     loop_var: homebrew_cask_app_item
-  failed_when: false
 
 - name: Update homebrew and upgrade all packages
   community.general.homebrew:
     update_homebrew: true
     upgrade_all: true
-  failed_when: false
 
 - name: Install homebrew packages
   community.general.homebrew:
-    name: "{{ homebrew_packages }}"
+    name: "{{ homebrew_package_item }}"
     state: present
-  failed_when: false
+  loop: "{{ homebrew_packages }}"
+  loop_control:
+    loop_var: homebrew_package_item

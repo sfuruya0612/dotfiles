@@ -21,6 +21,12 @@ homebrew_cask_apps:
   - slack
   - wireshark
   - zoom
+  # Docker alternative
+  - orbstack
+  # Launcher Tool
+  - raycast
+  # System Monitor
+  - stats
 
 homebrew_packages:
   - act
@@ -33,7 +39,7 @@ homebrew_packages:
   - cmake
   - colordiff
   - coreutils
-  - cloudflare-wrangler2
+  - cloudflare-wrangler
   - deno
   - diffutils
   - duckdb
@@ -65,18 +71,13 @@ homebrew_packages:
   - nmap
   - node
   - openssl
-  # Docker alternative
-  - orbstack
   - protobuf
   - python3
   # - reattach-to-user-namespace
-  # Launcher Tool
-  - raycast
   # https://github.com/yamadashy/repomix
   - repomix
   - ripgrep
   - starship
-  - stats
   - stern
   - telnet
   - terraformer
@@ -84,7 +85,7 @@ homebrew_packages:
   - urlview
   - vim
   - wget
-  - wxmac
+  - wxwidgets
   - yarn
   - yq
   # Terminal Multiplexer

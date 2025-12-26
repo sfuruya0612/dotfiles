@@ -55,13 +55,14 @@ require("mason-lspconfig").setup({
 	ensure_installed = lsp_servers,
 })
 
-local lsp_config = require("lspconfig")
+-- グローバル設定: すべてのサーバーに対してgitリポジトリをルートマーカーとして設定
+vim.lsp.config("*", {
+	root_markers = { ".git" },
+})
+
+-- 各LSPサーバーを有効化
 for _, lsp_server in ipairs(lsp_servers) do
-	lsp_config[lsp_server].setup({
-		root_dir = function(fname)
-			return lsp_config.util.find_git_ancestor(fname) or vim.fn.getcwd()
-		end,
-	})
+	vim.lsp.enable(lsp_server)
 end
 
 require("mason-null-ls").setup({

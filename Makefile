@@ -14,8 +14,7 @@ install:
 	PATH="$$PATH:/opt/homebrew/bin/" \
 	/opt/homebrew/bin/ansible-playbook main.yml \
 		-i inventory/local \
-		--ask-become-pass \
-		-v
+		--ask-become-pass
 
 	@echo "\033[33mDone\033[00m\n"
 
@@ -29,8 +28,8 @@ install.role:
 	PATH="$$PATH:/opt/homebrew/bin/" \
 	/opt/homebrew/bin/ansible-playbook main.yml \
 		-i inventory/local \
-		--tags ${ROLE} \
-		-v
+		--ask-become-pass \
+		--tags ${ROLE}
 
 	@echo "\033[33mDone\033[00m\n"
 

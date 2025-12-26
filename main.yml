@@ -4,6 +4,10 @@
     - 127.0.0.1
   connection: local
   gather_facts: true
+  vars_prompt:
+    - name: ansible_become_password
+      prompt: "Enter sudo password"
+      private: true
   roles:
     - role: common
       tags: common
