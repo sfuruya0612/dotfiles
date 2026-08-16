@@ -1,21 +1,8 @@
 return {
-	-- Plugin manager
-	{
-		"folke/lazy.nvim",
-		-- TODO: :LazyExtras command not found
-		-- spec = {
-		--   { import = "lazyvim.plugins.extras.lang.python" },
-		--   { import = "lazyvim.plugins.extras.lang.typescript" },
-		--   { import = "lazyvim.plugins.extras.lang.yaml" },
-		--   { import = "lazyvim.plugins.extras.ai.copilot" },
-		-- },
-		-- automatically check for plugin updates
-		checker = { enabled = true },
-	},
-
 	-- Font
 	{
 		"lambdalisue/nerdfont.vim",
+		event = "VeryLazy",
 	},
 
 	-- Colorscheme
@@ -35,6 +22,7 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		event = "VeryLazy",
 		config = function()
 			require("lualine").setup({
 				options = {
@@ -82,6 +70,10 @@ return {
 	-- File Explorer
 	{
 		"nvim-tree/nvim-tree.lua",
+		cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus" },
+		keys = {
+			{ "<C-n>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle NvimTree" },
+		},
 		config = function()
 			require("nvim-tree").setup()
 			vim.opt.termguicolors = true
@@ -93,11 +85,13 @@ return {
 	-- Auto close parentheses
 	{
 		"cohama/lexima.vim",
+		event = "InsertEnter",
 	},
 
 	-- 括弧ペアの色分け
 	{
 		"luochen1990/rainbow",
+		event = "BufReadPre",
 		config = function()
 			vim.g.rainbow_active = 1
 		end,
@@ -106,6 +100,7 @@ return {
 	-- インデントガイド
 	{
 		"nathanaelkane/vim-indent-guides",
+		event = "BufReadPre",
 		config = function()
 			vim.g.indent_guides_enable_on_vim_startup = 1
 			vim.g.indent_guides_exclude_filetypes = { "help" }
@@ -121,138 +116,52 @@ return {
 		enabled = vim.fn.has("nvim-0.10.0") == 1,
 	},
 
-	-- Claude Code
-	{
-		"greggh/claude-code.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("claude-code").setup({
-				window = {
-					split_ratio = 0.4,
-					position = "rightbelow vsplit",
-					enter_insert = true,
-					hide_numbers = true,
-					hide_signcolumn = true,
-				},
-			})
-		end,
-	},
-
 	-- GitHub Copilot
 	{
 		"github/copilot.vim",
-		lazy = false,
+		event = "InsertEnter",
 		config = function()
-			-- require("copilot").setup()
 			vim.g.copilot_node_command = "/opt/homebrew/bin/node"
 			vim.g.copilot_filetypes = {
 				confini = false,
-				-- Avante = false,
 				["*"] = true,
 			}
 		end,
 	},
-
-	-- GitHub Copilot Chat
-	{
-		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "main",
-		build = "make tiktoken",
-		dependencies = {
-			"github/copilot.vim",
-			"nvim-lua/plenary.nvim",
-		},
-	},
-
-	-- -- Emulate cursor AI IDE
-	-- {
-	--   "yetone/avante.nvim",
-	--   enabled = true,
-	--   event = "VeryLazy",
-	--   lazy = false,
-	--   version = false,
-	--   build = "make",
-	--   opts = {
-	--     provider = "copilot",
-	--     -- auto_suggestions_provider = "copilot",
-	--     behaviour = {
-	--       auto_suggestions = false,
-	--       auto_set_highlight_group = true,
-	--       auto_set_keymaps = true,
-	--       auto_apply_diff_after_generation = true,
-	--       support_paste_from_clipboard = true,
-	--     },
-	--     windows = {
-	--       position = "right",
-	--       width = 30,
-	--       sidebar_header = {
-	--         align = "center",
-	--         rounded = false,
-	--       },
-	--       ask = {
-	--         floating = true,
-	--         start_insert = true,
-	--         border = "rounded"
-	--       }
-	--     },
-	--     copilot = {
-	--       endpoint = "https://api.githubcopilot.com",
-	--       model = "gemini-2.5-pro",
-	--       max_tokens = 2000000,
-	--     },
-	--   },
-	--   dependencies = {
-	--     "nvim-treesitter/nvim-treesitter",
-	--     "stevearc/dressing.nvim",
-	--     "nvim-lua/plenary.nvim",
-	--     "MunifTanjim/nui.nvim",
-	--     --- The below dependencies are optional,
-	--     "echasnovski/mini.pick",         -- for file_selector provider mini.pick
-	--     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-	--     "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
-	--     "ibhagwan/fzf-lua",              -- for file_selector provider fzf
-	--     "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-	--     "zbirenbaum/copilot.lua",
-	--     {
-	--       -- support for image pasting
-	--       "HakonHarnes/img-clip.nvim",
-	--       event = "VeryLazy",
-	--       opts = {
-	--         -- recommended settings
-	--         default = {
-	--           embed_image_as_base64 = false,
-	--           prompt_for_file_name = false,
-	--           drag_and_drop = {
-	--             insert_mode = true,
-	--           },
-	--           -- required for Windows users
-	--           use_absolute_path = true,
-	--         },
-	--       },
-	--     },
-	--     {
-	--       -- Make sure to set this up properly if you have lazy=true
-	--       'MeanderingProgrammer/render-markdown.nvim',
-	--       opts = {
-	--         file_types = { "markdown", "Avante" },
-	--       },
-	--       ft = { "markdown", "Avante" },
-	--     },
-	--   },
-	-- },
 
 	-- Telescope
 	{
 		"nvim-telescope/telescope.nvim",
 		version = "0.1.8",
 		dependencies = { "nvim-lua/plenary.nvim" },
+		cmd = "Telescope",
+		keys = {
+			{ "ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+			{ "fg", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+			{ "fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
+			{ "fh", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
+		},
+		config = function()
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<C-s>"] = require("telescope.actions").file_split,
+							["<C-v>"] = require("telescope.actions").file_vsplit,
+						},
+					},
+				},
+			})
+		end,
 	},
 
 	-- Open terminal
 	{
 		"akinsho/toggleterm.nvim",
+		keys = {
+			{ [[<c-\>]], desc = "Toggle terminal" },
+		},
+		cmd = { "ToggleTerm", "TermExec" },
 		config = function()
 			require("toggleterm").setup({
 				size = 30,
@@ -272,48 +181,36 @@ return {
 	-- Git操作
 	{
 		"tpope/vim-fugitive",
+		cmd = { "Git", "G" },
 	},
 
 	-- Gitの変更表示
 	{
 		"airblade/vim-gitgutter",
+		event = "BufReadPre",
 	},
 
 	-- LSP
 	{
 		"mason-org/mason.nvim",
+		event = "BufReadPre",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
 		dependencies = {
 			"mason-org/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
-			"jay-babu/mason-null-ls.nvim",
-			"nvimtools/none-ls.nvim",
 		},
 	},
 
-	-- {
-	--   "mason-org/mason-lspconfig.nvim",
-	--   opts = {},
-	--   dependencies = {
-	--     { "mason-org/mason.nvim", opts = {} },
-	--     "neovim/nvim-lspconfig",
-	--   },
-	-- },
-
-	-- mason-null-ls
+	-- Formatter
 	{
-		"jay-babu/mason-null-ls.nvim",
-		-- event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"mason-org/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-		cmd = "Mason",
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
 	},
 
-	-- none-ls
+	-- Linter
 	{
-		"nvimtools/none-ls.nvim",
-		requires = "nvim-lua/plenary.nvim",
+		"mfussenegger/nvim-lint",
 		event = { "BufReadPre", "BufNewFile" },
 	},
 

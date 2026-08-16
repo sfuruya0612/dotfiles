@@ -3,6 +3,7 @@
   ansible.builtin.file:
     path: "{{ ghostty_dest_config_dir }}"
     state: directory
+    mode: "0755"
 
 - name: Set config file
   ansible.builtin.file:

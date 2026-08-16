@@ -8,12 +8,20 @@ Setting macOS with Ansible.
 
 ## Settings
 
-### Prepere
+### Prepare
 
 Install homebrew and run `/opt/homebrew/bin/brew install git`.
 
 ```bash
 make init
+```
+
+Create `~/.gitconfig.local` with your git identity (not managed by this repository):
+
+```ini
+[user]
+	name = <your name>
+	email = <your email>
 ```
 
 ### Install
@@ -22,17 +30,22 @@ make init
 make
 ```
 
-## Troubleshooting
-
-### Downgrade Lua
-
-If you have an lua newer than 5.1.5, you need to downgrade it.
+Install a single role:
 
 ```bash
-wget https://www.lua.org/ftp/lua-5.1.5.tar.gz
-tar xvf lua-5.1.5.tar.gz
-cd lua-5.1.5
-make macosx
-sudo make install
-lua -v
+ROLE=shell make install.role
+```
+
+### Upgrade homebrew packages
+
+Package upgrades are separated from the install tasks because they are not idempotent.
+
+```bash
+make upgrade
+```
+
+## Lint
+
+```bash
+make lint
 ```

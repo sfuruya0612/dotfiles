@@ -1,4 +1,3 @@
 ---
-VIM: "neovim"
-SHELL: "fish"
-TERM: "xterm-256color"
+default_shell: "fish"
+default_term: "xterm-256color"

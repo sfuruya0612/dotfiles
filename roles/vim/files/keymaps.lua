@@ -64,21 +64,11 @@ keymap("v", ">", ">gv", opts)
 -- 0番レジスタを使いやすくした
 -- keymap("v", "<C-p>", '"0p', opts)
 
--- File Explorer
-keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
-
--- Telescope
-keymap("n", "ff", ":lua require('telescope.builtin').find_files()<CR>", term_opts)
-keymap("n", "fg", ":lua require('telescope.builtin').live_grep()<CR>", term_opts)
-keymap("n", "fb", ":lua require('telescope.builtin').buffers()<CR>", term_opts)
-keymap("n", "fh", ":lua require('telescope.builtin').help_tags()<CR>", term_opts)
-
--- Copilot Chat
-keymap("n", "<leader>ccp", ":lua ShowCopilotChatActionPrompt()<CR>", opts)
-
--- Avante
--- keymap("n", "<leader>ac", ":AvanteChat<CR>", opts)
--- keymap("n", "<leader>acc", ":AvanteClear<CR>", opts)
+-- Note: File Explorer (<C-n>) and Telescope (ff, fg, fb, fh) keymaps
+-- are now defined in plugins.lua for proper lazy loading
 
 -- Call show_documentation func
 -- keymap("n", "K", ":lua show_documentation()<CR>", opts)
+
+-- Format with conform.nvim
+keymap("n", "<leader>f", "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<CR>", opts)

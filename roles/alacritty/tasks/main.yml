@@ -3,6 +3,7 @@
   ansible.builtin.file:
     path: "{{ alacritty_dest_config_dir }}"
     state: directory
+    mode: "0755"
 
 - name: Set additional config files
   ansible.builtin.file:
@@ -23,3 +24,4 @@
   ansible.builtin.template:
     src: "alacritty.toml.j2"
     dest: "{{ alacritty_dest_config_dir }}/alacritty.toml"
+    mode: "0644"

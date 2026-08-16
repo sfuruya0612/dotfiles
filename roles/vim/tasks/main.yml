@@ -3,6 +3,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
+    mode: "0755"
   loop:
     - "{{ ansible_env.HOME }}/.config/nvim"
     - "{{ ansible_env.HOME }}/.config/nvim/lua"
@@ -11,12 +12,10 @@
   ansible.builtin.pip:
     name: "{{ item }}"
     executable: "/opt/homebrew/bin/pip3"
-    extra_args: "--break-system-package"
-    state: latest
+    extra_args: "--break-system-packages"
+    state: present
   loop:
     - neovim
-    # - pynvim
-    # - ruff-lsp
 
 - name: Install neovim from yarn
   community.general.yarn:
@@ -26,21 +25,36 @@
     state: present
   loop:
     - neovim
-    # - bash-language-server
-    # - vim-language-server
   failed_when: false
 
-- name: Unlink config files
-  ansible.builtin.file:
-    path: "{{ vim_init_dest_dir }}{{ item }} "
-    state: absent
-  loop: "{{ vim_config_files }}"
+# 配布リストから削除されたファイルのリンクを回収するため、
+# リンク先が存在しないシンボリックリンクを検出して削除する
+- name: Find symbolic links in config directories
+  ansible.builtin.find:
+    paths:
+      - "{{ vim_init_dest_dir }}"
+      - "{{ vim_lua_dest_dir }}"
+    file_type: link
+    recurse: false
+  register: vim_config_links
 
-- name: Unlink lua files
+- name: Check symbolic link targets
+  ansible.builtin.stat:
+    path: "{{ item.path }}"
+    follow: true
+  loop: "{{ vim_config_links.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  register: vim_link_stats
+
+- name: Remove dangling symbolic links
   ansible.builtin.file:
-    path: "{{ vim_lua_dest_dir }}{{ item }} "
+    path: "{{ item.item.path }}"
     state: absent
-  loop: "{{ vim_lua_files }}"
+  loop: "{{ vim_link_stats.results }}"
+  loop_control:
+    label: "{{ item.item.path }}"
+  when: not item.stat.exists
 
 - name: Symbolic link config files
   ansible.builtin.file:

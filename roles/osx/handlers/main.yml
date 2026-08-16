@@ -2,11 +2,17 @@
 - name: Restart dock
   ansible.builtin.command: |
     killall Dock
+  changed_when: true
+  failed_when: false
 
 - name: Restart safari
   ansible.builtin.command: |
     killall Safari
+  changed_when: true
+  failed_when: false
 
 - name: Restart finder
   ansible.builtin.command: |
     killall Finder
+  changed_when: true
+  failed_when: false

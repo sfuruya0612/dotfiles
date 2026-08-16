@@ -3,15 +3,11 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/zellij"
     state: directory
-
-- name: Unlink config file
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/zellij/config.kdl"
-    state: absent
+    mode: "0755"
 
 - name: Symbolic link config file
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/zellij/files/config.kdl"
+    src: "{{ role_path }}/files/config.kdl"
     dest: "{{ ansible_env.HOME }}/.config/zellij/config.kdl"
     state: link
     force: true

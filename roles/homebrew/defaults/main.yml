@@ -1,8 +1,6 @@
 ---
 homebrew_taps:
   - hashicorp/tap
-  - knqyf263/trivy
-  - weaveworks/tap
 
 homebrew_cask_apps:
   - alacritty
@@ -16,8 +14,6 @@ homebrew_cask_apps:
   - google-chrome
   - google-cloud-sdk
   - jetbrains-toolbox
-  - notion
-  - session-manager-plugin
   - slack
   - wireshark
   - zoom
@@ -73,10 +69,13 @@ homebrew_packages:
   - openssl
   - protobuf
   - python3
+  # ansible.builtin.pip モジュールがターゲット Python 上で必要とする
+  - python-packaging
   # - reattach-to-user-namespace
   # https://github.com/yamadashy/repomix
   - repomix
   - ripgrep
+  - shellcheck
   - starship
   - stern
   - telnet

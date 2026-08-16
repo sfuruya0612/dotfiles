@@ -1,4 +1,8 @@
 # ANSIBLE MANAGED BLOCK: git-delta"
+# ユーザー固有情報 ([user] の name / email) は ~/.gitconfig.local に記載する
+[include]
+    path = ~/.gitconfig.local
+
 [core]
     pager = delta
 

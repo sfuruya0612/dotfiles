@@ -14,9 +14,9 @@ import = [
 ]
 
 [terminal.shell]
-program = "/opt/homebrew/bin/{{ SHELL }}"
+program = "/opt/homebrew/bin/{{ default_shell }}"
 args = ["-l"]
 
 # Env
 [env]
-TERM = "{{ TERM }}"
+TERM = "{{ default_term }}"

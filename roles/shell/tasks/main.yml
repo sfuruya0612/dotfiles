@@ -1,38 +1,37 @@
 ---
-- name: Unlink fish function file
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
-    state: absent
-  loop: "{{ shell_fish_function }}"
-
-- name: Unlink starship config file
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/starship.toml"
-    state: absent
-
 - name: Create fish config directory
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/fish/functions"
     state: directory
+    mode: "0755"
 
 - name: Install fisher
   ansible.builtin.get_url:
     url: "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
     dest: "{{ ansible_env.HOME }}/.config/fish/functions/fisher.fish"
     validate_certs: true
+    mode: "0644"
 
-- name: Install plugins
-  ansible.builtin.shell:
-    cmd: |
-      fish -c "fisher install {{ item }}"
+- name: Check installed fisher plugins
+  ansible.builtin.command:
+    cmd: /opt/homebrew/bin/fish -c "fisher list"
+  register: shell_fisher_list
+  changed_when: false
+  failed_when: false
+
+- name: Install fisher plugins
+  ansible.builtin.command:
+    cmd: /opt/homebrew/bin/fish -c "fisher install {{ item }}"
   loop:
     - jethrokuan/fzf
     - jethrokuan/z
     - evanlucas/fish-kubectl-completions
+  when: item not in (shell_fisher_list.stdout | default(''))
+  changed_when: true
 
 - name: Set fish functions
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/functions/{{ item }}"
+    src: "{{ role_path }}/files/functions/{{ item }}"
     path: "{{ ansible_env.HOME }}/.config/fish/functions/{{ item }}"
     state: link
     force: true
@@ -40,8 +39,8 @@
 
 - name: Set starship config
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/starship.toml"
-    path: ~/.config/starship.toml
+    src: "{{ role_path }}/files/starship.toml"
+    path: "{{ ansible_env.HOME }}/.config/starship.toml"
     state: link
     force: true
 
@@ -50,40 +49,57 @@
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     force: true
+    mode: "0644"
   loop: "{{ shell_fish_config }}"
 
+# ユーザー固有情報 (name / email) はリポジトリに含めないため、
+# gitconfig 本体はリンクにし、識別情報は ~/.gitconfig.local に分離する
+- name: Check gitconfig local file
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.gitconfig.local"
+  register: shell_gitconfig_local
+
+- name: Warn if gitconfig local file is missing
+  ansible.builtin.debug:
+    msg: "~/.gitconfig.local not found. Create it with your [user] section."
+  when: not shell_gitconfig_local.stat.exists
+
 - name: Set gitconfig file
-  ansible.builtin.copy:
-    src: "{{ ansible_env.HOME }}/dotfiles/roles/shell/files/gitconfig"
-    dest: "{{ ansible_env.HOME }}/.gitconfig"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/gitconfig"
+    path: "{{ ansible_env.HOME }}/.gitconfig"
+    state: link
+    force: true
 
 - name: Search shell path
-  ansible.builtin.shell:
-    cmd: |
-      /usr/bin/which {{ SHELL }}
+  ansible.builtin.command:
+    cmd: /usr/bin/which {{ default_shell }}
   register: shell_path
+  changed_when: false
   failed_when: false
 
 - name: Check shells file
-  ansible.builtin.shell:
-    cmd: |
-      set -o pipefail
-      /bin/cat /etc/shells | /usr/bin/grep {{ shell_path.stdout }}
-  register: chk_shell
+  ansible.builtin.command:
+    cmd: /usr/bin/grep -x "{{ shell_path.stdout }}" /etc/shells
+  register: shell_registered
+  changed_when: false
   failed_when: false
+  when: shell_path.stdout | length > 0
 
 - name: Append shells
   ansible.builtin.lineinfile:
     dest: /etc/shells
     line: "{{ shell_path.stdout }}"
     insertafter: EOF
-  when: chk_shell.rc != 0
+  when:
+    - shell_path.stdout | length > 0
+    - shell_registered.rc | default(0) != 0
   become: true
 
 - name: Change login shell
-  ansible.builtin.shell:
-    cmd: |
-      /usr/bin/chpass -s {{ shell_path.stdout }}
-  when: chk_shell.rc != 0
-  register: result
-  until: result.rc == 0
+  ansible.builtin.command:
+    cmd: /usr/bin/chpass -s {{ shell_path.stdout }}
+  when:
+    - shell_path.stdout | length > 0
+    - shell_registered.rc | default(0) != 0
+  changed_when: true

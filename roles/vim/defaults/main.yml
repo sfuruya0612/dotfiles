@@ -1,19 +1,17 @@
 ---
-vim_src_dir: "{{ ansible_env.HOME }}/dotfiles/roles/vim/files/"
+vim_src_dir: "{{ role_path }}/files/"
 vim_init_dest_dir: "{{ ansible_env.HOME }}/.config/nvim/"
 vim_lua_dest_dir: "{{ ansible_env.HOME }}/.config/nvim/lua/"
 
 vim_config_files:
   - init.lua
-  - coc-settings.json
 
 vim_lua_files:
   - base.lua
   - autocmds.lua
   - lazy_nvim.lua
   - plugins.lua
-  # - copilot_chat_config.lua
-  - telescope_config.lua
   - options.lua
   - keymaps.lua
   - lsp_config.lua
+  - lsp_diagnostics.lua

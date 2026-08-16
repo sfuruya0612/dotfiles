@@ -3,22 +3,8 @@
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/{{ item }}"
     state: directory
+    mode: "0755"
   loop:
     - apps
     - works
-    - fonts
     - tmp
-
-- name: Clone fonts repo
-  ansible.builtin.git:
-    repo: "{{ item.repo }}"
-    dest: "{{ item.dest }}"
-    depth: 1
-  loop:
-    - repo: "https://github.com/powerline/fonts.git"
-      dest: "{{ ansible_env.HOME }}/fonts/powerline"
-
-- name: Install powerline fonts
-  ansible.builtin.shell:
-    cmd: |
-      {{ ansible_env.HOME }}/fonts/powerline/install.sh

@@ -64,7 +64,7 @@ set -U HISTSIZE 10000
 set -U SAVEHIST 100000
 
 # Set theme
-set -U TERM {{ TERM }}
+set -U TERM {{ default_term }}
 
 # Set fzf
 set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --glob "!.git"'
@@ -134,7 +134,7 @@ if type -q thief
 end
 
 # Claude code
-alias c "{{ ansible_env.HOME }}/.local/bin/claude"
+alias c "/opt/homebrew/bin/claude"
 
 # Set key binding
 bind \cx change_recent_directory

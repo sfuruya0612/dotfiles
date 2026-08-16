@@ -7,10 +7,36 @@
   loop_control:
     loop_var: homebrew_tap_item
 
+# Homebrew はサードパーティ tap を信頼登録しないと formula のロードを拒否する
+- name: Check tap trust status
+  ansible.builtin.command:
+    cmd: /opt/homebrew/bin/brew tap-info {{ homebrew_tap_item }}
+  loop: "{{ homebrew_taps }}"
+  loop_control:
+    loop_var: homebrew_tap_item
+  register: homebrew_tap_info
+  changed_when: false
+
+- name: Trust homebrew taps
+  ansible.builtin.command:
+    cmd: /opt/homebrew/bin/brew trust --tap {{ item.homebrew_tap_item }}
+  loop: "{{ homebrew_tap_info.results }}"
+  loop_control:
+    label: "{{ item.homebrew_tap_item }}"
+  when: "'Untrusted' in item.stdout"
+  changed_when: true
+
+# アップグレードは実行のたびに結果が変わる非冪等な操作のため、
+# 通常のセットアップから分離して --tags upgrade 指定時のみ実行する
+# (ロールタグ homebrew を継承するため never タグではなく ansible_run_tags で判定する)
 - name: Upgrade homebrew cask all packages
   community.general.homebrew_cask:
     update_homebrew: true
     upgrade_all: true
+    sudo_password: "{{ ansible_become_password | default(omit) }}"
+  when: "'upgrade' in ansible_run_tags"
+  tags:
+    - upgrade
 
 - name: Install homebrew cask packages
   community.general.homebrew_cask:
@@ -27,6 +53,9 @@
   community.general.homebrew:
     update_homebrew: true
     upgrade_all: true
+  when: "'upgrade' in ansible_run_tags"
+  tags:
+    - upgrade
 
 - name: Install homebrew packages
   community.general.homebrew:

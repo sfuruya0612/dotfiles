@@ -18,29 +18,6 @@ local lsp_servers = {
 	"elixirls",
 }
 
-local formatters = {
-	"stylua",
-	"prettier",
-	"ruff_format",
-	"biome",
-	"shfmt",
-	"gofumpt",
-	"terraform_fmt",
-}
-
-local diagnostics = {
-	"ruff",
-	"eslint_d",
-	"tsserver",
-	"jsonlint",
-	"yamllint",
-	"dockerfile_lint",
-	"bashate",
-	"golangci_lint",
-	"terraform_validate",
-	"elixir_ls",
-}
-
 require("mason").setup({
 	ui = {
 		icons = {
@@ -55,40 +32,58 @@ require("mason-lspconfig").setup({
 	ensure_installed = lsp_servers,
 })
 
--- グローバル設定: すべてのサーバーに対してgitリポジトリをルートマーカーとして設定
+-- Global config: set git repository as root marker for all servers
 vim.lsp.config("*", {
 	root_markers = { ".git" },
 })
 
--- 各LSPサーバーを有効化
+-- Enable each LSP server
 for _, lsp_server in ipairs(lsp_servers) do
 	vim.lsp.enable(lsp_server)
 end
 
-require("mason-null-ls").setup({
-	automatic_setup = true,
-	ensure_installed = vim.tbl_flatten({ formatters, diagnostics }),
-	handlers = {},
+-- conform.nvim setup (formatter)
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		python = { "ruff_format" },
+		javascript = { "prettier", "biome", stop_after_first = true },
+		typescript = { "prettier", "biome", stop_after_first = true },
+		javascriptreact = { "prettier", "biome", stop_after_first = true },
+		typescriptreact = { "prettier", "biome", stop_after_first = true },
+		json = { "prettier", "biome", stop_after_first = true },
+		css = { "prettier" },
+		sh = { "shfmt" },
+		bash = { "shfmt" },
+		go = { "gofumpt" },
+		terraform = { "terraform_fmt" },
+	},
+	format_on_save = {
+		timeout_ms = 500,
+		lsp_fallback = true,
+	},
 })
 
-local null_ls = require("null-ls")
-local formatting_sources = {}
-for _, tool in ipairs(formatters) do
-	table.insert(formatting_sources, null_ls.builtins.formatting[tool])
-end
+-- nvim-lint setup (linter)
+require("lint").linters_by_ft = {
+	javascript = { "eslint_d" },
+	typescript = { "eslint_d" },
+	javascriptreact = { "eslint_d" },
+	typescriptreact = { "eslint_d" },
+	json = { "jsonlint" },
+	yaml = { "yamllint" },
+	dockerfile = { "hadolint" },
+}
 
-local diagnostics_sources = {}
-for _, tool in ipairs(diagnostics) do
-	table.insert(diagnostics_sources, null_ls.builtins.diagnostics[tool])
-end
-
-null_ls.setup({
-	diagnostics_format = "[#{m}] #{s} (#{c})",
-	sources = vim.tbl_flatten({ formatting_sources, diagnostics_sources }),
+-- Auto-run linter
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+	callback = function()
+		require("lint").try_lint()
+	end,
 })
 
 require("lspsaga").setup({
 	symbol_in_winbar = {
-		separator = "  ",
+		separator = "  ",
 	},
 })

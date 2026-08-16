@@ -1,8 +1,6 @@
 require('base')
 require('autocmds')
 require('lazy_nvim')
-require('copilot_chat_config')
-require('telescope_config')
 require('options')
 require('keymaps')
 require('lsp_config')
