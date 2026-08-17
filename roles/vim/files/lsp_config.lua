@@ -30,6 +30,10 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
 	ensure_installed = lsp_servers,
+	-- LSP の有効化は下の vim.lsp.enable ループに一本化する
+	-- automatic_enable は mason にインストール済みのツールを無差別に vim.lsp.enable するため、
+	-- LSP 非対応の stylua (フォーマッタ用) まで stylua --lsp で起動されてエラーになる
+	automatic_enable = false,
 })
 
 -- Global config: set git repository as root marker for all servers
