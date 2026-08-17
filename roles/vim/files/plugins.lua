@@ -218,7 +218,10 @@ return {
 	{
 		"nvimdev/lspsaga.nvim",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
+			-- nvim-treesitter は依存に含めない
+			-- master ブランチは凍結済みで Neovim 0.12 の treesitter API と非互換であり、
+			-- 同梱の古いクエリが標準クエリを覆い隠して起動時エラーになるため
+			-- (パーサーとクエリは Neovim 0.12 標準搭載のものを使う)
 			"nvim-tree/nvim-web-devicons",
 		},
 		event = { "BufRead", "BufNewFile" },
