@@ -38,12 +38,17 @@
   tags:
     - upgrade
 
+# community.general.homebrew_cask の accept_external_apps は、brew の
+# エラーメッセージ形式 (cask 名を含む "Error: <cask>: It seems there is
+# already an App at ...") と正規表現が一致せず機能しないため、brew 側の
+# --adopt オプションで /Applications 内の既存アプリを直接取り込む
 - name: Install homebrew cask packages
   community.general.homebrew_cask:
     name: "{{ homebrew_cask_app_item }}"
     state: present
-    install_options: "appdir=/Applications"
-    accept_external_apps: true
+    install_options:
+      - "appdir=/Applications"
+      - "adopt"
     sudo_password: "{{ ansible_become_password | default(omit) }}"
   loop: "{{ homebrew_cask_apps }}"
   loop_control:
