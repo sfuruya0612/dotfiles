@@ -4,6 +4,7 @@ homebrew_taps:
 
 homebrew_cask_apps:
   - alacritty
+  - claude-code@latest
   - cloudflare-warp
   - cotEditor
   - deepl

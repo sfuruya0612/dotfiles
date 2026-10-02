@@ -1,5 +1,6 @@
 ---
 shell_fish_function:
+  - c.fish
   - change_recent_directory.fish
   - ecr.fish
   - fa.fish
